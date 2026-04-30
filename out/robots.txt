@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+Host: https://careaccess.ng
+Sitemap: https://careaccess.ng/sitemap.xml
