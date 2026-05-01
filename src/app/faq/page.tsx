@@ -15,11 +15,11 @@ export default function FAQPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden hero-gradient" aria-label="FAQ hero">
+      <section className="relative pt-28 pb-28 md:pt-36 md:pb-36 overflow-hidden hero-gradient" aria-label="FAQ hero">
         <div className="absolute inset-0 bg-navy-mesh" />
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none">
-            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 0C540 0 240 60 0 20L0 60Z" fill="white" />
+          <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
+            <path d="M0 90L1440 90L1440 40C1200 90 900 0 720 0C540 0 240 90 0 40L0 90Z" fill="white" />
           </svg>
         </div>
         <div className="relative z-10 container-max text-center">

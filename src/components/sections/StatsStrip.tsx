@@ -3,7 +3,7 @@ import { Users, Clock, Star, Building2 } from 'lucide-react'
 
 const stats = [
   { icon: Users, value: '10,000+', label: 'Members Served' },
-  { icon: Clock, value: '24/7', label: 'Nurse Availability' },
+  { icon: Clock, value: '24/7', label: 'Nurse on Call' },
   { icon: Star, value: '98%', label: 'Satisfaction Rate' },
   { icon: Building2, value: '50+', label: 'Partner Hospitals' },
 ]
