@@ -4,8 +4,8 @@ import { images } from '@/lib/utils'
 import { CheckCircle2 } from 'lucide-react'
 
 const points = [
-  'A doctor who knows your full medical history',
-  'Manages your family health profile completely',
+  'A dedicated care team that understands your medical history',
+  'Manages your ongoing conditions continuously',
   'Guides you to the right specialist every time',
   'Continuous care, not one-off consultations',
 ]
@@ -20,7 +20,7 @@ export default function TrustStatement() {
             <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-large">
               <Image
                 src={images.personalDoctor}
-                alt="Personal doctor — Care Access Nigeria"
+                alt="Dedicated care team — Care Access Nigeria"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -36,15 +36,15 @@ export default function TrustStatement() {
                 </div>
                 <div>
                   <p className="font-bold text-navy text-sm">Dedicated to you</p>
-                  <p className="text-xs text-gray-500">One doctor, for life</p>
+                  <p className="text-xs text-gray-500">A team that knows your history</p>
                 </div>
               </div>
             </div>
 
             {/* Top accent */}
             <div className="absolute -top-4 -left-4 bg-navy rounded-2xl shadow-large p-4">
-              <p className="text-white text-sm font-bold">Personal Doctor</p>
-              <p className="text-teal-300 text-xs mt-0.5">Always assigned to you</p>
+              <p className="text-white text-sm font-bold">Dedicated Care Team</p>
+              <p className="text-teal-300 text-xs mt-0.5">Always with you</p>
             </div>
           </AnimatedSection>
 
@@ -65,7 +65,7 @@ export default function TrustStatement() {
             </h2>
 
             <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-8">
-              Most telemedicine services ask you to scroll through profiles and guess which doctor you need. We do it differently. At Care Access Nigeria, you get a dedicated personal doctor who knows your medical history, manages your family&apos;s health, and guides you to the right specialist when you need one. This is continuous care, not a one-off consultation.
+              Most telemedicine services ask you to speak to a different doctor every time. At Care Access Nigeria, you have a dedicated care team that understands your medical history and supports you continuously — not just when you&apos;re unwell.
             </p>
 
             <ul className="space-y-4 mb-8">
@@ -83,8 +83,8 @@ export default function TrustStatement() {
               <a href="/about" className="btn-primary">
                 How It Works
               </a>
-              <a href="/become-a-member" className="btn-secondary">
-                Join Today
+              <a href="/signup" className="btn-secondary">
+                Get Started Today
               </a>
             </div>
           </AnimatedSection>

@@ -3,34 +3,35 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Star, Users } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Clock, Lock, Heart } from 'lucide-react'
 import { images } from '@/lib/utils'
 
 const slides = [
   {
     image: images.familiesWithDoctor,
-    headline: 'Expert Guidance,',
-    subline: 'Right Care.',
-    badge: 'Personal Doctor',
+    headline: 'Your doctor',
+    subline: 'on your phone.',
+    badge: '24/7 Clinical Support',
   },
   {
     image: images.femaleDoctorVirtual,
-    headline: 'Your Health,',
-    subline: 'Anywhere Care.',
-    badge: 'Continuous Care',
+    headline: 'Clear guidance',
+    subline: 'when you need it.',
+    badge: 'Licensed Clinicians',
   },
   {
     image: images.personalDoctor,
-    headline: 'One Doctor,',
-    subline: 'Your Care.',
-    badge: '24/7 Clinical Advice',
+    headline: 'Care that',
+    subline: 'continues.',
+    badge: 'Continuous Care',
   },
 ]
 
 const trustBadges = [
-  { icon: Star, text: 'Licensed professionals' },
-  { icon: Users, text: 'Trusted by families' },
-  { icon: Star, text: 'Members across Nigeria' },
+  { icon: ShieldCheck, text: 'Licensed clinicians' },
+  { icon: Clock,       text: '24/7 clinical support' },
+  { icon: Lock,        text: 'Secure records' },
+  { icon: Heart,       text: 'Trusted care' },
 ]
 
 export default function HeroSection() {
@@ -104,24 +105,33 @@ export default function HeroSection() {
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
-            Care Access Nigeria gives you a dedicated personal doctor, 24/7 nurse advice, and guided care so you always know what to do when it comes to your health.
+          <p className="text-base md:text-lg text-white/80 leading-relaxed mb-3 max-w-2xl">
+            Clear, reliable care without the stress of hospitals.
           </p>
+          <p className="text-sm md:text-base text-white/65 leading-relaxed mb-3 max-w-2xl">
+            Speak to a doctor when you need to, get 24/7 clinical advice, and receive ongoing support for your health — all in one place.
+          </p>
+          <p className="text-sm text-teal-300 font-semibold mb-4">From ₦25,000/month</p>
+
+          {/* Audience line */}
+          {/* <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-8 max-w-xl">
+            For individuals, families, organisations, and those supporting loved ones in Nigeria from anywhere in the world.
+          </p> */}
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <Link
-              href="/become-a-member"
+              href="/signup"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-teal text-white font-bold rounded-xl text-base transition-all duration-300 hover:bg-teal-600 hover:shadow-teal hover:-translate-y-1 shadow-lg"
             >
-              Become a Member
+              Get Started Today
               <ArrowRight size={18} />
             </Link>
             <Link
               href="/book"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white font-bold rounded-xl text-base transition-all duration-300 hover:bg-white hover:text-navy hover:-translate-y-1"
             >
-              Talk to a Doctor
+              Book a Consultation
             </Link>
           </div>
 
@@ -137,7 +147,6 @@ export default function HeroSection() {
             ))}
           </div>
         </div>
-
       </div>
 
       {/* Slide indicators */}
@@ -159,8 +168,8 @@ export default function HeroSection() {
 
       {/* Bottom wave */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
-        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 0C540 0 240 60 0 20L0 60Z" fill="white" />
+        <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 90L1440 90L1440 40C1200 90 900 0 720 0C540 0 240 90 0 40L0 90Z" fill="white" />
         </svg>
       </div>
     </section>

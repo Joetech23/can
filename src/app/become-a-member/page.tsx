@@ -9,7 +9,7 @@ import { images } from '@/lib/utils'
 export const metadata: Metadata = {
   title: 'Join Care Access Nigeria — Membership Plans',
   description:
-    'Simple, reliable healthcare designed around you. Book a single consultation or become a member with a dedicated personal doctor, 24/7 clinical advice, and expert care coordination.',
+    'Simple, reliable healthcare designed around you. Book a single consultation or get started with a dedicated care team, 24/7 clinical advice, and expert care coordination.',
   alternates: { canonical: 'https://careaccess.ng/become-a-member' },
   openGraph: {
     title: 'Join Care Access Nigeria',
@@ -128,7 +128,7 @@ export default function BecomeAMemberPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link href="/signup" className="btn-primary">
-                Become a Member <ArrowRight size={16} />
+                Get Started Today <ArrowRight size={16} />
               </Link>
               <Link href="/book" className="btn-secondary">
                 Book a Consultation

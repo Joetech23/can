@@ -8,7 +8,7 @@ import { Target, Eye, Heart, Users, Building2, Shield } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn the story behind Care Access Nigeria. We exist to make healthcare personal again — giving every Nigerian a dedicated personal doctor and expert care coordination.',
+    'Learn the story behind Care Access Nigeria. We exist to make healthcare accessible to every Nigerian — delivered with transparency, consistency, and trust.',
   alternates: {
     canonical: 'https://careaccess.ng/about',
   },
@@ -32,7 +32,7 @@ const values = [
   {
     icon: Users,
     title: 'Continuity of Care',
-    description: 'We believe in lasting relationships, not one-off interactions. Your doctor remembers you.',
+    description: 'Your care is continuous, with a team that understands your medical history — not one-off consultations.',
     color: 'text-teal',
     bg: 'bg-teal/10',
   },
@@ -50,11 +50,11 @@ export default function AboutPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden hero-gradient" aria-label="About hero">
+      <section className="relative pt-28 pb-28 md:pt-36 md:pb-36 overflow-hidden hero-gradient" aria-label="About hero">
         <div className="absolute inset-0 bg-navy-mesh" />
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 0C540 0 240 60 0 20L0 60Z" fill="white" />
+          <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 90L1440 90L1440 40C1200 90 900 0 720 0C540 0 240 90 0 40L0 90Z" fill="white" />
           </svg>
         </div>
         <div className="relative z-10 container-max text-center">
@@ -117,6 +117,20 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Prominent statement */}
+      <section className="py-10 bg-white" aria-label="Key statement">
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="rounded-2xl bg-teal/8 border border-teal/20 px-8 py-6 text-center">
+              <p className="text-lg md:text-2xl font-extrabold text-navy leading-snug">
+                We are not a hospital —{' '}
+                <span className="text-teal">we are your first point of contact for care.</span>
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Mission & Vision */}
       <section className="section-padding section-bg-alt" aria-label="Mission and vision">
         <div className="container-max">
@@ -134,12 +148,11 @@ export default function AboutPage() {
                   <Target size={26} className="text-teal-300" />
                 </div>
                 <div className="text-teal-300 text-xs font-bold uppercase tracking-widest mb-3">Our Mission</div>
-                <h3 className="text-2xl font-extrabold mb-4 leading-tight">
-                  Healthcare for every Nigerian, transparently and equally
+                <h3 className="text-2xl font-extrabold mb-4 leading-tight text-white">
+                  High quality healthcare, accessible to every Nigerian
                 </h3>
-                <p className="text-white/70 leading-relaxed">
-                  To redefine how healthcare is experienced in Nigeria making it accessible, transparent, and dependable for everyone.
-Through continuous care, personalised guidance, and trusted clinical support, we ensure every patient receives the attention and direction they deserve.
+                <p className="text-white leading-relaxed">
+                  To make high quality healthcare accessible to every Nigerian — delivered with transparency, consistency, and trust.
                 </p>
               </div>
             </AnimatedSection>
@@ -150,11 +163,11 @@ Through continuous care, personalised guidance, and trusted clinical support, we
                   <Eye size={26} className="text-white" />
                 </div>
                 <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">Our Vision</div>
-                <h3 className="text-2xl font-extrabold mb-4 leading-tight">
-                  Expert guided healthcare for every person, everywhere
+                <h3 className="text-2xl font-extrabold mb-4 leading-tight text-white">
+                  Trusted, continuous healthcare for every person in Nigeria
                 </h3>
-                <p className="text-white/70 leading-relaxed">
-                  To make trusted, continuous healthcare accessible to every person in Nigeria, regardless of location, income, or circumstance, through a care model that treats each patient as a whole person, not a one-off case.
+                <p className="text-white leading-relaxed">
+                  To make trusted, continuous healthcare accessible to every person in Nigeria.
                 </p>
               </div>
             </AnimatedSection>
@@ -181,7 +194,8 @@ Through continuous care, personalised guidance, and trusted clinical support, we
                     Our Promise
                   </p>
                   <p className="text-white text-2xl md:text-3xl font-bold leading-tight">
-                    You are never left to navigate healthcare alone. We are your guide at every step.
+                    You are never left to figure out your healthcare alone.<br />
+                    We guide you every step of the way.
                   </p>
                 </div>
               </div>

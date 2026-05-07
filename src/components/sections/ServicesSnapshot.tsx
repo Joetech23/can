@@ -4,8 +4,8 @@ import { UserCheck, Video, Home, GitBranch, Phone, Siren } from 'lucide-react'
 const services = [
   {
     icon: UserCheck,
-    title: 'Personal Doctor',
-    description: 'A dedicated doctor who knows your history and manages your care continuously.',
+    title: 'Dedicated Care Team',
+    description: 'A dedicated care team that understands your medical history and manages your care continuously.',
     color: 'teal',
     bgColor: 'bg-teal/10',
     iconColor: 'text-teal',

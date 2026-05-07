@@ -13,7 +13,7 @@ const plans = [
     icon:            Stethoscope,
     name:            'Book a Consultation',
     tag:             null,
-    tagline:         'Access care on your own terms',
+    tagline:         'For one-time or occasional care',
     priceMonthly:    null,
     priceYearly:     null,
     fixedAmount:     '8,000',
@@ -21,17 +21,21 @@ const plans = [
     hasBillingToggle: false,
     theme:           'white' as const,
     features: [
-      'One-time doctor consultation',
-      'Diagnosis & treatment',
-      'Prescription & referral',
+      'Virtual doctor consultation',
+      'Diagnosis and treatment plan',
+      'Prescription (if required)',
+      'Specialist referral (if needed)',
     ],
+    footer: null,
+    cta: 'Book a Consultation',
+    href: '/book',
   },
   {
     id:              'personal',
     icon:            User,
     name:            'Personal Care',
     tag:             'Most Popular',
-    tagline:         'Your dedicated doctor, always on call',
+    tagline:         'Ongoing, reliable care when you need it',
     priceMonthly:    '25,000',
     priceYearly:     '270,000',
     yearlySaving:    'Save ₦30,000',
@@ -40,19 +44,25 @@ const plans = [
     hasBillingToggle: true,
     theme:           'navy' as const,
     features: [
-      'Speak to a doctor when needed',
-      '24/7 clinical advice',
-      'Continuous care & records',
-      'Follow-ups included',
-      'Care coordination',
+      'Request care and speak to a clinician when needed',
+      '24/7 nurse-led clinical advice',
+      'Same-day or next-day appointments',
+      'Continuous medical record',
+      'Follow-ups when clinically required',
+      'Prescription and medication guidance',
+      'Lab coordination and result interpretation',
+      'Specialist referrals and care support',
     ],
+    footer: 'Care is delivered by a dedicated clinical team that understands your medical history.',
+    cta: 'Join Now',
+    href: '/signup',
   },
   {
     id:              'family',
     icon:            Users,
     name:            'Family Care',
     tag:             null,
-    tagline:         'Complete coverage for your household',
+    tagline:         'Care for your household — up to 4 people',
     priceMonthly:    '85,000',
     priceYearly:     '920,000',
     yearlySaving:    'Save ₦100,000',
@@ -61,11 +71,15 @@ const plans = [
     hasBillingToggle: true,
     theme:           'teal' as const,
     features: [
-      'Shared doctor access',
-      '24/7 support for your household',
-      'Family health records',
-      'Ongoing care for all members',
+      'Shared access to care for all members',
+      '24/7 clinical advice for the whole family',
+      'Individual medical records for each member',
+      'Support for both adults and children',
+      'Ongoing support for everyday and long-term conditions',
     ],
+    footer: 'Care is coordinated for your household by a trusted clinical team.',
+    cta: 'Join Family Plan',
+    href: '/signup',
   },
 ]
 
@@ -84,6 +98,7 @@ const themeStyles = {
     saving:     'text-teal',
     check:      'text-teal',
     feature:    'text-gray-600',
+    footer:     'text-gray-500 border-gray-200',
     btn:        'bg-navy text-white hover:bg-navy-600',
   },
   navy: {
@@ -98,6 +113,7 @@ const themeStyles = {
     saving:     'text-teal-300',
     check:      'text-teal-300',
     feature:    'text-white/80',
+    footer:     'text-white/60 border-white/20',
     btn:        'bg-teal text-white hover:bg-teal-600',
   },
   teal: {
@@ -112,6 +128,7 @@ const themeStyles = {
     saving:     'text-white font-bold',
     check:      'text-white',
     feature:    'text-white/85',
+    footer:     'text-white/70 border-white/20',
     btn:        'bg-white text-teal hover:bg-white/90',
   },
 }
@@ -197,7 +214,6 @@ export default function PricingSection() {
                   {/* Price */}
                   <div className="mb-6">
                     <div className="flex items-start gap-0.5">
-                      {/* ₦ — smaller, sits at the top aligned with the number top */}
                       <span className={`text-base font-bold leading-none mt-1.5 ${s.currency}`}>₦</span>
                       <span className={`text-5xl font-black leading-none tracking-tight ${s.price}`}>
                         {amount}
@@ -210,7 +226,7 @@ export default function PricingSection() {
                   </div>
 
                   {/* Features */}
-                  <ul className="space-y-3 flex-1 mb-8">
+                  <ul className="space-y-3 flex-1 mb-6">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">
                         <CheckCircle2 size={16} className={`flex-shrink-0 mt-0.5 ${s.check}`} />
@@ -219,12 +235,19 @@ export default function PricingSection() {
                     ))}
                   </ul>
 
+                  {/* Footer note */}
+                  {plan.footer && (
+                    <p className={`text-xs leading-relaxed mb-6 pt-4 border-t italic ${s.footer}`}>
+                      {plan.footer}
+                    </p>
+                  )}
+
                   {/* CTA */}
                   <Link
-                    href={plan.id === 'consultation' ? '/book' : '/signup'}
+                    href={plan.href}
                     className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 ${s.btn}`}
                   >
-                    {plan.id === 'consultation' ? 'Book Now' : 'Get Started'}
+                    {plan.cta}
                     <ArrowRight size={15} />
                   </Link>
                 </div>

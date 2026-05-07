@@ -42,10 +42,10 @@ export default function ClosingCTA() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
-              href="/become-a-member"
+              href="/signup"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-navy font-bold rounded-xl text-base transition-all duration-300 hover:bg-gray-50 hover:-translate-y-1 shadow-large"
             >
-              Become a Member
+              Get Started Today
               <ArrowRight size={18} />
             </Link>
             <Link

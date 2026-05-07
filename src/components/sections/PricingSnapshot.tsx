@@ -150,8 +150,8 @@ export default function PricingSnapshot() {
 
         {/* Bottom links */}
         <AnimatedSection delay={400} animation="fade-up" className="text-center mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/become-a-member" className="btn-primary">
-            Become a Member <ArrowRight size={16} />
+          <Link href="/signup" className="btn-primary">
+            Get Started Today <ArrowRight size={16} />
           </Link>
           <Link href="/services" className="btn-secondary">
             Compare Plans in Detail

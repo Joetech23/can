@@ -26,8 +26,8 @@ const faqs = [
     answer: 'Yes. Non-members can request a consultation by filling out a form. A nurse or admin will contact you, confirm pricing, and arrange payment before your session. Note: 24/7 nurse on call advice is exclusively available to subscribed members.',
   },
   {
-    question: 'What is included in a personal doctor?',
-    answer: 'Your personal doctor is a dedicated in-house licensed doctor assigned specifically to you. They learn your full medical history, manage your family health profile, and serve as your first point of contact for all health decisions, referrals, and follow-ups.',
+    question: 'What does a membership include?',
+    answer: 'Your membership gives you access to a dedicated care team that understands your medical history. They manage your ongoing health, serve as your first point of contact, coordinate referrals, and follow up when clinically required.',
   },
   {
     question: 'Are all doctors and nurses licensed?',

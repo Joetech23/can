@@ -37,7 +37,7 @@ const PLANS = {
     monthly: 25000,
     yearly: 270000,
     saving: 30000,
-    features: ['Dedicated personal doctor','24/7 nurse advice line','Unlimited teleconsultations','Specialist referral coordination'],
+    features: ['A dedicated care team that understands your medical history','24/7 nurse-led clinical advice','Teleconsultations when needed','Specialist referral coordination'],
   },
   family: {
     name: 'Family Care',
@@ -46,7 +46,7 @@ const PLANS = {
     monthly: 85000,
     yearly: 920000,
     saving: 100000,
-    features: ['Up to 4 family members','Shared family health records','Dedicated family doctor','24/7 nurse advice line','Home nurse visits (2/month)'],
+    features: ['Up to 4 family members','Individual records for each member','Dedicated care team for your household','24/7 nurse-led clinical advice','Ongoing care for everyday and long-term conditions'],
   },
 }
 
@@ -502,7 +502,7 @@ export default function SignupPage() {
               </div>
               <h1 className="text-2xl font-extrabold text-navy mb-2">Welcome to Care Access!</h1>
               <p className="text-sm text-gray-500 mb-1">Your {selectedPlan.name} membership is now active.</p>
-              <p className="text-sm font-semibold text-navy mb-8">Your personal doctor will be in touch shortly.</p>
+              <p className="text-sm font-semibold text-navy mb-8">Your dedicated care team will be in touch shortly.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
                 {[

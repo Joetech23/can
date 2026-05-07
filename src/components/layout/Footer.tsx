@@ -10,7 +10,7 @@ const quickLinks = [
 ]
 
 const services = [
-  { href: '/services#personal-doctor', label: 'Personal Doctor' },
+  { href: '/services#dedicated-care', label: 'Dedicated Care Team' },
   { href: '/services#teleconsultation', label: 'Teleconsultation' },
   { href: '/services#nurse-on-call', label: '24/7 Clinical Advice' },
   { href: '/services#home-visits', label: 'Home Visits' },
@@ -36,10 +36,10 @@ export default function Footer() {
               <span>24/7 clinical advice &mdash; for members</span>
             </div>
             <Link
-              href="/become-a-member"
+              href="/signup"
               className="flex items-center gap-1.5 text-white font-semibold hover:gap-2.5 transition-all duration-200 underline underline-offset-2"
             >
-              Become a Member <ArrowRight size={14} />
+              Get Started Today <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Footer() {
               </div>
 
               <p className="text-sm text-white/70 leading-relaxed mb-6">
-                Your personal doctor, with 24/7 clinical advice<br />
+                Continuous care, with 24/7 clinical advice<br />
                 Healthcare that truly knows you
               </p>
 
@@ -148,10 +148,10 @@ export default function Footer() {
                 Stay on top of your health by joining us today. 
               </p>
               <Link
-                href="/become-a-member"
+                href="/signup"
                 className="inline-flex items-center gap-2 px-5 py-3 bg-teal text-white rounded-lg text-sm font-semibold hover:bg-teal-600 transition-all duration-200 shadow-teal mb-4"
               >
-                View Membership Plans
+                Get Started Today
               </Link>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="flex items-center gap-1">
-              Built with <Heart size={11} className="text-orange fill-orange" /> by Eaglescroft Limited
+              Built by <Link href="https://eaglescroft.com.ng" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors duration-200">Eaglescroft Limited</Link>
             </p>
           </div>
         </div>

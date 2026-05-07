@@ -149,10 +149,10 @@ export default function Navbar() {
               Book a Consultation
             </Link>
             <Link
-              href="/become-a-member"
+              href="/signup"
               className="flex items-center justify-center w-full py-3 bg-navy text-white rounded-xl text-sm font-semibold hover:bg-navy-600 transition-all duration-200"
             >
-              Become a Member
+              Get Started Today
             </Link>
           </div>
         </div>

@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'Care Access Nigeria | Your Personal Doctor, Always Within Reach',
+    default: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
     template: '%s | Care Access Nigeria',
   },
   description:
-    'Care Access Nigeria gives every member a dedicated personal doctor who knows their full medical history, 24/7 clinical nurse advice, teleconsultation, home visits, and end-to-end care coordination. Healthcare made personal.',
+    'Care Access Nigeria gives every member a dedicated care team that understands their medical history, 24/7 clinical nurse advice, teleconsultation, home visits, and end-to-end care coordination — delivered with transparency and trust.',
 
   keywords: [
-    'personal doctor Nigeria',
+    'dedicated care team Nigeria',
     'telemedicine Nigeria',
     'virtual clinic Nigeria',
     'online doctor Nigeria',
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     locale: 'en_NG',
     url: BASE_URL,
     siteName: 'Care Access Nigeria',
-    title: 'Care Access Nigeria | Your Personal Doctor, Always Within Reach',
+    title: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
     description:
-      'A dedicated personal doctor, 24/7 nurse access, and expert care coordination — for individuals, families, and organisations across Nigeria.',
+      'A dedicated care team, 24/7 clinical advice, and expert care coordination — for individuals, families, and organisations across Nigeria.',
     images: [
       {
         url: OG_IMAGE,
@@ -84,9 +84,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@careaccessng',
     creator: '@careaccessng',
-    title: 'Care Access Nigeria | Your Personal Doctor, Always Within Reach',
+    title: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
     description:
-      'Get a dedicated personal doctor, 24/7 nurse access, and expert care coordination. Plans from ₦25,000/month.',
+      'Get a dedicated care team, 24/7 clinical advice, and expert care coordination. Plans from ₦25,000/month.',
     images: [OG_IMAGE],
   },
 
@@ -187,7 +187,7 @@ export default function RootLayout({
               logo: `${BASE_URL}/logo.png`,
               image: OG_IMAGE,
               description:
-                'Care Access Nigeria is a virtual healthcare access platform providing dedicated personal doctors, 24/7 clinical nurse advice, teleconsultation, home visits, specialist referrals, and end-to-end care coordination across Nigeria.',
+                'Care Access Nigeria is a virtual healthcare access platform providing a dedicated care team, 24/7 clinical nurse advice, teleconsultation, home visits, specialist referrals, and end-to-end care coordination across Nigeria.',
               foundingDate: '2023',
               areaServed: {
                 '@type': 'Country',
@@ -226,7 +226,7 @@ export default function RootLayout({
                   {
                     '@type': 'Offer',
                     name: 'Personal Care',
-                    description: 'Dedicated personal doctor, 24/7 clinical advice, and care coordination for individuals.',
+                    description: 'A dedicated care team that understands your medical history, 24/7 clinical advice, and care coordination for individuals.',
                     price: '25000',
                     priceCurrency: 'NGN',
                     priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },

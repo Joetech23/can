@@ -10,11 +10,11 @@ const faqs = [
     questions: [
       {
         q: 'What does a Care Access Nigeria membership include?',
-        a: 'Membership gives you a dedicated personal doctor who knows your full health history, access to the 24/7 clinical nurse advice line, unlimited teleconsultations, care coordination, and specialist referrals — all under one plan.',
+        a: 'Membership gives you access to a dedicated care team that understands your medical history, the 24/7 clinical nurse advice line, teleconsultations, care coordination, and specialist referrals — all under one plan.',
       },
       {
         q: 'How is this different from a regular telemedicine app?',
-        a: 'With most telemedicine apps you speak to a different doctor every time. At Care Access Nigeria, you are assigned one personal doctor who tracks your history, manages your ongoing conditions, and coordinates all your care. Continuity is the core difference.',
+        a: 'With most telemedicine apps you speak to a different doctor every time. At Care Access Nigeria, you have a dedicated care team that tracks your history, manages your ongoing conditions, and coordinates all your care. Continuity is the core difference.',
       },
       {
         q: 'Can I cancel my membership at any time?',
@@ -35,11 +35,11 @@ const faqs = [
     questions: [
       {
         q: 'How do I speak with a doctor?',
-        a: "Once you're a member, you can reach your personal doctor by phone, video call, or through our platform. For urgent clinical advice at any hour, the 24/7 nurse line is available to all members.",
+        a: "Once you're a member, you can reach your dedicated care team by phone, video call, or through our platform. For urgent clinical advice at any hour, the 24/7 nurse line is available to all members.",
       },
       {
         q: 'What happens if I need to see a specialist?',
-        a: 'Your personal doctor evaluates you first, prepares a referral, and connects you directly to a vetted in-house specialist. Your records are shared (with your consent) so you arrive expected and informed — not starting from scratch.',
+        a: 'Your care team evaluates you first, prepares a referral, and connects you directly to a vetted specialist. Your records are shared (with your consent) so you arrive expected and informed — not starting from scratch.',
       },
       {
         q: 'Can I book a single consultation without a membership?',
@@ -47,7 +47,7 @@ const faqs = [
       },
       {
         q: 'Do you provide home visits?',
-        a: 'Yes. Home doctor and nurse visits are available as additional services. Your personal doctor can arrange this when clinically appropriate. Costs are confirmed before any visit takes place.',
+        a: 'Yes. Home doctor and nurse visits are available as additional services. Your care team can arrange this when clinically appropriate. Costs are confirmed before any visit takes place.',
       },
     ],
   },
