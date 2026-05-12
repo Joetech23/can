@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, Clock, Instagram, Twitter, Facebook, Linkedin, ArrowRight, Heart } from 'lucide-react'
+import { Mail, Phone, Stethoscope, Instagram, Linkedin, Music, ArrowRight, Heart } from 'lucide-react'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -18,10 +18,21 @@ const services = [
 ]
 
 const socials = [
-  { href: 'https://instagram.com/careaccesng', icon: Instagram, label: 'Instagram' },
-  { href: 'https://twitter.com/careaccessng', icon: Twitter, label: 'Twitter/X' },
-  { href: 'https://facebook.com/careaccessng', icon: Facebook, label: 'Facebook' },
-  { href: 'https://linkedin.com/company/care-access-nigeria', icon: Linkedin, label: 'LinkedIn' },
+  {
+    href: 'https://www.instagram.com/careaccessng?igsh=MXFlcmZmeDNob3ZqeA%3D%3D&utm_source=qr',
+    icon: Instagram,
+    label: 'Instagram',
+  },
+  {
+    href: 'https://www.tiktok.com/@careaccessng?_r=1&_t=ZN-96Alwzc5bvS',
+    icon: Music,
+    label: 'TikTok',
+  },
+  {
+    href: 'https://www.linkedin.com/company/careaccessng/',
+    icon: Linkedin,
+    label: 'LinkedIn',
+  },
 ]
 
 export default function Footer() {
@@ -32,14 +43,14 @@ export default function Footer() {
         <div className="container-max">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
             <div className="flex items-center gap-2 font-medium">
-              <Clock size={16} className="text-white/80" />
-              <span>24/7 clinical advice &mdash; for members</span>
+              <Stethoscope size={16} className="text-white/80" />
+              <span>Not sure what to do?<br className="sm:hidden" /> Speak to a clinician and get clear guidance on your next steps.</span>
             </div>
             <Link
-              href="/signup"
+              href="/book"
               className="flex items-center gap-1.5 text-white font-semibold hover:gap-2.5 transition-all duration-200 underline underline-offset-2"
             >
-              Get Started Today <ArrowRight size={14} />
+              Speak to a Clinician<ArrowRight size={14} />
             </Link>
           </div>
         </div>

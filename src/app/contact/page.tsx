@@ -23,8 +23,8 @@ const contactDetails = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '0700 700 1234',
-    href: 'tel:07007001234',
+    value: '0814 214 2721',
+    href: 'tel:08142142721',
     note: '24/7 clinical support for members',
   },
   {

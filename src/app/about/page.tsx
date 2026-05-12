@@ -149,10 +149,10 @@ export default function AboutPage() {
                 </div>
                 <div className="text-teal-300 text-xs font-bold uppercase tracking-widest mb-3">Our Mission</div>
                 <h3 className="text-2xl font-extrabold mb-4 leading-tight text-white">
-                  High quality healthcare, accessible to every Nigerian
+                  High-quality healthcare, made accessible
                 </h3>
                 <p className="text-white leading-relaxed">
-                  To make high quality healthcare accessible to every Nigerian — delivered with transparency, consistency, and trust.
+                  To provide trusted healthcare guidance, coordination, and continuity of care for individuals, families, organisations, and Nigerians abroad with loved ones back home.
                 </p>
               </div>
             </AnimatedSection>
@@ -164,10 +164,10 @@ export default function AboutPage() {
                 </div>
                 <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">Our Vision</div>
                 <h3 className="text-2xl font-extrabold mb-4 leading-tight text-white">
-                  Trusted, continuous healthcare for every person in Nigeria
+                  Trusted healthcare access for every Nigerian
                 </h3>
                 <p className="text-white leading-relaxed">
-                  To make trusted, continuous healthcare accessible to every person in Nigeria.
+                  A future where every person in Nigeria can access dependable, continuous healthcare with confidence.
                 </p>
               </div>
             </AnimatedSection>

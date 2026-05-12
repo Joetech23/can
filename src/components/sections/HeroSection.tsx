@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ShieldCheck, Clock, Lock, Heart } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Clock, Lock, Heart, User, Users, Building2, Globe } from 'lucide-react'
 import { images } from '@/lib/utils'
 
 const slides = [
@@ -28,10 +28,10 @@ const slides = [
 ]
 
 const trustBadges = [
-  { icon: ShieldCheck, text: 'Licensed clinicians' },
-  { icon: Clock,       text: '24/7 clinical support' },
-  { icon: Lock,        text: 'Secure records' },
-  { icon: Heart,       text: 'Trusted care' },
+  { icon: User, text: 'Individuals' },
+  { icon: Users, text: 'Families' },
+  { icon: Building2, text: 'Organisations' },
+  { icon: Globe, text: 'Nigerians abroad with loved ones back home' },
 ]
 
 export default function HeroSection() {

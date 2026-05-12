@@ -85,11 +85,11 @@ export default function Navbar() {
                 Book a Consultation
               </Link>
               <Link
-                href="tel:07007001234"
+                href="/become-a-member"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-navy text-white transition-all duration-200 hover:bg-navy-600 shadow-navy/20 shadow-md"
               >
-                <Phone size={16} />
-                0700-700-1234
+                {/* <Phone size={16} /> */}
+                Get Started Today
               </Link>
             </div>
 

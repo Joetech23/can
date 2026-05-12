@@ -21,7 +21,7 @@ const coreServices = [
   {
     id: 'personal-doctor',
     icon: UserCheck,
-    title: 'Personal Doctor',
+    title: 'Dedicated Care Team',
     image: images.maleDoctorExplaining,
     description: 'Every member gets a dedicated in-house doctor. Your doctor learns your medical history, manages your family\'s health profile, and is your permanent point of contact for all health decisions. You never start from scratch with a new face.',
     highlights: [
