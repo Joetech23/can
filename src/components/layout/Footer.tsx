@@ -85,11 +85,11 @@ export default function Footer() {
                   info@careaccess.ng
                 </a>
                 <a
-                  href="tel:07007001234"
+                  href="tel:08142142721"
                   className="flex items-center gap-2.5 text-sm text-white/70 hover:text-white transition-colors duration-200"
                 >
                   <Phone size={14} className="text-teal-300 flex-shrink-0" />
-                  <span>0700 700 1234</span>
+                  <span>0814 214 2721</span>
                 </a>
               </div>
 
