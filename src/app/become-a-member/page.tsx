@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import PricingSection from '@/components/sections/PricingSection'
+import HomeCareSection from '@/components/sections/HomeCareSection'
 import { ArrowRight, Building2, CheckCircle2 } from 'lucide-react'
 import { images } from '@/lib/utils'
 
@@ -111,6 +112,9 @@ export default function BecomeAMemberPage() {
           </div>
         </div>
       </section>
+
+      {/* Home Care Support */}
+      <HomeCareSection />
 
       {/* Final CTA */}
       <section className="relative py-24 overflow-hidden bg-white" aria-label="Final CTA">
