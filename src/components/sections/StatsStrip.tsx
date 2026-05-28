@@ -3,7 +3,7 @@ import { ShieldCheck, Clock, Lock, Heart } from 'lucide-react'
 
 const signals = [
   { icon: ShieldCheck, text: 'Licensed clinicians' },
-  { icon: Clock,       text: '24/7 clinical support' },
+  { icon: Clock,       text: '24/7 Emergency Guidance' },
   { icon: Lock,        text: 'Secure records' },
   { icon: Heart,       text: 'Trusted care' },
 ]

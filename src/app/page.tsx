@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import HeroSection from '@/components/sections/HeroSection'
+import EmergencyBanner from '@/components/sections/EmergencyBanner'
 import StatsStrip from '@/components/sections/StatsStrip'
 import ServicesSnapshot from '@/components/sections/ServicesSnapshot'
 import HowItWorks from '@/components/sections/HowItWorks'
@@ -19,6 +20,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <EmergencyBanner />
       <StatsStrip />
       <ServicesSnapshot />
       <HowItWorks />

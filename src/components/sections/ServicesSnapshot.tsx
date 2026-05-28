@@ -22,8 +22,8 @@ const services = [
   },
   {
     icon: Phone,
-    title: '24/7 Nurse on Call',
-    description: 'Immediate clinical advice at any time of day or night. For members only.',
+    title: '24/7 Emergency Healthcare Guidance',
+    description: 'Speak to trained healthcare professionals for urgent healthcare guidance and support when medical concerns arise.',
     color: 'green',
     bgColor: 'bg-green/10',
     iconColor: 'text-green',
