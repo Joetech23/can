@@ -170,3 +170,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .separator { @apply w-16 h-1 rounded-full; }
+
+/* Marquee (infinite horizontal scroll for trust logos) */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 36s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Soft float for trust chips */
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.chip-float { animation: chip-float 4s ease-in-out infinite; will-change: transform; }
+
+/* Seal sheen sweep */
+@keyframes seal-sheen {
+  0%   { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
+  40%  { opacity: 0.55; }
+  100% { transform: translateX(220%) skewX(-20deg); opacity: 0; }
+}
+.seal-sheen { animation: seal-sheen 4.5s ease-in-out infinite; }

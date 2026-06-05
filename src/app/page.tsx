@@ -5,6 +5,8 @@ import StatsStrip from '@/components/sections/StatsStrip'
 import ServicesSnapshot from '@/components/sections/ServicesSnapshot'
 import HowItWorks from '@/components/sections/HowItWorks'
 import WhyChooseUs from '@/components/sections/WhyChooseUs'
+import TrustAssociations from '@/components/sections/TrustAssociations'
+import RegisteredCompany from '@/components/sections/RegisteredCompany'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 
 export const metadata: Metadata = {
@@ -25,6 +27,8 @@ export default function HomePage() {
       <ServicesSnapshot />
       <HowItWorks />
       <WhyChooseUs />
+      <TrustAssociations />
+      <RegisteredCompany />
       <TestimonialsSection />
     </>
   )
