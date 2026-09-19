@@ -5,11 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, PhoneCall } from 'lucide-react'
 import { images } from '@/lib/utils'
+import { ctas } from '@/lib/content'
 
 const slides = [
+  { image: images.doctorWithFamilies },
+  { image: images.femaleNurseSmiling },
   { image: images.familiesWithDoctor },
-  { image: images.femaleDoctorVirtual },
-  { image: images.personalDoctor },
 ]
 
 export default function HeroSection() {
@@ -34,7 +35,7 @@ export default function HeroSection() {
           >
             <Image
               src={s.image}
-              alt="Care Access Nigeria"
+              alt=""
               fill
               className="object-cover object-center scale-105"
               priority={i === 0}
@@ -53,44 +54,50 @@ export default function HeroSection() {
       <div className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-orange/10 blur-3xl z-10" />
 
       {/* Content */}
-      <div className="relative z-20 container-max w-full pt-20 md:pt-24">
+      <div className="relative z-20 container-max w-full pt-28 pb-32 md:pt-32">
         <div className="max-w-3xl">
 
-          {/* Live badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal/20 border border-teal/30 mb-7 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-teal animate-pulse-slow" />
-            <span className="text-xs font-semibold text-teal-200 tracking-wider uppercase">
-              24/7 Emergency Healthcare Guidance
-            </span>
-          </div>
+          <p className="text-xs md:text-sm font-bold text-teal-200 tracking-[0.25em] uppercase mb-5">
+            Care Access Nigeria
+          </p>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-6">
-            When a health emergency happens,{' '}
-            <span className="text-teal-300">who do you call?</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.05] mb-6">
+            Professional Home Care.{' '}
+            <span className="text-teal-300">Connected Healthcare.</span>
           </h1>
 
-          {/* Sub-headline */}
-          <p className="text-base md:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl">
-            Access urgent healthcare guidance, doctor consultations, nurse support, home visits,
-            and healthcare coordination from trained healthcare professionals in Nigeria.
+          <p className="text-lg md:text-2xl text-white/90 font-medium leading-snug mb-6 max-w-2xl">
+            Quality care and healthcare support, delivered with compassion, wherever you need it.
           </p>
+
+          <div className="space-y-4 mb-10 max-w-2xl">
+            <p className="text-base md:text-lg text-white/75 leading-relaxed">
+              Care Access Nigeria provides professional home care services, connecting individuals and
+              families with qualified nurses, carers and doctors across Nigeria.
+            </p>
+            <p className="text-base md:text-lg text-white/75 leading-relaxed">
+              From elderly care and nursing support to post-hospital recovery and doctor home visits,
+              we bring trusted healthcare closer to home. And when you need additional support, our
+              telemedicine, care coordination and clinical services help you access the right
+              healthcare at the right time.
+            </p>
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/signup"
+              href={ctas.requestHomeCare.href}
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-teal text-white font-bold rounded-xl text-base transition-all duration-300 hover:bg-teal-600 hover:shadow-teal hover:-translate-y-1 shadow-lg"
             >
-              Register with us
+              {ctas.requestHomeCare.label}
               <ArrowRight size={18} />
             </Link>
             <Link
-              href="/contact"
+              href={ctas.speakToTeam.href}
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white font-bold rounded-xl text-base transition-all duration-300 hover:bg-white hover:text-navy hover:-translate-y-1"
             >
               <PhoneCall size={18} />
-              Speak To Our Team
+              {ctas.speakToTeam.label}
             </Link>
           </div>
         </div>

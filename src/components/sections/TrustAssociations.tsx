@@ -47,7 +47,7 @@ export default function TrustAssociations() {
           </h2>
           <p className="text-sm md:text-base text-gray-500 max-w-2xl mx-auto">
             Our doctors, nurses and clinical team are licensed and regulated by the foremost
-            healthcare bodies in Nigeria — so the care you receive meets recognised national standards.
+            healthcare bodies in Nigeria, so the care you receive meets recognised national standards.
           </p>
         </AnimatedSection>
       </div>

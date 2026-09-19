@@ -10,7 +10,7 @@ const faqs = [
     questions: [
       {
         q: 'What does a Care Access Nigeria membership include?',
-        a: 'Membership gives you access to a dedicated care team that understands your medical history, the 24/7 clinical nurse advice line, teleconsultations, care coordination, and specialist referrals — all under one plan.',
+        a: 'Membership gives you access to a dedicated care team that understands your medical history, the 24/7 clinical nurse advice line, teleconsultations, care coordination, and specialist referrals, all under one plan.',
       },
       {
         q: 'How is this different from a regular telemedicine app?',
@@ -39,7 +39,7 @@ const faqs = [
       },
       {
         q: 'What happens if I need to see a specialist?',
-        a: 'Your care team evaluates you first, prepares a referral, and connects you directly to a vetted specialist. Your records are shared (with your consent) so you arrive expected and informed — not starting from scratch.',
+        a: 'Your care team evaluates you first, prepares a referral, and connects you directly to a vetted specialist. Your records are shared (with your consent) so you arrive expected and informed, not starting from scratch.',
       },
       {
         q: 'Can I book a single consultation without a membership?',
@@ -69,7 +69,7 @@ const faqs = [
     questions: [
       {
         q: 'Do you offer plans for businesses and NGOs?',
-        a: 'Yes. We provide tailored healthcare access packages for organisations of any size — from small teams to large corporates. These include teleconsultation access, 24/7 clinical advice, dedicated account management, and employee wellness reporting.',
+        a: 'Yes. We provide tailored healthcare access packages for organisations of any size, from small teams to large corporates. These include teleconsultation access, 24/7 clinical advice, dedicated account management, and employee wellness reporting.',
       },
       {
         q: "How do we get started with a corporate plan?",

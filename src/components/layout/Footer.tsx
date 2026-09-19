@@ -2,19 +2,17 @@ import Link from 'next/link'
 import { Mail, Phone, Stethoscope, Instagram, Linkedin, Music, ArrowRight, Heart } from 'lucide-react'
 
 const quickLinks = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
-  { href: '/become-a-member', label: 'Membership' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/faq', label: 'FAQs' },
   { href: '/contact', label: 'Contact' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Service' },
 ]
 
 const services = [
-  { href: '/services#dedicated-care', label: 'Dedicated Care Team' },
-  { href: '/services#teleconsultation', label: 'Teleconsultation' },
-  { href: '/services#nurse-on-call', label: '24/7 Clinical Advice' },
-  { href: '/services#home-visits', label: 'Home Visits' },
-  { href: '/services#care-coordination', label: 'Care Coordination' },
+  { href: '/services#home-care', label: 'Home Care Services' },
+  { href: '/services#telemedicine', label: 'Telemedicine & Care Coordination' },
+  { href: '/services#clinical-support', label: 'Clinical & Emergency Support' },
 ]
 
 const socials = [
@@ -44,7 +42,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
             <div className="flex items-center gap-2 font-medium">
               <Stethoscope size={16} className="text-white/80" />
-              <span>Not sure what to do?<br className="sm:hidden" /> Speak to a clinician and get clear guidance on your next steps.</span>
+              <span>Not sure what to do next?<br className="sm:hidden" /> Speak to a clinician for clear, professional guidance.</span>
             </div>
             <Link
               href="/book"
@@ -63,7 +61,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-1">
               <div className="mb-5">
-                <Link href="/" aria-label="Care Access Nigeria — Home" className="inline-block">
+                <Link href="/" aria-label="Care Access Nigeria home" className="inline-block">
                   <span className="text-xl font-extrabold text-white tracking-tight leading-none">
                     Care Access<br />
                     <span className="text-teal-300">Nigeria</span>
@@ -72,8 +70,8 @@ export default function Footer() {
               </div>
 
               <p className="text-sm text-white/70 leading-relaxed mb-6">
-                Continuous care, with 24/7 clinical advice<br />
-                Healthcare that truly knows you
+                Professional Home Care.<br />
+                Connected Healthcare.
               </p>
 
               <div className="space-y-3">
@@ -110,10 +108,10 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* Company */}
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-widest mb-5">
-                Quick Links
+                Company
               </h3>
               <ul className="space-y-3">
                 {quickLinks.map(({ href, label }) => (
@@ -153,16 +151,16 @@ export default function Footer() {
             {/* Membership CTA */}
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-widest mb-5">
-                Ready to Join?
+                Need Care?
               </h3>
               <p className="text-sm text-white/65 leading-relaxed mb-5">
-                Stay on top of your health by joining us today. 
+                Tell us what you need. We&apos;ll help you understand the next step.
               </p>
               <Link
-                href="/signup"
+                href="/request-home-care"
                 className="inline-flex items-center gap-2 px-5 py-3 bg-teal text-white rounded-lg text-sm font-semibold hover:bg-teal-600 transition-all duration-200 shadow-teal mb-4"
               >
-                Get Started Today
+                Request Home Care
               </Link>
             </div>
           </div>

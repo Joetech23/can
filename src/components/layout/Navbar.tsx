@@ -6,11 +6,13 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ctas } from '@/lib/content'
 
 const navLinks = [
   { href: '/',                 label: 'Home' },
+  { href: '/services',         label: 'Services' },
   { href: '/about',            label: 'About Us' },
-  { href: '/become-a-member',  label: 'Membership' },
+  { href: '/faq',              label: 'FAQs' },
   { href: '/contact',          label: 'Contact' },
 ]
 
@@ -42,7 +44,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo */}
-            <Link href="/" aria-label="Care Access Nigeria — Home" className="flex-shrink-0">
+            <Link href="/" aria-label="Care Access Nigeria home" className="flex-shrink-0">
               <Image
                 src="/logo.png"
                 alt="Care Access Nigeria"
@@ -79,17 +81,17 @@ export default function Navbar() {
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <Link
-                href="/book"
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold border-2 border-navy/20 text-navy transition-all duration-200 hover:border-navy hover:bg-navy/5"
+                href={ctas.speakToTeam.href}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border-2 border-navy/20 text-navy transition-all duration-200 hover:border-navy hover:bg-navy/5"
               >
-                Book a Consultation
+                <Phone size={15} />
+                {ctas.speakToTeam.label}
               </Link>
               <Link
-                href="/become-a-member"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-navy text-white transition-all duration-200 hover:bg-navy-600 shadow-navy/20 shadow-md"
+                href={ctas.requestHomeCare.href}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-teal text-white transition-all duration-200 hover:bg-teal-600 shadow-teal"
               >
-                {/* <Phone size={16} /> */}
-                Get Started Today
+                {ctas.requestHomeCare.label}
               </Link>
             </div>
 
@@ -143,16 +145,16 @@ export default function Navbar() {
 
           <div className="p-5 space-y-3 border-t border-gray-100">
             <Link
-              href="/book"
+              href={ctas.speakToTeam.href}
               className="flex items-center justify-center w-full py-3 border-2 border-navy text-navy rounded-xl text-sm font-semibold hover:bg-navy hover:text-white transition-all duration-200"
             >
-              Book a Consultation
+              {ctas.speakToTeam.label}
             </Link>
             <Link
-              href="/signup"
-              className="flex items-center justify-center w-full py-3 bg-navy text-white rounded-xl text-sm font-semibold hover:bg-navy-600 transition-all duration-200"
+              href={ctas.requestHomeCare.href}
+              className="flex items-center justify-center w-full py-3 bg-teal text-white rounded-xl text-sm font-semibold hover:bg-teal-600 transition-all duration-200"
             >
-              Get Started Today
+              {ctas.requestHomeCare.label}
             </Link>
           </div>
         </div>

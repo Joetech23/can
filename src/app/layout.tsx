@@ -11,14 +11,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
+    default: 'Care Access Nigeria | Professional Home Care. Connected Healthcare.',
     template: '%s | Care Access Nigeria',
   },
   description:
-    'Care Access Nigeria gives every member a dedicated care team that understands their medical history, 24/7 clinical nurse advice, teleconsultation, home visits, and end-to-end care coordination — delivered with transparency and trust.',
+    'Care Access Nigeria provides professional home care across Nigeria, connecting individuals and families with qualified nurses, carers and doctors, plus telemedicine, care coordination and clinical support.',
 
   keywords: [
-    'dedicated care team Nigeria',
+    'home care Nigeria',
+    'home nursing Nigeria',
+    'elderly care Nigeria',
+    'carers Nigeria',
+    'post-hospital care Nigeria',
+    'doctor home visit Nigeria',
+    'care for parents in Nigeria from abroad',
     'telemedicine Nigeria',
     'virtual clinic Nigeria',
     'online doctor Nigeria',
@@ -65,15 +71,15 @@ export const metadata: Metadata = {
     locale: 'en_NG',
     url: BASE_URL,
     siteName: 'Care Access Nigeria',
-    title: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
+    title: 'Care Access Nigeria | Professional Home Care. Connected Healthcare.',
     description:
-      'A dedicated care team, 24/7 clinical advice, and expert care coordination — for individuals, families, and organisations across Nigeria.',
+      'Quality care and healthcare support, delivered with compassion, wherever you need it. Home care, telemedicine, care coordination and clinical support across Nigeria.',
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Care Access Nigeria — Personal Healthcare',
+        alt: 'Care Access Nigeria: Professional Home Care',
         type: 'image/jpeg',
       },
     ],
@@ -84,9 +90,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@careaccessng',
     creator: '@careaccessng',
-    title: 'Care Access Nigeria | Clear, Reliable Care When You Need It',
+    title: 'Care Access Nigeria | Professional Home Care. Connected Healthcare.',
     description:
-      'Get a dedicated care team, 24/7 clinical advice, and expert care coordination. Plans from ₦25,000/month.',
+      'Professional home care with qualified nurses, carers and doctors, plus telemedicine and clinical support across Nigeria.',
     images: [OG_IMAGE],
   },
 

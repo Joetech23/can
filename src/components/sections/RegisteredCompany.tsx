@@ -25,7 +25,7 @@ export default function RegisteredCompany() {
                 </h2>
                 <p className="text-white/70 leading-relaxed mb-8 max-w-lg">
                   Care Access Nigeria is a duly registered company with the Corporate Affairs
-                  Commission (CAC) — so you always know exactly who is responsible for your care.
+                  Commission (CAC), so you always know exactly who is responsible for your care.
                   Real people, a real company, real accountability.
                 </p>
 
@@ -62,7 +62,7 @@ export default function RegisteredCompany() {
                     <p className="text-[11px] uppercase tracking-[0.25em] text-teal-200 font-bold mb-1">
                       Corporate Affairs Commission
                     </p>
-                    <p className="text-xs text-white/50 mb-6">Registered Company &mdash; Nigeria</p>
+                    <p className="text-xs text-white/50 mb-6">Registered Company, Nigeria</p>
 
                     <div className="rounded-xl bg-navy/40 border border-white/10 py-4 px-5">
                       <p className="text-[10px] uppercase tracking-widest text-white/40 font-semibold mb-1.5">

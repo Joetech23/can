@@ -132,9 +132,11 @@ export default function ContactForm() {
             {...register('reason', { required: 'Please select a reason' })}
           >
             <option value="">Select a reason</option>
+            <option value="home-care">Home care</option>
+            <option value="loved-one">Care for a loved one</option>
             <option value="consultation">Book a consultation</option>
-            <option value="general">General inquiries</option>
-            <option value="membership">Membership</option>
+            <option value="clinical-guidance">Clinical guidance</option>
+            <option value="general">General enquiries</option>
             <option value="partnership">Partnership</option>
             <option value="jobs">Job vacancies</option>
             <option value="other">Other</option>

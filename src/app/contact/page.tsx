@@ -6,7 +6,7 @@ import { Mail, Phone, Clock, MessageCircle } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Care Access Nigeria. General enquiries, membership questions, partnership proposals, or job applications — we respond to every message.',
+    'Talk to Care Access Nigeria about home care for yourself or a loved one, a doctor consultation or professional clinical guidance.',
   alternates: {
     canonical: 'https://careaccess.ng/contact',
   },
@@ -25,12 +25,12 @@ const contactDetails = [
     label: 'Phone',
     value: '0814 214 2721',
     href: 'tel:08142142721',
-    note: '24/7 clinical support for members',
+    note: 'Speak to our team about your care',
   },
   {
     icon: Clock,
     label: 'General Enquiries',
-    value: 'Monday to Friday, 9:00am – 5:00pm',
+    value: 'Monday to Friday, 9:00am to 5:00pm',
     href: null,
   },
 ]
@@ -48,12 +48,14 @@ export default function ContactPage() {
         </div>
         <div className="relative z-10 container-max text-center">
           <AnimatedSection>
-            <div className="section-tag bg-teal/20 text-teal-200 mx-auto mb-5">Get in Touch</div>
+            <div className="section-tag bg-teal/20 text-teal-200 mx-auto mb-5">Contact</div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5 max-w-3xl mx-auto">
-              We&apos;d love to hear from you
+              Let&apos;s Talk About <span className="text-teal-300">Your Care</span>
             </h1>
             <p className="text-base md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Whether you have a general question, want to enquire about membership, or are interested in joining our team — fill in the form below and we&apos;ll get back to you.
+              Whether you need home care for yourself, support for a loved one, a doctor consultation
+              or professional clinical guidance, we&apos;re here to help. Tell us what you need. We&apos;ll
+              help you understand the next step.
             </p>
           </AnimatedSection>
         </div>

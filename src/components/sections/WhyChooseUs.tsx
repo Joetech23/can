@@ -1,78 +1,64 @@
 import AnimatedSection from '@/components/ui/AnimatedSection'
-import { CheckCircle2 } from 'lucide-react'
+import { BadgeCheck, UserRound, MapPin, Network, HeartHandshake, ShieldCheck } from 'lucide-react'
 
-const reasons = [
-  'Avoid long hospital queues and delays',
-  'Stop guessing medication or self-treating',
-  'Get clear advice during urgent situations',
-  'Manage long-term conditions with consistent support',
-  'Have a trusted medical team available when you need it',
-]
-
-const offerings = [
-  'Access to doctor consultations when needed',
-  '24/7 nurse-led clinical advice',
-  'A complete, secure medical record',
-  'Follow-ups when clinically required',
-  'Prescription and medication guidance',
-  'Lab test coordination and result interpretation',
-  'Specialist referrals and care navigation',
+const pillars = [
+  {
+    icon: BadgeCheck,
+    title: 'Professional',
+    description: 'Access appropriately qualified healthcare professionals and care staff.',
+  },
+  {
+    icon: UserRound,
+    title: 'Personal',
+    description: 'Care is built around the individual and their needs.',
+  },
+  {
+    icon: MapPin,
+    title: 'Convenient',
+    description: 'Access appropriate healthcare and care without always needing to travel.',
+  },
+  {
+    icon: Network,
+    title: 'Connected',
+    description: 'Home care, doctors, nurses, telemedicine and clinical support brought together through one service.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Compassionate',
+    description: 'We treat every individual with dignity, respect and understanding.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Trusted',
+    description: 'A dedicated healthcare partner for individuals, families and families living abroad.',
+  },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding bg-white overflow-hidden" aria-labelledby="why-heading">
+    <section id="why-us" className="section-padding section-bg-alt overflow-hidden scroll-mt-20" aria-labelledby="why-heading">
       <div className="container-max">
-        <div className="grid lg:grid-cols-2 gap-8">
+        <AnimatedSection className="text-center mb-14">
+          <div className="section-tag bg-navy/10 text-navy mx-auto mb-4">
+            Why Care Access Nigeria?
+          </div>
+          <h2 id="why-heading" className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy leading-tight">
+            More Than Care. <span className="text-teal">A Healthcare Partner.</span>
+          </h2>
+        </AnimatedSection>
 
-          {/* Card 1 — Why People Choose */}
-          <AnimatedSection animation="fade-right">
-            <div className="bg-navy rounded-3xl p-8 md:p-10 h-full flex flex-col">
-              <div className="section-tag bg-white/10 text-teal-300 mb-5 self-start">
-                Why People Choose Care Access
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pillars.map(({ icon: Icon, title, description }, i) => (
+            <AnimatedSection key={title} delay={i * 80}>
+              <div className="group card h-full border-2 border-transparent hover:border-teal/40">
+                <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5 transition-colors duration-300 group-hover:bg-teal">
+                  <Icon size={22} className="text-teal transition-colors duration-300 group-hover:text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-2">{title}</h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{description}</p>
               </div>
-              <h2 id="why-heading" className="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-3">
-                Healthcare should not be stressful.
-              </h2>
-              <p className="text-white/60 text-sm mb-8">We make it simple.</p>
-
-              <ul className="space-y-4 flex-1">
-                {reasons.map((reason) => (
-                  <li key={reason} className="flex items-start gap-3">
-                    <CheckCircle2 size={17} className="text-teal-300 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-white/80 leading-snug">{reason}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </AnimatedSection>
-
-          {/* Card 2 — What You Get */}
-          <AnimatedSection animation="fade-left">
-            <div className="bg-[#F5F8FC] rounded-3xl p-8 md:p-10 h-full flex flex-col border border-gray-100">
-              <div className="section-tag bg-teal/10 text-teal mb-5 self-start">
-                What You Get
-              </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-navy leading-tight mb-3">
-                Continuous care,
-              </h2>
-              <p className="text-gray-500 text-sm mb-8">not just consultations.</p>
-
-              <ul className="space-y-4 flex-1">
-                {offerings.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 size={17} className="text-teal flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-600 leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-8 text-sm text-teal font-semibold border-t border-gray-200 pt-5">
-                You are supported at every step — not just when you&apos;re unwell.
-              </p>
-            </div>
-          </AnimatedSection>
-
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>

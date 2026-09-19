@@ -5,7 +5,7 @@ import FAQAccordion from '@/components/sections/FAQAccordion'
 import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Frequently Asked Questions',
+  title: 'Frequently Asked Questions',
   description:
     'Find answers to common questions about Care Access Nigeria membership plans, consultations, data privacy, and corporate packages.',
   alternates: { canonical: 'https://careaccess.ng/faq' },
