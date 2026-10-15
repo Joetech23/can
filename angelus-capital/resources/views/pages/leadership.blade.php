@@ -1,31 +1,24 @@
 <x-layouts.app title="Leadership" description="Meet the experienced leadership team of Angelus Capital Partners Limited.">
-    <x-page-hero index="05" eyebrow="Leadership" title="Experienced <span class='text-gold-gradient'>leadership</span> team." lead="Decades of combined experience spanning banking, private equity, venture capital, investment management, governance and digital transformation." />
+    <x-page-hero index="05" eyebrow="Leadership" title="Experienced <span class='text-gold-gradient'>leadership</span> team." lead="Decades of combined experience spanning private equity, venture capital, banking, audit, pensions, investment management and corporate governance." />
 
     <section class="bg-ivory py-24 sm:py-32">
-        <div class="container-x grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="container-x grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             @foreach (config('acpl.leadership') as $leader)
-                <article class="card-light group relative overflow-hidden" data-reveal style="--reveal-delay: {{ ($loop->index % 2) * 120 }}ms">
-                    <div class="on-dark relative isolate flex items-end gap-6 overflow-hidden bg-navy-900 p-8 sm:p-10">
-                        <div class="grid-lines absolute inset-0 -z-10"></div>
-                        <div class="absolute -top-20 -right-20 -z-10 size-64 rounded-full bg-navy-500/60 blur-3xl transition duration-700 group-hover:bg-gold-500/30"></div>
+                <a href="{{ route('leadership.show', $leader['slug']) }}" class="card-light group flex flex-col overflow-hidden p-6 transition duration-500 hover:-translate-y-1.5 sm:p-7" data-reveal style="--reveal-delay: {{ $loop->index * 120 }}ms">
+                    <x-portrait :leader="$leader" :eager="$loop->first" class="mx-auto w-full max-w-64" />
 
-                        <div class="relative grid size-24 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-ember p-[2px] sm:size-28">
-                            <span class="grid size-full place-items-center rounded-full bg-navy-950 font-display text-3xl text-gold-200 sm:text-4xl">{{ $leader['initials'] }}</span>
-                        </div>
-                        <div>
-                            <p class="text-xs font-semibold tracking-[0.22em] text-gold-400 uppercase">{{ $leader['role'] }}</p>
-                            <h2 class="mt-2 font-display text-3xl leading-tight text-white">{{ $leader['name'] }}</h2>
-                        </div>
-                    </div>
-                    <div class="p-8 sm:p-10">
-                        <p class="text-lg leading-relaxed text-mist">{{ $leader['bio'] }}</p>
-                        <ul class="mt-8 flex flex-wrap gap-2">
+                    <div class="mt-8 flex flex-1 flex-col">
+                        <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">{{ $leader['role'] }}</p>
+                        <h2 class="mt-2 font-display text-3xl leading-tight text-navy-900">{{ $leader['name'] }}</h2>
+                        <p class="mt-4 flex-1 leading-relaxed text-mist">{{ $leader['bio'] }}</p>
+                        <ul class="mt-6 flex flex-wrap gap-2">
                             @foreach ($leader['focus'] as $focus)
-                                <li class="rounded-full bg-sand px-4 py-1.5 text-xs font-semibold text-navy-800">{{ $focus }}</li>
+                                <li class="rounded-full bg-sand px-3.5 py-1.5 text-xs font-semibold text-navy-800">{{ $focus }}</li>
                             @endforeach
                         </ul>
+                        <span class="link-arrow mt-8">Full profile <x-icon name="arrow-right" class="size-4" stroke="2" /></span>
                     </div>
-                </article>
+                </a>
             @endforeach
         </div>
     </section>

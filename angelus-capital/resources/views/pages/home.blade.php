@@ -106,6 +106,7 @@
                 <div class="lg:sticky lg:top-32">
                     <x-section-heading eyebrow="Who we are" title="An independent partner across the entire capital lifecycle." lead="We provide advisory and investment solutions from business strategy and project development to capital raising, transaction execution and investment management." />
                     <a href="{{ route('about') }}" class="link-arrow mt-10" data-reveal>Discover our story <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                    <img src="{{ asset('images/skyline.webp') }}" alt="Glass office towers reflecting the morning light" width="653" height="980" loading="lazy" class="mt-10 hidden w-full max-w-sm lg:block" data-reveal="fade">
                 </div>
             </div>
 
@@ -262,9 +263,9 @@
                 <a href="{{ route('sectors') }}" class="link-arrow shrink-0" data-reveal>All sectors <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
             </div>
 
-            <div class="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach (config('acpl.sectors') as $sector)
-                    <article class="group relative overflow-hidden rounded-3xl border border-navy-900/8 bg-ivory p-8 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:bg-navy-900 hover:shadow-[0_30px_60px_-30px_rgba(7,24,52,0.6)]" data-reveal style="--reveal-delay: {{ ($loop->index % 4) * 80 }}ms">
+                    <article class="group relative overflow-hidden rounded-3xl border border-navy-900/8 bg-ivory p-8 transition duration-500 hover:-translate-y-1.5 hover:border-transparent hover:bg-navy-900 hover:shadow-[0_30px_60px_-30px_rgba(7,24,52,0.6)]" data-reveal style="--reveal-delay: {{ ($loop->index % 3) * 80 }}ms">
                         <span class="grid size-14 place-items-center rounded-2xl bg-white text-gold-600 shadow-sm transition duration-500 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-ember group-hover:text-navy-950">
                             <x-icon :name="$sector['icon']" class="size-7" />
                         </span>
@@ -317,7 +318,7 @@
                     “{{ config('acpl.chairman.pull_quote') }}”
                 </blockquote>
                 <figcaption class="mt-10 flex items-center justify-center gap-4">
-                    <span class="grid size-14 place-items-center rounded-full bg-navy-900 font-display text-lg text-gold-300">AO</span>
+                    <img src="{{ asset(config('acpl.chairman.photo')) }}" alt="{{ config('acpl.chairman.name') }}" width="56" height="56" loading="lazy" class="size-14 rounded-full object-cover object-top ring-2 ring-gold-400 ring-offset-2 ring-offset-sand">
                     <span class="text-left">
                         <span class="block font-semibold text-navy-900">{{ config('acpl.chairman.name') }}</span>
                         <span class="block text-sm text-mist">{{ config('acpl.chairman.title') }}</span>
@@ -325,6 +326,28 @@
                 </figcaption>
                 <a href="{{ route('about') }}#chairman" class="link-arrow mt-10">Read the Chairman’s message <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
             </figure>
+        </div>
+    </section>
+
+    {{-- Leadership --}}
+    <section class="bg-white py-24 sm:py-32">
+        <div class="container-x">
+            <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+                <x-section-heading eyebrow="Leadership" title="Led by people who have built institutions." lead="Decades of combined experience across venture capital, private equity, banking, audit, pensions and corporate governance." />
+                <a href="{{ route('leadership') }}" class="link-arrow shrink-0" data-reveal>Meet the team <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+                @foreach (config('acpl.leadership') as $leader)
+                    <a href="{{ route('leadership.show', $leader['slug']) }}" class="group block" data-reveal style="--reveal-delay: {{ $loop->index * 120 }}ms">
+                        <x-portrait :leader="$leader" class="mx-auto w-full max-w-60" />
+                        <div class="mt-6 text-center">
+                            <p class="font-display text-2xl text-navy-900 transition group-hover:text-gold-600">{{ $leader['name'] }}</p>
+                            <p class="mt-1 text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">{{ $leader['role'] }}</p>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
         </div>
     </section>
 

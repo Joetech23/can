@@ -35,4 +35,17 @@ class PageController extends Controller
     {
         return view('pages.leadership');
     }
+
+    public function leader(string $slug): View
+    {
+        $leaders = collect(config('acpl.leadership'));
+        $leader = $leaders->firstWhere('slug', $slug);
+
+        abort_if($leader === null, 404);
+
+        return view('pages.leader', [
+            'leader' => $leader,
+            'colleagues' => $leaders->where('slug', '!=', $slug)->values(),
+        ]);
+    }
 }

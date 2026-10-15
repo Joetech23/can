@@ -50,14 +50,14 @@
         <div class="container-x grid grid-cols-1 gap-16 lg:grid-cols-12">
             <div class="lg:col-span-5">
                 <div class="lg:sticky lg:top-32" data-reveal="left">
-                    <div class="on-dark grain relative isolate aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy-950 p-10" data-tilt-area>
+                    <div class="on-dark grain relative isolate overflow-hidden rounded-[2rem] bg-navy-950 p-8 sm:p-10">
                         <div class="absolute -top-20 -right-20 -z-10 size-80 rounded-full bg-gold-500/25 blur-3xl"></div>
                         <div class="grid-lines absolute inset-0 -z-10"></div>
-                        <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" data-tilt="12" class="absolute top-1/2 left-1/2 w-3/4 -translate-x-1/2 -translate-y-[60%] opacity-90 drop-shadow-[0_30px_60px_rgba(239,125,16,0.35)]">
-                        <div class="absolute inset-x-10 bottom-10">
-                            <p class="font-display text-3xl text-white">{{ $chairman['name'] }}</p>
-                            <p class="mt-1 text-sm tracking-[0.2em] text-gold-400 uppercase">{{ $chairman['title'] }}</p>
-                        </div>
+                        <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="absolute -right-10 -bottom-10 -z-10 w-56 opacity-20">
+                        <x-portrait :leader="['photo' => $chairman['photo'], 'name' => $chairman['name'], 'role' => $chairman['title']]" class="w-full max-w-64" />
+                        <p class="mt-8 font-display text-3xl text-white">{{ $chairman['name'] }}</p>
+                        <p class="mt-1 text-sm tracking-[0.2em] text-gold-400 uppercase">{{ $chairman['title'] }}</p>
+                        <a href="{{ route('leadership.show', 'anthony-oboh') }}" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-300 transition hover:gap-3">Full profile <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                     </div>
                 </div>
             </div>

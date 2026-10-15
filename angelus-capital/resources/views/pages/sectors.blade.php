@@ -1,7 +1,7 @@
-<x-layouts.app title="Sectors of Focus" description="Sector expertise across financial services, hospitality, agribusiness, FMCG, healthcare, fintech, green energy and infrastructure.">
+<x-layouts.app title="Sectors of Focus" description="Sector expertise across financial services, hospitality, agribusiness, FMCG, healthcare and fintech.">
     @php($sectors = config('acpl.sectors'))
 
-    <x-page-hero index="03" eyebrow="Sectors of focus" title="Sector expertise where Africa is <span class='text-gold-gradient'>growing.</span>" lead="Our leadership has advised, raised capital for and invested in businesses across eight sectors that will shape the continent’s next growth cycle." />
+    <x-page-hero index="03" eyebrow="Sectors of focus" title="Sector expertise where Africa is <span class='text-gold-gradient'>growing.</span>" lead="Our leadership has advised, raised capital for and invested in businesses across the sectors that will shape the continent’s next growth cycle." />
 
     <section class="bg-ivory py-24 sm:py-32">
         <div class="container-x">

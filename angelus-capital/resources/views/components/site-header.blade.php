@@ -9,12 +9,12 @@
                 <a href="{{ route($item['route']) }}"
                    @class([
                        'relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300',
-                       'text-gold-300' => request()->routeIs($item['route']),
-                       'text-white/75 hover:text-white' => ! request()->routeIs($item['route']),
+                       'text-gold-300' => request()->routeIs($item['route'], $item['route'].'.*'),
+                       'text-white/75 hover:text-white' => ! request()->routeIs($item['route'], $item['route'].'.*'),
                    ])
-                   @if (request()->routeIs($item['route'])) aria-current="page" @endif>
+                   @if (request()->routeIs($item['route'], $item['route'].'.*')) aria-current="page" @endif>
                     {{ $item['label'] }}
-                    @if (request()->routeIs($item['route']))
+                    @if (request()->routeIs($item['route'], $item['route'].'.*'))
                         <span class="absolute inset-x-4 -bottom-0.5 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent"></span>
                     @endif
                 </a>
@@ -39,7 +39,7 @@
         <nav class="flex flex-col" aria-label="Mobile">
             <a href="{{ route('home') }}" class="border-b border-white/10 py-4 font-display text-2xl text-white">Home</a>
             @foreach (config('acpl.navigation') as $item)
-                <a href="{{ route($item['route']) }}" class="flex items-center justify-between border-b border-white/10 py-4 font-display text-2xl {{ request()->routeIs($item['route']) ? 'text-gold-300' : 'text-white' }}">
+                <a href="{{ route($item['route']) }}" class="flex items-center justify-between border-b border-white/10 py-4 font-display text-2xl {{ request()->routeIs($item['route'], $item['route'].'.*') ? 'text-gold-300' : 'text-white' }}">
                     {{ $item['label'] }}
                     <x-icon name="arrow-right" class="size-5 text-gold-400" />
                 </a>
