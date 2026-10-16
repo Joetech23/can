@@ -21,10 +21,16 @@ class ContactController extends Controller
     public function store(ContactRequest $request): RedirectResponse
     {
         if ($request->filled('company_website')) {
-            return to_route('contact')->with('status', 'Thank you. Your enquiry has been received.');
+            return $request->isFromLandingPage()
+                ? to_route('landing.thanks')
+                : to_route('contact')->with('status', 'Thank you. Your enquiry has been received.');
         }
 
-        Log::info('Website enquiry received', $request->safe()->except('company_website'));
+        Log::info('Website enquiry received', array_filter($request->safe()->except('company_website')));
+
+        if ($request->isFromLandingPage()) {
+            return to_route('landing.thanks')->with('lead_name', $request->string('name')->before(' ')->toString());
+        }
 
         return to_route('contact')
             ->with('status', 'Thank you, '.$request->string('name')->before(' ').'. Your enquiry has been received and a member of our team will be in touch shortly.');

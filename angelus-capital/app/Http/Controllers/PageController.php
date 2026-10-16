@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -47,5 +48,21 @@ class PageController extends Controller
             'leader' => $leader,
             'colleagues' => $leaders->where('slug', '!=', $slug)->values(),
         ]);
+    }
+
+    /**
+     * Advertising landing page. Campaign parameters from the ad URL are carried
+     * into the enquiry form so each lead can be traced back to its campaign.
+     */
+    public function landing(Request $request): View
+    {
+        return view('pages.landing', [
+            'campaign' => $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid']),
+        ]);
+    }
+
+    public function landingThanks(): View
+    {
+        return view('pages.landing-thanks');
     }
 }

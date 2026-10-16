@@ -353,6 +353,17 @@ return [
         'drivers' => ['Entrepreneurship', 'Infrastructure', 'Technological innovation', 'Financial inclusion', 'Sustainable investment'],
     ],
 
+    /*
+    | Advertising tags. Leave blank to disable. Set them in the .env file:
+    | GOOGLE_TAG_ID=AW-XXXXXXXXX (or G-XXXXXXX) and META_PIXEL_ID=1234567890.
+    | The landing page "thank you" screen reports a lead conversion.
+    */
+    'tracking' => [
+        'google_tag' => env('GOOGLE_TAG_ID'),
+        'google_ads_conversion' => env('GOOGLE_ADS_CONVERSION'),
+        'meta_pixel' => env('META_PIXEL_ID'),
+    ],
+
     'enquiry_types' => [
         'advisory' => 'Corporate & transaction advisory',
         'capital' => 'Capital raising & project finance',

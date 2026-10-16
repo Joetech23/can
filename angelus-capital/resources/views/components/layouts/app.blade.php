@@ -1,4 +1,4 @@
-@props(['title' => null, 'description' => null])
+@props(['title' => null, 'description' => null, 'bare' => false, 'noindex' => false, 'conversion' => false])
 
 @php
     $company = config('acpl.company');
@@ -22,6 +22,9 @@
         <meta property="og:description" content="{{ $pageDescription }}">
         <meta property="og:image" content="{{ asset('images/acpl-mark.png') }}">
         <link rel="canonical" href="{{ url()->current() }}">
+        @if ($noindex)
+            <meta name="robots" content="noindex, follow">
+        @endif
 
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
         <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
@@ -48,16 +51,22 @@
                 ],
             ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
         </script>
+
+        <x-tracking :conversion="$conversion" />
     </head>
     <body class="min-h-screen">
         <a href="#main" class="sr-only z-[100] rounded-full bg-gold-400 px-5 py-3 font-semibold text-navy-950 focus:not-sr-only focus:fixed focus:top-4 focus:left-4">Skip to content</a>
 
-        <x-site-header />
+        @unless ($bare)
+            <x-site-header />
+        @endunless
 
         <main id="main">
             {{ $slot }}
         </main>
 
-        <x-site-footer />
+        @unless ($bare)
+            <x-site-footer />
+        @endunless
     </body>
 </html>

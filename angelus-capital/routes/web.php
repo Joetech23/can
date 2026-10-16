@@ -12,6 +12,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/transactions', 'transactions')->name('transactions');
     Route::get('/leadership', 'leadership')->name('leadership');
     Route::get('/leadership/{slug}', 'leader')->name('leadership.show');
+    Route::get('/partner', 'landing')->name('landing');
+    Route::get('/partner/thank-you', 'landingThanks')->name('landing.thanks');
 });
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
