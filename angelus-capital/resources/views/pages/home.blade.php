@@ -283,7 +283,7 @@
         <div class="container-x">
             <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
                 <x-section-heading eyebrow="Transaction experience" title="Selected credentials across sectors and geographies." :lead="config('acpl.transactions.intro')" dark />
-                <a href="{{ route('transactions') }}" class="btn-outline shrink-0" data-reveal>View all credentials <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                <a href="{{ route('sectors') }}#transactions" class="btn-outline shrink-0" data-reveal>View all credentials <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
             </div>
         </div>
 

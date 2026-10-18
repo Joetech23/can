@@ -51,6 +51,26 @@
         </div>
     </section>
 
+    {{-- E-invoice compliance advisory --}}
+    <section id="einvoice" class="scroll-mt-20 bg-ivory pb-24 sm:pb-32">
+        <div class="container-x">
+            <div class="grid grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold-500/30 bg-white p-8 sm:p-12 lg:grid-cols-[auto_1fr_auto]" data-reveal>
+                <span class="grid size-16 place-items-center rounded-2xl bg-navy-900 text-gold-300"><x-icon name="document" class="size-8" /></span>
+                <div>
+                    <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Advisory · Compliance</p>
+                    <h3 class="mt-2 font-display text-3xl text-navy-900">{{ config('acpl.einvoice.title') }}</h3>
+                    <p class="mt-3 max-w-2xl leading-relaxed text-mist">{{ config('acpl.einvoice.summary') }}</p>
+                    <ul class="mt-5 flex flex-wrap gap-2">
+                        @foreach (config('acpl.einvoice.points') as $point)
+                            <li class="rounded-full bg-sand px-3.5 py-1.5 text-xs font-semibold text-navy-800">{{ $point }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <a href="{{ route('contact', ['enquiry' => 'einvoice']) }}#enquire" class="btn-gold shrink-0">Get e-invoice advice <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+            </div>
+        </div>
+    </section>
+
     {{-- Capital Solutions --}}
     <section id="capital" class="on-dark grain relative isolate scroll-mt-20 overflow-hidden bg-navy-950 py-24 text-white sm:py-32">
         <div class="grid-lines absolute inset-0 -z-10"></div>

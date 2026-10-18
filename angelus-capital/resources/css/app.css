@@ -215,7 +215,7 @@
 
 /* Header state */
 [data-header].is-scrolled {
-    @apply border-white/10 bg-navy-950/80 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl;
+    @apply border-white/10 bg-navy-950/95 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl;
 }
 
 [data-header].is-scrolled [data-header-inner] {

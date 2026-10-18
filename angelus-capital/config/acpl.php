@@ -26,14 +26,28 @@ return [
         'email' => 'info@angeluscapitalpartners.com',
         'website' => 'www.angeluscapitalpartners.com',
         'map_query' => '173 Ogudu Road, Ogudu, Lagos, Nigeria',
+
+        // Corporate Affairs Commission registration number, e.g. 'RC 1234567'.
+        // Shown in the footer and legal pages once filled in.
+        'rc_number' => null,
+
+        // Optional branch office, e.g. ['Suite 4, Example House', 'Abuja', 'Nigeria'].
+        'branch_address' => null,
+
+        // WhatsApp number in international format without "+" or spaces.
+        'whatsapp' => '2348023261918',
+        'whatsapp_message' => 'Hello Angelus Capital Partners, I would like to make an enquiry.',
+
+        // Full LinkedIn company page URL, e.g. 'https://www.linkedin.com/company/angelus-capital-partners'.
+        'linkedin' => null,
     ],
 
     'navigation' => [
         ['label' => 'About', 'route' => 'about'],
         ['label' => 'What We Do', 'route' => 'services'],
-        ['label' => 'Sectors', 'route' => 'sectors'],
-        ['label' => 'Transactions', 'route' => 'transactions'],
+        ['label' => 'Sectors & Transactions', 'route' => 'sectors'],
         ['label' => 'Leadership', 'route' => 'leadership'],
+        ['label' => 'Insights', 'route' => 'insights'],
     ],
 
     'metrics' => [
@@ -369,7 +383,85 @@ return [
         'capital' => 'Capital raising & project finance',
         'investment' => 'Investment opportunity',
         'partnership' => 'Partnership / co-investment',
+        'einvoice' => 'NRS e-invoice compliance advisory',
         'other' => 'Something else',
+    ],
+
+    /*
+    | Each enquiry type is routed to the business unit that handles it. Set the
+    | unit mailboxes in .env (ENQUIRY_EMAIL_ADVISORY=...); any left blank fall
+    | back to the main company email address.
+    */
+    'enquiry_routing' => [
+        'advisory' => ['unit' => 'Corporate & Transaction Advisory', 'email' => env('ENQUIRY_EMAIL_ADVISORY')],
+        'capital' => ['unit' => 'Capital Raising & Project Finance', 'email' => env('ENQUIRY_EMAIL_CAPITAL')],
+        'investment' => ['unit' => 'Investment Management', 'email' => env('ENQUIRY_EMAIL_INVESTMENT')],
+        'partnership' => ['unit' => 'Partnerships & Co-investment', 'email' => env('ENQUIRY_EMAIL_PARTNERSHIP')],
+        'einvoice' => ['unit' => 'E-Invoice Compliance Advisory', 'email' => env('ENQUIRY_EMAIL_EINVOICE')],
+        'other' => ['unit' => 'General Enquiries', 'email' => env('ENQUIRY_EMAIL_GENERAL')],
+    ],
+
+    /*
+    | HubSpot CRM. With a portal ID and form GUID set, every website enquiry is
+    | also submitted to that HubSpot form so it appears in the CRM pipeline.
+    | The portal ID alone loads HubSpot tracking (and live chat, if enabled).
+    */
+    'hubspot' => [
+        'portal_id' => env('HUBSPOT_PORTAL_ID'),
+        'form_guid' => env('HUBSPOT_FORM_GUID'),
+    ],
+
+    'einvoice' => [
+        'title' => 'NRS E-Invoice Compliance Advisory',
+        'summary' => 'Practical advisory support for businesses preparing for and complying with the Nigeria Revenue Service (NRS) e-invoicing implementation.',
+        'points' => [
+            'Readiness assessment of your invoicing processes and systems',
+            'Implementation planning and coordination with your finance and IT teams',
+            'Ongoing compliance advice as requirements evolve',
+        ],
+    ],
+
+    /*
+    | News & Insights. Newest first. Each article is a list of paragraphs;
+    | a paragraph starting with "## " is shown as a sub-heading.
+    */
+    'insights' => [
+        [
+            'slug' => 'positioning-for-africas-next-growth-cycle',
+            'title' => 'Positioning for Africa’s Next Growth Cycle',
+            'category' => 'Outlook',
+            'date' => '2026-10-18',
+            'author' => 'Angelus Capital Partners',
+            'excerpt' => 'Entrepreneurship, infrastructure, technological innovation, financial inclusion and sustainable investment will drive the continent’s next chapter. Here is how capital, advisory and execution come together.',
+            'body' => [
+                'Africa’s growth story will increasingly be driven by entrepreneurship, infrastructure development, technological innovation, financial inclusion and sustainable investment.',
+                '## Capital alone is not enough',
+                'The ability of businesses and economies to grow sustainably is increasingly dependent on access to the right capital, sound governance, strategic leadership and effective execution. Capital is most impactful when it is combined with deep insight, strong relationships and disciplined execution.',
+                '## Where the opportunity lies',
+                'We see sustained opportunity across financial services, hospitality, agribusiness, fast moving consumer goods, healthcare and fintech — sectors where well-structured capital can unlock scale, improve governance and create lasting value for investors and communities alike.',
+                '## Our role',
+                'ACPL is positioned to support this transformation by providing capital solutions, advisory expertise and investment capabilities that enable businesses and institutions to grow with confidence. We believe the future belongs to organizations capable of combining capital, innovation and execution.',
+                'That is where ACPL creates value.',
+            ],
+        ],
+        [
+            'slug' => 'what-makes-a-project-bankable',
+            'title' => 'What Makes a Project Bankable?',
+            'category' => 'Project Finance',
+            'date' => '2026-10-18',
+            'author' => 'Angelus Capital Partners',
+            'excerpt' => 'Institutional capital is available for the right projects. The difference between a good idea and a fundable one is structure — here is what investors and lenders look for.',
+            'body' => [
+                'Institutional investors, development finance institutions, commercial banks, private equity funds, family offices, strategic and impact investors are all actively seeking quality opportunities. Yet many promising projects never reach financial close. The gap is rarely ambition — it is structure.',
+                '## What capital providers look for',
+                'In our experience, investors focus on businesses and projects that demonstrate scalable growth opportunities, strong market potential, room for governance and operational improvement, sustainable cash flow generation and attractive risk-adjusted returns.',
+                '## Building a bankable project',
+                'A bankable project is one that has been prepared to meet those expectations. That typically means robust project structuring, a credible financial model, a clear capital strategy, a well-defined risk allocation framework, and the right funding arrangements — supported by early and well-prepared investor engagement.',
+                '## Getting investor-ready',
+                'Due diligence, feasibility studies and a clear business plan give capital providers the confidence to commit. Preparing these properly, before going to market, shortens transaction timelines and improves terms.',
+                'ACPL works with project sponsors and businesses across this journey — from structuring and modeling to capital mobilisation and transaction execution. If you are preparing a project for funding, we would welcome a conversation.',
+            ],
+        ],
     ],
 
 ];

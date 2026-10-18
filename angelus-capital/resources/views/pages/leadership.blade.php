@@ -1,5 +1,5 @@
 <x-layouts.app title="Leadership" description="Meet the experienced leadership team of Angelus Capital Partners Limited.">
-    <x-page-hero index="05" eyebrow="Leadership" title="Experienced <span class='text-gold-gradient'>leadership</span> team." lead="Decades of combined experience spanning private equity, venture capital, banking, audit, pensions, investment management and corporate governance." />
+    <x-page-hero index="04" eyebrow="Leadership" title="Experienced <span class='text-gold-gradient'>leadership</span> team." lead="Decades of combined experience spanning private equity, venture capital, banking, audit, pensions, investment management and corporate governance." />
 
     <section class="bg-ivory py-24 sm:py-32">
         <div class="container-x grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

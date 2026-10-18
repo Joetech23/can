@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -27,11 +26,6 @@ class PageController extends Controller
         return view('pages.sectors');
     }
 
-    public function transactions(): View
-    {
-        return view('pages.transactions');
-    }
-
     public function leadership(): View
     {
         return view('pages.leadership');
@@ -51,18 +45,41 @@ class PageController extends Controller
     }
 
     /**
-     * Advertising landing page. Campaign parameters from the ad URL are carried
-     * into the enquiry form so each lead can be traced back to its campaign.
+     * Advertising landing page (the campaign destination URL). It informs and
+     * then routes visitors to the contact page, where the enquiry form lives.
      */
-    public function landing(Request $request): View
+    public function landing(): View
     {
-        return view('pages.landing', [
-            'campaign' => $request->only(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid']),
+        return view('pages.landing');
+    }
+
+    public function insights(): View
+    {
+        return view('pages.insights', [
+            'articles' => collect(config('acpl.insights'))->sortByDesc('date')->values(),
         ]);
     }
 
-    public function landingThanks(): View
+    public function insight(string $slug): View
     {
-        return view('pages.landing-thanks');
+        $articles = collect(config('acpl.insights'));
+        $article = $articles->firstWhere('slug', $slug);
+
+        abort_if($article === null, 404);
+
+        return view('pages.insight', [
+            'article' => $article,
+            'related' => $articles->where('slug', '!=', $slug)->sortByDesc('date')->take(2)->values(),
+        ]);
+    }
+
+    public function privacy(): View
+    {
+        return view('pages.privacy');
+    }
+
+    public function disclaimer(): View
+    {
+        return view('pages.disclaimer');
     }
 }

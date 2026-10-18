@@ -30,3 +30,8 @@
         @endif
     </script>
 @endif
+
+@if (filled(config('acpl.hubspot.portal_id')))
+    {{-- HubSpot tracking code: visitor analytics, the hubspotutk cookie and live chat (if enabled in HubSpot). --}}
+    <script id="hs-script-loader" async defer src="https://js.hs-scripts.com/{{ urlencode(config('acpl.hubspot.portal_id')) }}.js"></script>
+@endif

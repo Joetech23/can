@@ -22,7 +22,7 @@
                 <a href="tel:{{ $company['phone_href'] }}" class="hidden items-center gap-2 text-sm font-semibold text-white/80 transition hover:text-gold-300 md:inline-flex">
                     <x-icon name="phone" class="size-4 text-gold-400" /> {{ $company['phone'] }}
                 </a>
-                <a href="#enquire" class="btn-gold hidden !px-5 !py-2.5 sm:inline-flex">Get a consultation</a>
+                <a href="{{ route('contact') }}#enquire" class="btn-gold hidden !px-5 !py-2.5 sm:inline-flex">Get a consultation</a>
             </div>
         </div>
     </header>
@@ -74,65 +74,28 @@
                 </div>
             </div>
 
-            {{-- Lead form --}}
-            <div id="enquire" class="scroll-mt-24" data-reveal="zoom" style="--reveal-delay: 150ms">
+            {{-- Next step card: everything routes to the contact page --}}
+            <div data-reveal="zoom" style="--reveal-delay: 150ms">
                 <div class="relative rounded-[2rem] bg-gradient-to-br from-gold-300 via-gold-500 to-ember p-[2px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
                     <div class="rounded-[calc(2rem-2px)] bg-white p-7 text-ink sm:p-9">
-                        <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Free & confidential</p>
-                        <h2 class="mt-2 font-display text-3xl leading-tight text-navy-900">Request a consultation</h2>
-                        <p class="mt-2 text-sm text-mist">Tell us what you’re working on. Our team will be in touch.</p>
+                        <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Confidential</p>
+                        <h2 class="mt-2 font-display text-3xl leading-tight text-navy-900">Book a consultation</h2>
+                        <p class="mt-2 text-sm text-mist">Choose what you need and we’ll route you to the right team.</p>
 
-                        @if ($errors->any())
-                            <div class="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">Please check the highlighted fields.</div>
-                        @endif
-
-                        <form method="POST" action="{{ route('contact.store') }}" class="mt-6 grid grid-cols-1 gap-4" novalidate>
-                            @csrf
-                            <input type="hidden" name="source" value="landing">
-                            @foreach ($campaign as $key => $value)
-                                <input type="hidden" name="{{ $key }}" value="{{ old($key, $value) }}">
+                        <ul class="mt-6 space-y-2.5">
+                            @foreach (config('acpl.enquiry_types') as $type => $label)
+                                @continue($type === 'other')
+                                <li>
+                                    <a href="{{ route('contact', ['enquiry' => $type]) }}#enquire" class="group flex items-center justify-between gap-4 rounded-2xl border border-navy-900/10 px-5 py-3.5 font-medium text-navy-900 transition hover:border-gold-500 hover:bg-ivory">
+                                        {{ $label }}
+                                        <x-icon name="arrow-right" class="size-4 text-gold-600 transition group-hover:translate-x-1" stroke="2" />
+                                    </a>
+                                </li>
                             @endforeach
+                        </ul>
 
-                            <div class="hidden" aria-hidden="true">
-                                <label for="company_website">Leave this field empty</label>
-                                <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
-                            </div>
-
-                            @foreach ([
-                                ['name' => 'name', 'label' => 'Full name', 'type' => 'text', 'autocomplete' => 'name', 'required' => true],
-                                ['name' => 'email', 'label' => 'Work email', 'type' => 'email', 'autocomplete' => 'email', 'required' => true],
-                                ['name' => 'phone', 'label' => 'Phone number', 'type' => 'tel', 'autocomplete' => 'tel', 'required' => false],
-                                ['name' => 'organization', 'label' => 'Company / organization', 'type' => 'text', 'autocomplete' => 'organization', 'required' => false],
-                            ] as $field)
-                                <div>
-                                    <label for="{{ $field['name'] }}" class="sr-only">{{ $field['label'] }}</label>
-                                    <input type="{{ $field['type'] }}" id="{{ $field['name'] }}" name="{{ $field['name'] }}" value="{{ old($field['name']) }}" placeholder="{{ $field['label'] }}{{ $field['required'] ? ' *' : '' }}" autocomplete="{{ $field['autocomplete'] }}" @if ($field['required']) required @endif @class(['field !py-3.5', '!border-red-400' => $errors->has($field['name'])]) @error($field['name']) aria-invalid="true" aria-describedby="{{ $field['name'] }}-error" @enderror>
-                                    @error($field['name'])
-                                        <p id="{{ $field['name'] }}-error" class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            @endforeach
-
-                            <div>
-                                <label for="enquiry_type" class="sr-only">How can we help?</label>
-                                <select id="enquiry_type" name="enquiry_type" @class(['field !py-3.5', '!border-red-400' => $errors->has('enquiry_type')])>
-                                    @foreach (config('acpl.enquiry_types') as $value => $label)
-                                        <option value="{{ $value }}" @selected(old('enquiry_type', 'capital') === $value)>{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="message" class="sr-only">Briefly, what are you looking for?</label>
-                                <textarea id="message" name="message" rows="3" placeholder="Briefly, what are you looking for? (optional)" @class(['field !py-3.5 resize-y', '!border-red-400' => $errors->has('message')])>{{ old('message') }}</textarea>
-                                @error('message')
-                                    <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn-gold mt-1 w-full !py-4 text-base">Request my consultation <x-icon name="arrow-right" class="size-4" stroke="2" /></button>
-                            <p class="flex items-center justify-center gap-2 text-xs text-mist"><x-icon name="shield" class="size-4 text-gold-600" /> Your details are kept confidential.</p>
-                        </form>
+                        <a href="{{ route('contact') }}#enquire" class="btn-gold mt-6 w-full !py-4 text-base">Start a conversation <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                        <p class="mt-4 flex items-center justify-center gap-2 text-xs text-mist"><x-icon name="shield" class="size-4 text-gold-600" /> Your details are kept confidential.</p>
                     </div>
                 </div>
             </div>
@@ -178,6 +141,34 @@
                         </ul>
                     </article>
                 @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- E-invoice campaign --}}
+    <section id="einvoice" class="scroll-mt-20 bg-white py-20 sm:py-28">
+        <div class="container-x">
+            <div class="on-dark grain relative isolate overflow-hidden rounded-[2.5rem] bg-navy-900 p-8 text-white sm:p-14" data-reveal="zoom">
+                <div class="absolute -top-24 -right-24 -z-10 size-96 rounded-full bg-gold-500/25 blur-[100px]"></div>
+                <div class="grid-lines absolute inset-0 -z-10"></div>
+                <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+                    <div>
+                        <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="document" class="size-4" /> Compliance advisory</span>
+                        <h2 class="mt-6 font-display text-4xl leading-tight text-balance sm:text-5xl">{{ config('acpl.einvoice.title') }}</h2>
+                        <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/70">{{ config('acpl.einvoice.summary') }}</p>
+                        <ul class="mt-8 space-y-3">
+                            @foreach (config('acpl.einvoice.points') as $point)
+                                <li class="flex items-start gap-3 text-white/85"><x-icon name="check" class="mt-1 size-4 text-gold-400" stroke="2.5" /> {{ $point }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="card-dark p-7 text-center sm:p-9">
+                        <x-icon name="document" class="mx-auto size-12 text-gold-300" stroke="1.2" />
+                        <p class="mt-5 font-display text-2xl">Is your business ready?</p>
+                        <p class="mt-2 text-sm text-white/60">Talk to our compliance advisory team.</p>
+                        <a href="{{ route('contact', ['enquiry' => 'einvoice']) }}#enquire" class="btn-gold mt-7 w-full">Get e-invoice advice <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -261,9 +252,9 @@
         <div class="container-x">
             <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="mx-auto w-24 drop-shadow-[0_20px_40px_rgba(239,125,16,0.4)]" data-reveal="zoom">
             <h2 class="mx-auto mt-8 max-w-3xl font-display text-4xl leading-tight text-balance sm:text-5xl" data-reveal>Ready to unlock your next stage of growth?</h2>
-            <p class="mx-auto mt-5 max-w-xl text-lg text-white/65" data-reveal>Book a free, confidential consultation with our team.</p>
+            <p class="mx-auto mt-5 max-w-xl text-lg text-white/65" data-reveal>Book a confidential consultation with our team.</p>
             <div class="mt-10 flex flex-wrap justify-center gap-4" data-reveal>
-                <a href="#enquire" class="btn-gold">Request a consultation <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                <a href="{{ route('contact') }}#enquire" class="btn-gold">Request a consultation <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                 <a href="tel:{{ $company['phone_href'] }}" class="btn-outline"><x-icon name="phone" class="size-4" /> {{ $company['phone'] }}</a>
             </div>
         </div>
@@ -280,6 +271,6 @@
     {{-- Sticky mobile action bar --}}
     <div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-white/10 bg-navy-950/95 p-3 backdrop-blur sm:hidden">
         <a href="tel:{{ $company['phone_href'] }}" class="btn-outline !px-4 !py-3"><x-icon name="phone" class="size-4" /> Call us</a>
-        <a href="#enquire" class="btn-gold !px-4 !py-3">Get started</a>
+        <a href="{{ route('contact') }}#enquire" class="btn-gold !px-4 !py-3">Get started</a>
     </div>
 </x-layouts.app>

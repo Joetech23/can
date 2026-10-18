@@ -68,5 +68,7 @@
         @unless ($bare)
             <x-site-footer />
         @endunless
+
+        <x-contact-dock :raised="$bare" />
     </body>
 </html>

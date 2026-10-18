@@ -29,9 +29,8 @@ class ContactRequest extends FormRequest
             'phone' => ['nullable', 'string', 'max:40'],
             'organization' => ['nullable', 'string', 'max:160'],
             'enquiry_type' => ['required', Rule::in(array_keys(config('acpl.enquiry_types')))],
-            'message' => [Rule::requiredIf(! $this->isFromLandingPage()), 'nullable', 'string', 'min:10', 'max:5000'],
+            'message' => ['nullable', 'string', 'min:10', 'max:5000'],
             'company_website' => ['nullable', 'string', 'max:255'],
-            'source' => ['nullable', 'string', Rule::in(['landing'])],
             'utm_source' => ['nullable', 'string', 'max:120'],
             'utm_medium' => ['nullable', 'string', 'max:120'],
             'utm_campaign' => ['nullable', 'string', 'max:160'],
@@ -39,16 +38,9 @@ class ContactRequest extends FormRequest
             'utm_term' => ['nullable', 'string', 'max:160'],
             'gclid' => ['nullable', 'string', 'max:255'],
             'fbclid' => ['nullable', 'string', 'max:255'],
+            'landing_page' => ['nullable', 'string', 'max:255'],
+            'referrer' => ['nullable', 'string', 'max:255'],
         ];
-    }
-
-    /**
-     * Whether the enquiry came from the advertising landing page, which uses
-     * a shorter form where the message is optional.
-     */
-    public function isFromLandingPage(): bool
-    {
-        return $this->input('source') === 'landing';
     }
 
     /**

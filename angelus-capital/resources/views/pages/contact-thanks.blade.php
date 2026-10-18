@@ -17,7 +17,7 @@
                 Thank you{{ session('lead_name') ? ', '.session('lead_name') : '' }}.
             </h1>
             <p class="mt-6 text-lg leading-relaxed text-white/70" data-reveal>
-                Your enquiry has been received. A member of our team will review it and contact you to arrange an initial, confidential conversation.
+                Your enquiry has been received and passed to the right team. A member of our team will review it and contact you to arrange an initial, confidential conversation.
             </p>
 
             <div class="mt-12 grid grid-cols-1 gap-4 text-left sm:grid-cols-2" data-reveal>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="mt-12 flex flex-wrap justify-center gap-4" data-reveal>
-                <a href="{{ route('leadership') }}" class="btn-outline">Meet our leadership</a>
+                <a href="{{ route('insights') }}" class="btn-outline">Read our insights</a>
                 <a href="{{ route('home') }}" class="btn-gold">Explore our website <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
             </div>
         </div>

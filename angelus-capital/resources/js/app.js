@@ -278,6 +278,57 @@ function initPickers() {
     });
 }
 
+/**
+ * Floating contact dock: WhatsApp, chat, email, call and LinkedIn shortcuts.
+ */
+function initContactDock() {
+    const dock = document.querySelector('[data-dock]');
+
+    if (!dock) {
+        return;
+    }
+
+    const toggle = dock.querySelector('[data-dock-toggle]');
+    const menu = dock.querySelector('[data-dock-menu]');
+    const links = menu.querySelectorAll('a');
+
+    const setOpen = (isOpen) => {
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        menu.classList.toggle('pointer-events-none', !isOpen);
+        menu.classList.toggle('opacity-0', !isOpen);
+        menu.classList.toggle('translate-y-3', !isOpen);
+        links.forEach((link) => link.setAttribute('tabindex', isOpen ? '0' : '-1'));
+        toggle.querySelectorAll('[data-dock-icon]').forEach((icon) => {
+            icon.classList.toggle('hidden', icon.dataset.dockIcon !== (isOpen ? 'close' : 'open'));
+        });
+        dock.querySelector('[data-dock-ping]')?.remove();
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (event) => {
+        if (!dock.contains(event.target)) {
+            setOpen(false);
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setOpen(false);
+        }
+    });
+
+    dock.querySelectorAll('[data-hubspot-chat]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const widget = window.HubSpotConversations?.widget;
+
+            if (widget) {
+                event.preventDefault();
+                widget.open();
+                setOpen(false);
+            }
+        });
+    });
+}
+
 initHeader();
 initMobileNav();
 initReveal();
@@ -285,3 +336,4 @@ initCounters();
 initRibbons();
 initTilt();
 initPickers();
+initContactDock();
