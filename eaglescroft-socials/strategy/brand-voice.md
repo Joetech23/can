@@ -33,6 +33,9 @@ real problems, real workflows. Then we help you do the same.
   flight plan, ready for takeoff*. Once per post at most. Many posts need none.
 - **Headlines on graphics:** sentence case with a full stop, set in **Sora** at the H2 tier (headline
   ~64–76px on a 1080px graphic), never poster-sized. *"Your inbox can answer itself."*
+- **Eyebrows start with the flight marker**, the cockpit head-up-display symbol for where the
+  aircraft is heading (`design/brand/flight-marker.svg`). It replaces the long dash and the slash.
+  Never type an em dash or slash in front of an eyebrow.
 - **The name on its own is EAGLESCROFT.** In brand bars, chat labels, sign-offs and covers, write it
   in capitals. In sentences it stays *Eaglescroft* (*"At Eaglescroft, we…"*).
 - **Emoji:** none on graphics or headlines. In captions, at most one or two functional ones

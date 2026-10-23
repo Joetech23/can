@@ -2,7 +2,7 @@
 
 > Copy this file to `posts/YYYY-MM/<slug>/copy.md`.
 
-**Pillar:** Flight Report · **Eyebrow:** `— FLIGHT REPORT` · **Planned:** YYYY-MM-DD
+**Pillar:** Flight Report · **Eyebrow:** `FLIGHT REPORT` · **Planned:** YYYY-MM-DD
 
 ## Brief
 - **Who** (sector + region, never a name): e.g. "a UK catering business"
@@ -40,7 +40,7 @@
 ## Graphic
 - Template: `design/templates/…`
 - Headline on graphic (sentence case, full stop):
-- Eyebrow: `— SERIES NAME`
+- Eyebrow: `SERIES NAME`
 
 ## Privacy check (see strategy/brand-voice.md)
 - [ ] No client names or identifying details

@@ -59,7 +59,10 @@ body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing:
   letter-spacing: 0.2em; color: var(--accent);
   display: inline-flex; align-items: center; gap: 0.7em;
 }
-.eyebrow::before { content: ""; width: 2.2em; height: 2px; background: currentColor; opacity: 0.8; }
+/* The flight marker (HUD flight-path symbol) leads every eyebrow. Source: design/brand/flight-marker.svg */
+:root { --flight-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='15' cy='11' r='4.6'/%3E%3Cpath d='M1.5 11H10.2M19.8 11H28.5M15 6.4V1.6'/%3E%3C/svg%3E"); }
+.eyebrow::before { content: ""; flex: none; width: 1.75em; height: 1.05em; background: currentColor;
+  -webkit-mask: var(--flight-marker) center / contain no-repeat; mask: var(--flight-marker) center / contain no-repeat; }
 .dark .eyebrow, .deep .eyebrow { color: var(--accent-300); }
 
 /* Headlines sit at the H2 tier by default: confident, not shouting. */

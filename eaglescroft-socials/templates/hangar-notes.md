@@ -2,7 +2,7 @@
 
 > Copy this file to `posts/YYYY-MM/<slug>/copy.md`.
 
-**Pillar:** Hangar Notes · **Eyebrow:** `— HANGAR NOTES` · **Planned:** YYYY-MM-DD
+**Pillar:** Hangar Notes · **Eyebrow:** `HANGAR NOTES` · **Planned:** YYYY-MM-DD
 
 ## Brief
 - **What we are building:**
@@ -28,7 +28,7 @@
 ## Graphic
 - Template: `design/templates/…`
 - Headline on graphic (sentence case, full stop):
-- Eyebrow: `— SERIES NAME`
+- Eyebrow: `SERIES NAME`
 
 ## Privacy check (see strategy/brand-voice.md)
 - [ ] No client names or identifying details

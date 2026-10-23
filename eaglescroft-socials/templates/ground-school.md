@@ -2,7 +2,7 @@
 
 > Copy this file to `posts/YYYY-MM/<slug>/copy.md`.
 
-**Pillar:** Ground School · **Eyebrow:** `— GROUND SCHOOL` · **Planned:** YYYY-MM-DD
+**Pillar:** Ground School · **Eyebrow:** `GROUND SCHOOL` · **Planned:** YYYY-MM-DD
 
 ## Brief
 - **Who is this for** (owner / professional / student):
@@ -37,7 +37,7 @@
 ## Graphic
 - Template: `design/templates/…`
 - Headline on graphic (sentence case, full stop):
-- Eyebrow: `— SERIES NAME`
+- Eyebrow: `SERIES NAME`
 
 ## Privacy check (see strategy/brand-voice.md)
 - [ ] No client names or identifying details

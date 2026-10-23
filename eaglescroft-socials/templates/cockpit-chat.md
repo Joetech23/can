@@ -2,7 +2,7 @@
 
 > Copy this file to `posts/YYYY-MM/<slug>/copy.md`.
 
-**Pillar:** Cockpit Chat · **Eyebrow:** `— COCKPIT CHAT` · **Planned:** YYYY-MM-DD
+**Pillar:** Cockpit Chat · **Eyebrow:** `COCKPIT CHAT` · **Planned:** YYYY-MM-DD
 
 ## Brief
 - **The question we brought to AI** (context scrubbed):
@@ -35,7 +35,7 @@
 ## Graphic
 - Template: `design/templates/…`
 - Headline on graphic (sentence case, full stop):
-- Eyebrow: `— SERIES NAME`
+- Eyebrow: `SERIES NAME`
 
 ## Privacy check (see strategy/brand-voice.md)
 - [ ] No client names or identifying details

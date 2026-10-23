@@ -1,15 +1,15 @@
 # Content pillars
 
 Five recurring series. Each has a name so the audience learns the format, and a matching
-eyebrow on the graphic (`— HANGAR NOTES`, `— FLIGHT REPORT` …).
+eyebrow on the graphic, led by the Eaglescroft flight marker (`HANGAR NOTES`, `FLIGHT REPORT` …).
 
 | # | Series | Eyebrow | Share of posts | What it proves |
 | --- | --- | --- | --- | --- |
-| 1 | **Flight Report**: problems solved | `— FLIGHT REPORT` | 30% | We get results with AI |
-| 2 | **Ground School**: practical AI education | `— GROUND SCHOOL` | 30% | We can teach you |
-| 3 | **Hangar Notes**: project ideas and build logs | `— HANGAR NOTES` | 15% | We build real things |
-| 4 | **Cockpit Chat**: conversations with AI at Eaglescroft | `— COCKPIT CHAT` | 15% | We know how to work *with* AI |
-| 5 | **On the Radar**: trends and the future of work | `— ON THE RADAR` | 10% | We see what's coming |
+| 1 | **Flight Report**: problems solved | `FLIGHT REPORT` | 30% | We get results with AI |
+| 2 | **Ground School**: practical AI education | `GROUND SCHOOL` | 30% | We can teach you |
+| 3 | **Hangar Notes**: project ideas and build logs | `HANGAR NOTES` | 15% | We build real things |
+| 4 | **Cockpit Chat**: conversations with AI at Eaglescroft | `COCKPIT CHAT` | 15% | We know how to work *with* AI |
+| 5 | **On the Radar**: trends and the future of work | `ON THE RADAR` | 10% | We see what's coming |
 
 ---
 
