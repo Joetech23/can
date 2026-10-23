@@ -28,7 +28,7 @@
                     <div class="relative hidden min-h-80 lg:block">
                         <div class="grid-lines absolute inset-0"></div>
                         <div class="absolute top-1/2 left-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-500/20 blur-3xl"></div>
-                        <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="absolute top-1/2 left-1/2 w-64 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_60px_rgba(239,125,16,0.4)] transition duration-700 group-hover:scale-105 group-hover:rotate-[-4deg]">
+                        <img src="{{ asset('images/acpl-logo-dark.webp') }}" alt="" width="600" height="566" class="absolute top-1/2 left-1/2 w-64 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_60px_rgba(239,125,16,0.4)] transition duration-700 group-hover:scale-105 group-hover:rotate-[-4deg]">
                     </div>
                 </a>
 
@@ -51,5 +51,5 @@
         </div>
     </section>
 
-    <x-cta-band title="Want to discuss these ideas?" lead="Our team is always open to a conversation about capital, growth and the opportunities ahead." />
+    <x-cta-band page="insights" />
 </x-layouts.app>

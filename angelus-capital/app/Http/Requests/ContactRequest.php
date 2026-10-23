@@ -40,6 +40,10 @@ class ContactRequest extends FormRequest
             'fbclid' => ['nullable', 'string', 'max:255'],
             'landing_page' => ['nullable', 'string', 'max:255'],
             'referrer' => ['nullable', 'string', 'max:255'],
+            'answers' => ['nullable', 'array:'.implode(',', array_keys(config('acpl.questionnaire')))],
+            ...collect(config('acpl.questionnaire'))
+                ->mapWithKeys(fn (array $question, string $key) => ["answers.{$key}" => ['nullable', Rule::in($question['options'])]])
+                ->all(),
         ];
     }
 

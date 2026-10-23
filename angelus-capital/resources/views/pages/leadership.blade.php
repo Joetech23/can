@@ -40,5 +40,5 @@
         </div>
     </section>
 
-    <x-cta-band />
+    <x-cta-band page="leadership" />
 </x-layouts.app>

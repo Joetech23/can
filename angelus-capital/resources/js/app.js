@@ -126,12 +126,14 @@ function initCounters() {
 }
 
 /**
- * Flowing gold ribbons drawn on a canvas — echoes the knot in the ACPL mark.
+ * Flowing ribbons drawn on a canvas — echoes the knot in the ACPL mark.
+ * data-tone="light" draws fine navy lines with a single gold ribbon, for white sections.
  */
 function initRibbons() {
     document.querySelectorAll('[data-ribbons]').forEach((canvas) => {
         const context = canvas.getContext('2d');
         const ribbonCount = Number(canvas.dataset.ribbons) || 7;
+        const isLight = canvas.dataset.tone === 'light';
         let width = 0;
         let height = 0;
         let frame = 0;
@@ -155,13 +157,20 @@ function initRibbons() {
                 const offset = ribbon / ribbonCount;
                 const gradient = context.createLinearGradient(0, 0, width, 0);
 
-                gradient.addColorStop(0, 'rgba(232, 182, 84, 0)');
-                gradient.addColorStop(0.35, `rgba(232, 182, 84, ${0.08 + offset * 0.22})`);
-                gradient.addColorStop(0.7, `rgba(239, 125, 16, ${0.06 + offset * 0.2})`);
-                gradient.addColorStop(1, 'rgba(239, 125, 16, 0)');
+                if (isLight && ribbon !== ribbonCount - 1) {
+                    // Fine navy contour lines on white, as in the brand collateral.
+                    gradient.addColorStop(0, 'rgba(0, 20, 64, 0)');
+                    gradient.addColorStop(0.4, `rgba(0, 20, 64, ${0.05 + offset * 0.08})`);
+                    gradient.addColorStop(1, `rgba(0, 20, 64, ${0.03 + offset * 0.06})`);
+                } else {
+                    gradient.addColorStop(0, 'rgba(232, 182, 84, 0)');
+                    gradient.addColorStop(0.35, `rgba(232, 182, 84, ${(isLight ? 0.35 : 0.08) + offset * 0.22})`);
+                    gradient.addColorStop(0.7, `rgba(239, 125, 16, ${(isLight ? 0.3 : 0.06) + offset * 0.2})`);
+                    gradient.addColorStop(1, 'rgba(239, 125, 16, 0)');
+                }
 
                 context.beginPath();
-                context.lineWidth = 1 + offset * 1.4;
+                context.lineWidth = isLight ? 0.8 + offset * 0.6 : 1 + offset * 1.4;
                 context.strokeStyle = gradient;
 
                 for (let x = 0; x <= width; x += 8) {

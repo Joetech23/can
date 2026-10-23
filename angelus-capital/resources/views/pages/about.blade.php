@@ -2,7 +2,6 @@
     @php
         $chairman = config('acpl.chairman');
         $values = config('acpl.values');
-        $valueIcons = ['shield', 'target', 'handshake', 'scale', 'users'];
         $segmentCount = count($values);
     @endphp
 
@@ -13,7 +12,7 @@
         <div class="container-x grid grid-cols-1 gap-16 lg:grid-cols-2">
             <x-section-heading eyebrow="Who we are" title="Capital, insight and execution — under one roof." />
             <div class="space-y-6 text-lg leading-relaxed text-mist" data-reveal>
-                <p>We provide advisory and investment solutions across the entire capital lifecycle—from business strategy and project development to capital raising, transaction execution and investment management.</p>
+                <p>As an alternative asset firm, we work where conventional financing often falls short — providing advisory, capital and investment solutions across the entire capital lifecycle, from business strategy and project development to capital raising, transaction execution and investment management.</p>
                 <p>Our professionals bring together decades of experience spanning banking, private equity, venture capital, corporate finance, project finance, investment management, restructuring and business transformation.</p>
             </div>
         </div>
@@ -53,7 +52,7 @@
                     <div class="on-dark grain relative isolate overflow-hidden rounded-[2rem] bg-navy-950 p-8 sm:p-10">
                         <div class="absolute -top-20 -right-20 -z-10 size-80 rounded-full bg-gold-500/25 blur-3xl"></div>
                         <div class="grid-lines absolute inset-0 -z-10"></div>
-                        <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="absolute -right-10 -bottom-10 -z-10 w-56 opacity-20">
+                        <img src="{{ asset('images/acpl-logo-dark.webp') }}" alt="" width="600" height="566" class="absolute -right-10 -bottom-10 -z-10 w-56 opacity-20">
                         <x-portrait :leader="['photo' => $chairman['photo'], 'name' => $chairman['name'], 'role' => $chairman['title']]" class="w-full max-w-64" />
                         <p class="mt-8 font-display text-3xl text-white">{{ $chairman['name'] }}</p>
                         <p class="mt-1 text-sm tracking-[0.2em] text-gold-400 uppercase">{{ $chairman['title'] }}</p>
@@ -98,7 +97,13 @@
     {{-- Values wheel --}}
     <section class="bg-ivory py-24 sm:py-32">
         <div class="container-x">
-            <x-section-heading eyebrow="Core values" title="The principles behind every mandate." lead="Select a value to explore what it means for the way we work." align="center" />
+            <x-section-heading eyebrow="Core values" title="Our values spell <span class='text-gold-gradient'>PIRIT</span>." lead="Professionalism, Integrity, Relationships, Insight and Team Spirit — a shield around everything we do. Select a value to explore what it means for the way we work." align="center" />
+
+            <p class="mt-10 flex justify-center gap-3 font-display text-4xl text-navy-900 sm:gap-5 sm:text-5xl" aria-hidden="true" data-reveal>
+                @foreach ($values as $value)
+                    <span class="grid size-14 place-items-center rounded-2xl border border-gold-500/40 bg-white sm:size-16">{{ $value['title'][0] }}</span>
+                @endforeach
+            </p>
 
             <div class="mt-16 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                 <div class="mx-auto w-full max-w-md" data-reveal="zoom">
@@ -121,22 +126,18 @@
                             @endphp
                             <g role="tab" tabindex="0" aria-label="{{ $value['title'] }}" data-pick="value:{{ $loop->index }}" data-pick-hover aria-selected="{{ $loop->first ? 'true' : 'false' }}" @class(['wheel-segment group outline-none', 'is-active' => $loop->first])>
                                 <path d="{{ $path }}" class="fill-navy-800 transition-colors duration-500 group-hover:fill-gold-500 group-focus-visible:fill-gold-500 group-[.is-active]:fill-gold-500" />
-                                <foreignObject x="{{ $labelX - 22 }}" y="{{ $labelY - 22 }}" width="44" height="44" class="pointer-events-none">
-                                    <div class="grid size-11 place-items-center text-gold-300 group-[.is-active]:text-navy-950">
-                                        <x-icon :name="$valueIcons[$loop->index]" class="size-6" />
-                                    </div>
-                                </foreignObject>
+                                <text x="{{ round($labelX, 2) }}" y="{{ round($labelY + 12, 2) }}" text-anchor="middle" font-size="34" font-family="var(--font-marcellus)" class="pointer-events-none fill-gold-300 transition-colors group-[.is-active]:fill-navy-950">{{ $value['title'][0] }}</text>
                             </g>
                         @endforeach
                         <circle cx="200" cy="200" r="80" fill="#fff" />
-                        <image href="{{ asset('images/acpl-mark.webp') }}" x="150" y="155" width="100" height="91" />
+                        <image href="{{ asset('images/acpl-logo.webp') }}" x="148" y="151" width="104" height="98" />
                     </svg>
                 </div>
 
                 <div>
                     @foreach ($values as $value)
                         <div data-pick-panel="value:{{ $loop->index }}" @if (! $loop->first) hidden @endif>
-                            <span class="font-display text-7xl text-gold-500/30">0{{ $loop->iteration }}</span>
+                            <span class="flex items-center gap-4"><span class="font-display text-7xl text-gold-500/50">{{ $value['title'][0] }}</span><x-icon :name="$value['icon']" class="size-8 text-gold-600" /></span>
                             <h3 class="mt-2 font-display text-5xl text-navy-900">{{ $value['title'] }}</h3>
                             <p class="mt-6 max-w-md text-xl leading-relaxed text-mist">{{ $value['text'] }}</p>
                         </div>
@@ -154,5 +155,5 @@
         </div>
     </section>
 
-    <x-cta-band />
+    <x-cta-band page="about" />
 </x-layouts.app>

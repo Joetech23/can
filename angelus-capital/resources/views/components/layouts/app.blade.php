@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#071834">
+        <meta name="theme-color" content="#001440">
 
         <title>{{ $pageTitle }}</title>
         <meta name="description" content="{{ $pageDescription }}">
@@ -20,7 +20,7 @@
         <meta property="og:site_name" content="{{ $company['name'] }}">
         <meta property="og:title" content="{{ $pageTitle }}">
         <meta property="og:description" content="{{ $pageDescription }}">
-        <meta property="og:image" content="{{ asset('images/acpl-mark.png') }}">
+        <meta property="og:image" content="{{ asset('images/acpl-logo.png') }}">
         <link rel="canonical" href="{{ url()->current() }}">
         @if ($noindex)
             <meta name="robots" content="noindex, follow">
@@ -66,6 +66,7 @@
         </main>
 
         @unless ($bare)
+            <x-profile-banner />
             <x-site-footer />
         @endunless
 

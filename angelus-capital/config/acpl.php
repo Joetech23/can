@@ -19,7 +19,7 @@ return [
         'abbr' => 'ACPL',
         'tagline' => 'Capital. Advisory. Investments.',
         'strapline' => 'Creating Sustainable Value Through Strategic Capital Solutions',
-        'summary' => 'ACPL is a financial advisory, investment management and capital solutions firm dedicated to helping businesses, investors and institutions unlock growth opportunities through innovative financing, strategic advisory services and disciplined investment execution.',
+        'summary' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management firm dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
         'address' => ['173 Ogudu Road', 'Ogudu, Lagos', 'Nigeria'],
         'phone' => '+234 802 326 1918',
         'phone_href' => '+2348023261918',
@@ -31,8 +31,9 @@ return [
         // Shown in the footer and legal pages once filled in.
         'rc_number' => null,
 
-        // Optional branch office, e.g. ['Suite 4, Example House', 'Abuja', 'Nigeria'].
-        'branch_address' => null,
+        // Second office, shown beside the head office in the footer and on the contact page.
+        'annex_label' => 'Head Office Annex',
+        'annex_address' => ['19 Bemil Street', 'Ojodu Abiodun, Lagos', 'Nigeria'],
 
         // WhatsApp number in international format without "+" or spaces.
         'whatsapp' => '2348023261918',
@@ -73,9 +74,9 @@ return [
     ],
 
     'about' => [
-        'intro' => 'Angelus Capital Partners Limited is an independent financial advisory, investment management and capital solutions firm focused on connecting capital providers with businesses and projects that require strategic financing and growth support.',
+        'intro' => 'Angelus Capital Partners Limited is an alternative asset firm. Through three integrated platforms — Advisory, Capital Solutions and Investments — we help businesses, projects and institutions access the strategic financing and growth support that conventional channels often cannot provide.',
         'pillars' => [
-            ['title' => 'Independent', 'text' => 'An independent financial advisory, investment management and capital solutions firm, giving objective recommendations aligned with client interests.'],
+            ['title' => 'Alternative asset specialists', 'text' => 'Our space within financial services: private equity, venture capital, structured and alternative capital — going beyond conventional banking to fund growth.'],
             ['title' => 'Full capital lifecycle', 'text' => 'From business strategy and project development to capital raising, transaction execution and investment management.'],
             ['title' => 'Decades of experience', 'text' => 'Banking, private equity, venture capital, corporate finance, project finance, investment management, restructuring and business transformation.'],
         ],
@@ -96,11 +97,12 @@ return [
     'mission' => 'To provide financing and investment solutions to businesses by leveraging people, relationships, technology and capital.',
 
     'values' => [
-        ['title' => 'Professionalism', 'text' => 'Delivering excellence through expertise and discipline.'],
-        ['title' => 'Insight', 'text' => 'Applying deep market knowledge and analytical thinking.'],
-        ['title' => 'Relationships', 'text' => 'Building long-term partnerships founded on trust.'],
-        ['title' => 'Integrity', 'text' => 'Maintaining the highest ethical standards.'],
-        ['title' => 'Team Spirit', 'text' => 'Collaborating effectively to create exceptional outcomes.'],
+        // Ordered to spell PIRIT.
+        ['title' => 'Professionalism', 'icon' => 'shield', 'text' => 'Delivering excellence through expertise and discipline.'],
+        ['title' => 'Integrity', 'icon' => 'scale', 'text' => 'Maintaining the highest ethical standards.'],
+        ['title' => 'Relationships', 'icon' => 'handshake', 'text' => 'Building long-term partnerships founded on trust.'],
+        ['title' => 'Insight', 'icon' => 'target', 'text' => 'Applying deep market knowledge and analytical thinking.'],
+        ['title' => 'Team Spirit', 'icon' => 'users', 'text' => 'Collaborating effectively to create exceptional outcomes.'],
     ],
 
     'platforms' => [
@@ -108,13 +110,13 @@ return [
             'key' => 'advisory',
             'title' => 'Advisory',
             'summary' => 'Helping businesses make better strategic and financial decisions.',
-            'items' => ['Corporate Finance', 'Project Finance', 'Mergers & Acquisitions Support', 'Restructuring & Turnaround', 'Business Planning', 'Due Diligence'],
+            'items' => ['Corporate Finance', 'Mergers & Acquisitions Support', 'Restructuring & Turnaround', 'Business Planning', 'Due Diligence', 'Compliance Advisory – E-Invoicing'],
         ],
         [
             'key' => 'capital',
             'title' => 'Capital Solutions',
             'summary' => 'Connecting enterprises with appropriate funding sources.',
-            'items' => ['Equity Capital', 'Debt Financing', 'Mezzanine Capital', 'Structured Finance', 'Alternative Capital Solutions'],
+            'items' => ['Equity Capital', 'Debt Financing', 'Mezzanine Capital', 'Structured Finance', 'Alternative Capital Solutions', 'Project Finance'],
         ],
         [
             'key' => 'investments',
@@ -125,12 +127,13 @@ return [
     ],
 
     'value_proposition' => [
-        'needs' => [
-            ['who' => 'Businesses', 'need' => 'require capital.'],
-            ['who' => 'Investors', 'need' => 'require quality opportunities.'],
-            ['who' => 'Projects', 'need' => 'require structure and execution.'],
+        'statement' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management firm dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
+        // One promise per platform, in platform order.
+        'promises' => [
+            ['platform' => 'Advisory', 'icon' => 'compass', 'title' => 'Strategic advisory services', 'text' => 'Sound strategic and financial decisions, from corporate finance to compliance.'],
+            ['platform' => 'Capital Solutions', 'icon' => 'coins', 'title' => 'Innovative financing arrangements', 'text' => 'The right capital, in the right structure, from the right providers.'],
+            ['platform' => 'Investments', 'icon' => 'chart', 'title' => 'Disciplined investment execution', 'text' => 'Capital preservation, risk management and active value creation.'],
         ],
-        'role' => 'Our role is to identify opportunities, structure solutions, mobilize capital and support execution.',
         'outcome' => 'This integrated approach allows us to create sustainable value for both capital providers and capital users.',
     ],
 
@@ -154,12 +157,16 @@ return [
     ],
 
     'capital_stack' => [
-        ['title' => 'Equity Capital', 'text' => 'Ownership capital for growth, expansion and strategic transformation.', 'risk' => 'Highest return potential'],
-        ['title' => 'Mezzanine Capital', 'text' => 'Hybrid instruments bridging senior debt and equity.', 'risk' => 'Balanced risk / return'],
-        ['title' => 'Structured Finance', 'text' => 'Tailored instruments built around specific cash flows and assets.', 'risk' => 'Tailored risk allocation'],
-        ['title' => 'Debt Financing', 'text' => 'Senior and term facilities from banks and institutional lenders.', 'risk' => 'Lowest cost of capital'],
+        ['title' => 'Equity Capital', 'risk' => 'Highest risk · highest return potential', 'text' => 'Ownership capital from private equity funds, strategic and institutional investors. Investors share both the upside and the risk, so there are no fixed repayments.', 'suits' => 'Growth, expansion and strategic transformation'],
+        ['title' => 'Mezzanine Capital', 'risk' => 'Balanced risk / return', 'text' => 'Subordinated debt or preferred instruments that sit between senior debt and equity. Raises more than lenders alone will provide while limiting dilution for owners.', 'suits' => 'Acquisitions, buyouts and late-stage growth'],
+        ['title' => 'Structured Finance', 'risk' => 'Tailored risk allocation', 'text' => 'Bespoke instruments built around specific cash flows, contracts or assets — such as receivables, offtake agreements or project revenues.', 'suits' => 'Asset-backed and cash-flow-backed funding'],
+        ['title' => 'Debt Financing', 'risk' => 'Lowest cost of capital', 'text' => 'Senior term loans, working capital and trade facilities from commercial banks, development finance institutions and institutional lenders.', 'suits' => 'Established businesses with predictable cash flows'],
     ],
-    'alternative_capital' => 'Alternative Capital Solutions — non-traditional funding where conventional structures do not fit.',
+    'alternative_capital' => [
+        'title' => 'Alternative Capital Solutions',
+        'text' => 'When conventional bank or equity structures do not fit, we arrange non-traditional funding built around the opportunity — the natural home of an alternative asset firm.',
+        'items' => ['Private credit & direct lending', 'Asset-backed & receivables financing', 'Supply-chain & trade finance', 'Co-investment & joint ventures', 'Blended & impact finance'],
+    ],
 
     'project_finance' => [
         'headline' => 'Structuring Bankable Projects',
@@ -171,7 +178,12 @@ return [
     'investment' => [
         'headline' => 'Investing for Growth and Long-Term Value',
         'philosophy' => 'Our investment philosophy combines capital preservation, disciplined risk management and active value creation.',
-        'criteria' => ['Scalable growth opportunities', 'Strong market potential', 'Governance improvement opportunities', 'Operational enhancement potential', 'Sustainable cash flow generation', 'Attractive risk-adjusted returns'],
+        'criteria' => [
+            ['icon' => 'chart', 'title' => 'Growth potential', 'text' => 'Scalable businesses and projects in markets with strong demand.'],
+            ['icon' => 'layers', 'title' => 'Room to add value', 'text' => 'Clear scope to strengthen governance and operations.'],
+            ['icon' => 'coins', 'title' => 'Sustainable cash flows', 'text' => 'Durable, predictable cash generation.'],
+            ['icon' => 'target', 'title' => 'Risk-adjusted returns', 'text' => 'Attractive returns for the risk taken.'],
+        ],
         'strategies' => ['Private Equity', 'Growth Capital', 'Infrastructure', 'Impact Investing', 'Special Situations'],
     ],
 
@@ -352,7 +364,7 @@ return [
         ['title' => 'Strong Networks', 'text' => 'Access to investors, institutions and strategic partners.'],
         ['title' => 'Execution Capability', 'text' => 'Ability to move transactions from concept to completion.'],
         ['title' => 'Sector Knowledge', 'text' => 'Experience across key growth sectors.'],
-        ['title' => 'Independent Advice', 'text' => 'Objective recommendations aligned with client interests.'],
+        ['title' => 'Objective Advice', 'text' => 'Recommendations aligned with client interests.'],
         ['title' => 'Long-Term Relationships', 'text' => 'Commitment to sustainable value creation.'],
     ],
 
@@ -368,6 +380,140 @@ return [
     ],
 
     /*
+    | The scrolling strip under the home page hero. Use it for announcements
+    | ('text', optional 'url') or partner logos ('logo' => 'images/partners/x.webp',
+    | 'text' => partner name, used as the alt text).
+    */
+    'ticker' => [
+        'label' => 'Latest from ACPL',
+        'items' => [
+            ['text' => 'Compliance Advisory – NRS e-invoicing now available under our Advisory platform', 'url' => '/what-we-do#einvoice'],
+            ['text' => 'Advisory · Capital Solutions · Investments — three integrated platforms, one partner'],
+            ['text' => 'Leadership participation in US$500M+ of fundraising across multiple sectors', 'url' => '/sectors-and-transactions#transactions'],
+            ['text' => 'Insight: What makes a project bankable?', 'url' => '/insights/what-makes-a-project-bankable'],
+        ],
+    ],
+
+    /*
+    | "Partner with ACPL" call to action at the foot of each page, written for
+    | that page's visitor. 'enquiry' preselects the topic on the contact form.
+    */
+    'ctas' => [
+        'home' => [
+            'title' => 'Let’s build what’s next, together.',
+            'lead' => 'Whether you are raising capital, structuring a project or seeking quality investment opportunities, our team is ready to partner with you.',
+            'points' => [],
+            'action' => 'Start a conversation',
+            'enquiry' => null,
+        ],
+        'about' => [
+            'title' => 'Is financing holding your growth back?',
+            'lead' => 'Capital that is hard to reach, too expensive or poorly structured stalls good businesses. Tell us where you are stuck — we will find the right solution and see it through.',
+            'points' => ['Limited access to the right funding', 'High cost of capital', 'Projects that are not yet bankable', 'Debt that needs restructuring'],
+            'action' => 'Talk to us about financing',
+            'enquiry' => 'capital',
+        ],
+        'services' => [
+            'title' => 'Have a mandate for us?',
+            'lead' => 'Advisory, capital raising or investment — tell us about the mandate and we will show you how our three integrated platforms work together to deliver it.',
+            'points' => ['Advisory & transaction mandates', 'Capital raising & project finance', 'Investment management', 'Compliance advisory – e-invoicing'],
+            'action' => 'Discuss a mandate',
+            'enquiry' => null,
+        ],
+        'sectors' => [
+            'title' => 'Growing a business in one of our sectors?',
+            'lead' => 'Our leadership has done transactions in your industry. Speak with us about advisory support, capital raising or investment partnership built around your sector.',
+            'points' => ['Financial Services', 'Hospitality', 'Agribusiness', 'FMCG', 'Healthcare', 'FinTech'],
+            'action' => 'Speak to our sector team',
+            'enquiry' => null,
+        ],
+        'leadership' => [
+            'title' => 'Put our experience to work for you.',
+            'lead' => 'Every engagement is led by senior people with decades of banking, private equity, audit and governance experience. Meet the team that will work on your transaction.',
+            'points' => ['Senior-led engagements', 'US$500M+ fundraising track record', '30+ years of experience'],
+            'action' => 'Meet with our team',
+            'enquiry' => null,
+        ],
+        'insights' => [
+            'title' => 'Have an idea worth exploring?',
+            'lead' => 'If something here sparks a question about capital, growth or a transaction you are considering, our team would welcome the conversation.',
+            'points' => ['Market outlook', 'Project bankability', 'Capital strategy'],
+            'action' => 'Share your idea with us',
+            'enquiry' => null,
+        ],
+    ],
+
+    // The brand banner shown above the footer on every page.
+    'profile_banner' => [
+        ['icon' => 'target', 'line' => 'Strategic Advice', 'sub' => 'That Drives Value'],
+        ['icon' => 'handshake', 'line' => 'Capital Solutions', 'sub' => 'That Empower Growth'],
+        ['icon' => 'chart', 'line' => 'Investments', 'sub' => 'That Create Impact'],
+        ['icon' => 'leaf', 'line' => 'Sustainable Value.', 'sub' => 'Enduring Impact.'],
+    ],
+
+    /*
+    | Advertising landing page (/partner). Edit the copy here.
+    */
+    'landing' => [
+        'title' => 'Raise capital. Structure the deal. <span class="text-gold-gradient">Grow with confidence.</span>',
+        'lead' => 'Angelus Capital Partners helps businesses and institutions unlock growth through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
+        // In platform order: Advisory, Capital Solutions, Investments.
+        'points' => [
+            'Advisory: M&A support, due diligence, investor readiness and e-invoicing compliance',
+            'Capital Solutions: equity, debt, mezzanine, structured and project finance',
+            'Investments: private equity, growth capital, infrastructure and impact',
+        ],
+        'stats' => [
+            ['value' => '$500M+', 'label' => 'Fundraising our MD & CEO has participated in'],
+            ['value' => '30+', 'label' => 'Years of leadership experience'],
+            ['value' => '3', 'label' => 'Integrated platforms'],
+        ],
+        'help' => [
+            'eyebrow' => 'How we help',
+            'title' => 'Three integrated platforms working for you.',
+            'lead' => 'Most growth challenges need more than one kind of expertise. Our platforms work together, so you deal with one accountable partner from strategy to funding to long-term value.',
+        ],
+        'process' => [
+            'eyebrow' => 'Our engagement process',
+            'title' => 'From conversation to completion.',
+            'steps' => [
+                ['title' => 'Confidential consultation', 'text' => 'We listen to your objectives, timelines and constraints.'],
+                ['title' => 'Assessment & structuring', 'text' => 'Due diligence, financial modeling and the right capital structure.'],
+                ['title' => 'Capital mobilisation', 'text' => 'We engage institutional, strategic and impact capital providers.'],
+                ['title' => 'Execution & beyond', 'text' => 'We move the transaction to completion and support long-term value creation.'],
+            ],
+        ],
+        'final' => [
+            'title' => 'What is standing between you and your next stage of growth?',
+            'lead' => 'A funding gap, a project that is not yet bankable, costly debt or compliance pressure — tell us the problem and we will map a clear path to resolve it.',
+            'points' => ['Funding gap', 'Unbankable project', 'Costly debt', 'Compliance pressure'],
+        ],
+    ],
+
+    /*
+    | Pre-consultation questionnaire on the landing page. Answers travel to the
+    | contact form and are included in the enquiry email and CRM record.
+    */
+    'questionnaire' => [
+        'profile' => [
+            'label' => 'Which best describes you?',
+            'options' => ['Business or SME', 'Project sponsor', 'Investor or institution', 'Public sector agency', 'Other'],
+        ],
+        'challenge' => [
+            'label' => 'What is your biggest challenge right now?',
+            'options' => ['Accessing the right funding', 'High cost of capital', 'Making a project bankable', 'Restructuring existing debt', 'Getting investor-ready', 'Regulatory compliance', 'Finding quality investments'],
+        ],
+        'size' => [
+            'label' => 'Approximate transaction size',
+            'options' => ['Under ₦500 million', '₦500 million – ₦5 billion', 'Above ₦5 billion', 'Not sure yet'],
+        ],
+        'timeline' => [
+            'label' => 'When would you like to start?',
+            'options' => ['Within 3 months', 'In 3 – 6 months', 'In 6 – 12 months', 'Just exploring'],
+        ],
+    ],
+
+    /*
     | Advertising tags. Leave blank to disable. Set them in the .env file:
     | GOOGLE_TAG_ID=AW-XXXXXXXXX (or G-XXXXXXX) and META_PIXEL_ID=1234567890.
     | The landing page "thank you" screen reports a lead conversion.
@@ -378,12 +524,13 @@ return [
         'meta_pixel' => env('META_PIXEL_ID'),
     ],
 
+    // Listed in platform order: Advisory, Capital Solutions, Investments.
     'enquiry_types' => [
-        'advisory' => 'Corporate & transaction advisory',
-        'capital' => 'Capital raising & project finance',
+        'advisory' => 'Advisory – corporate & transaction',
+        'einvoice' => 'Advisory – e-invoicing compliance',
+        'capital' => 'Capital solutions & project finance',
         'investment' => 'Investment opportunity',
         'partnership' => 'Partnership / co-investment',
-        'einvoice' => 'NRS e-invoice compliance advisory',
         'other' => 'Something else',
     ],
 
@@ -397,7 +544,7 @@ return [
         'capital' => ['unit' => 'Capital Raising & Project Finance', 'email' => env('ENQUIRY_EMAIL_CAPITAL')],
         'investment' => ['unit' => 'Investment Management', 'email' => env('ENQUIRY_EMAIL_INVESTMENT')],
         'partnership' => ['unit' => 'Partnerships & Co-investment', 'email' => env('ENQUIRY_EMAIL_PARTNERSHIP')],
-        'einvoice' => ['unit' => 'E-Invoice Compliance Advisory', 'email' => env('ENQUIRY_EMAIL_EINVOICE')],
+        'einvoice' => ['unit' => 'Advisory – E-Invoicing Compliance', 'email' => env('ENQUIRY_EMAIL_EINVOICE')],
         'other' => ['unit' => 'General Enquiries', 'email' => env('ENQUIRY_EMAIL_GENERAL')],
     ],
 
@@ -411,8 +558,20 @@ return [
         'form_guid' => env('HUBSPOT_FORM_GUID'),
     ],
 
+    /*
+    | Any CRM that accepts a webhook (e.g. DoubleSpace). With a URL set, every
+    | enquiry is also posted to it as JSON; the token, if given, is sent as a
+    | Bearer authorization header.
+    */
+    'crm' => [
+        'name' => env('CRM_NAME', 'DoubleSpace'),
+        'webhook_url' => env('CRM_WEBHOOK_URL'),
+        'token' => env('CRM_WEBHOOK_TOKEN'),
+    ],
+
+    // E-invoicing is a service of the Advisory platform, not a platform of its own.
     'einvoice' => [
-        'title' => 'NRS E-Invoice Compliance Advisory',
+        'title' => 'Compliance Advisory – E-Invoicing',
         'summary' => 'Practical advisory support for businesses preparing for and complying with the Nigeria Revenue Service (NRS) e-invoicing implementation.',
         'points' => [
             'Readiness assessment of your invoicing processes and systems',

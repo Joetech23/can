@@ -1,12 +1,12 @@
 <x-layouts.app :title="$leader['name'].' — '.$leader['role']" :description="$leader['intro']">
     {{-- Profile hero --}}
-    <section class="on-dark grain relative isolate overflow-hidden bg-navy-950 pt-36 pb-20 text-white sm:pt-44 sm:pb-28">
-        <div class="grid-lines absolute inset-0 -z-10"></div>
-        <div class="absolute -top-32 -right-32 -z-10 size-[36rem] rounded-full bg-navy-600/40 blur-[120px]"></div>
-        <canvas data-ribbons="6" class="absolute inset-0 -z-10 h-full w-full opacity-60"></canvas>
+    <section class="relative isolate overflow-hidden bg-white pt-36 pb-20 sm:pt-44 sm:pb-28">
+        <div class="brand-lines absolute inset-0 -z-10"></div>
+        <div class="absolute -top-32 -right-32 -z-10 size-[36rem] rounded-full bg-gold-200/40 blur-[120px]"></div>
+        <canvas data-ribbons="10" data-tone="light" class="absolute inset-0 -z-10 h-full w-full"></canvas>
 
         <div class="container-x">
-            <a href="{{ route('leadership') }}" class="inline-flex items-center gap-2 text-sm text-white/60 transition hover:text-gold-300" data-reveal>
+            <a href="{{ route('leadership') }}" class="inline-flex items-center gap-2 text-sm text-mist transition hover:text-gold-700" data-reveal>
                 <x-icon name="arrow-right" class="size-4 rotate-180" stroke="2" /> All leadership
             </a>
 
@@ -15,11 +15,12 @@
 
                 <div>
                     <span class="eyebrow" data-reveal>{{ $leader['role'] }}</span>
-                    <h1 class="mt-6 font-display text-5xl leading-[1.05] sm:text-6xl" data-reveal style="--reveal-delay: 100ms">{{ $leader['name'] }}</h1>
-                    <p class="mt-8 max-w-3xl text-lg leading-relaxed text-white/70" data-reveal style="--reveal-delay: 200ms">{{ $leader['intro'] }}</p>
+                    <h1 class="mt-6 font-display text-5xl leading-[1.05] text-navy-900 sm:text-6xl" data-reveal style="--reveal-delay: 100ms">{{ $leader['name'] }}</h1>
+                    <p class="mt-8 max-w-3xl text-lg leading-relaxed text-mist" data-reveal style="--reveal-delay: 200ms">{{ $leader['intro'] }}</p>
                 </div>
             </div>
         </div>
+        <x-brand-wave class="absolute inset-x-0 bottom-0 h-10 opacity-90 sm:h-14" />
     </section>
 
     {{-- Key areas of expertise --}}
@@ -82,5 +83,5 @@
         </div>
     </section>
 
-    <x-cta-band />
+    <x-cta-band page="leadership" />
 </x-layouts.app>

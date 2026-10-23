@@ -87,6 +87,36 @@ class SitePagesTest extends TestCase
         $this->get(route('home'))->assertSee('RC 1234567');
     }
 
+    public function test_every_page_closes_with_the_profile_banner_and_its_own_call_to_action(): void
+    {
+        foreach (['about', 'services', 'sectors', 'leadership', 'insights'] as $page) {
+            $this->get(route($page))
+                ->assertOk()
+                ->assertSee('Strategic Advice')
+                ->assertSee('Enduring Impact.')
+                ->assertSee(config("acpl.ctas.{$page}.title"));
+        }
+    }
+
+    public function test_e_invoicing_is_presented_under_advisory_not_as_a_platform(): void
+    {
+        $this->assertNotContains('einvoice', array_column(config('acpl.platforms'), 'key'));
+        $this->assertSame(['Advisory', 'Capital Solutions', 'Investments'], array_column(config('acpl.platforms'), 'title'));
+
+        $this->get(route('home'))
+            ->assertSee('Compliance Advisory – E-Invoicing')
+            ->assertSee('Head Office Annex')
+            ->assertDontSee('E-Invoice Compliance</a>', false);
+    }
+
+    public function test_about_page_presents_pirit_values_and_alternative_asset_positioning(): void
+    {
+        $this->get(route('about'))
+            ->assertSee('PIRIT', false)
+            ->assertSee('alternative asset firm')
+            ->assertSeeInOrder(['Professionalism', 'Integrity', 'Relationships', 'Insight', 'Team Spirit']);
+    }
+
     public function test_navigation_marks_the_current_page(): void
     {
         $this->get(route('leadership'))

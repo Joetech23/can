@@ -1,21 +1,22 @@
 <x-layouts.app :title="$article['title']" :description="$article['excerpt']">
-    <section class="on-dark grain relative isolate overflow-hidden bg-navy-950 pt-36 pb-20 text-white sm:pt-44 sm:pb-24">
-        <div class="grid-lines absolute inset-0 -z-10"></div>
-        <div class="absolute -top-32 -right-32 -z-10 size-[36rem] rounded-full bg-navy-600/40 blur-[120px]"></div>
-        <canvas data-ribbons="6" class="absolute inset-0 -z-10 h-full w-full opacity-60"></canvas>
+    <section class="relative isolate overflow-hidden bg-white pt-36 pb-20 sm:pt-44 sm:pb-24">
+        <div class="brand-lines absolute inset-0 -z-10"></div>
+        <div class="absolute -top-32 -right-32 -z-10 size-[36rem] rounded-full bg-gold-200/40 blur-[120px]"></div>
+        <canvas data-ribbons="10" data-tone="light" class="absolute inset-0 -z-10 h-full w-full"></canvas>
 
         <div class="container-x mx-auto max-w-3xl">
-            <a href="{{ route('insights') }}" class="inline-flex items-center gap-2 text-sm text-white/60 transition hover:text-gold-300" data-reveal>
+            <a href="{{ route('insights') }}" class="inline-flex items-center gap-2 text-sm text-mist transition hover:text-gold-700" data-reveal>
                 <x-icon name="arrow-right" class="size-4 rotate-180" stroke="2" /> All insights
             </a>
-            <p class="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-400 uppercase" data-reveal>{{ $article['category'] }}</p>
-            <h1 class="mt-5 font-display text-4xl leading-[1.08] text-balance sm:text-6xl" data-reveal style="--reveal-delay: 80ms">{{ $article['title'] }}</h1>
-            <p class="mt-8 flex flex-wrap items-center gap-4 text-sm text-white/55" data-reveal style="--reveal-delay: 160ms">
+            <p class="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase" data-reveal>{{ $article['category'] }}</p>
+            <h1 class="mt-5 font-display text-4xl leading-[1.08] text-balance text-navy-900 sm:text-6xl" data-reveal style="--reveal-delay: 80ms">{{ $article['title'] }}</h1>
+            <p class="mt-8 flex flex-wrap items-center gap-4 text-sm text-mist" data-reveal style="--reveal-delay: 160ms">
                 <time datetime="{{ $article['date'] }}">{{ \Illuminate\Support\Carbon::parse($article['date'])->format('j F Y') }}</time>
-                <span class="h-px w-6 bg-white/20"></span>
+                <span class="h-px w-6 bg-navy-900/20"></span>
                 {{ $article['author'] }}
             </p>
         </div>
+        <x-brand-wave class="absolute inset-x-0 bottom-0 h-10 opacity-90 sm:h-14" />
     </section>
 
     <article class="bg-white py-20 sm:py-24">

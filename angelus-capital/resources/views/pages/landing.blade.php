@@ -1,82 +1,60 @@
-<x-layouts.app title="Raise Capital & Grow with Confidence" description="Confidential advisory on capital raising, project finance, M&A and investments. Speak with the experienced team at Angelus Capital Partners in Lagos." bare noindex>
+<x-layouts.app title="Raise Capital & Grow with Confidence" description="Confidential advisory, capital solutions and investments. Speak with the experienced team at Angelus Capital Partners in Lagos." bare noindex>
     @php
         $company = config('acpl.company');
+        $landing = config('acpl.landing');
         $leaders = config('acpl.leadership');
+        $platformIcons = ['advisory' => 'compass', 'capital' => 'coins', 'investments' => 'chart'];
         $credentials = collect(config('acpl.transactions.groups'))
             ->flatMap(fn ($group) => collect($group['deals'])->map(fn ($deal) => $deal + ['sector' => $group['sector'], 'icon' => $group['icon']]));
-        $faqs = [
-            ['q' => 'What kinds of organizations do you work with?', 'a' => 'Corporations and SMEs, project sponsors, institutional investors, pension funds, family offices, development finance institutions, government agencies, high-net-worth individuals and investment consortia.'],
-            ['q' => 'What types of capital can you help us raise?', 'a' => 'Equity capital, debt financing, mezzanine capital, structured finance and alternative capital solutions — matched to your stage, sector and objectives, and sourced from institutional investors, DFIs, commercial banks, private equity funds, family offices, strategic and impact investors.'],
-            ['q' => 'Which sectors do you focus on?', 'a' => 'Financial services, hospitality, agribusiness, fast moving consumer goods, healthcare and fintech.'],
-            ['q' => 'Do you work outside Nigeria?', 'a' => 'We are based in Lagos, and our leadership has participated in transactions and investments across multiple sectors and geographies in West Africa, including Nigeria, Côte d’Ivoire, Liberia and Sierra Leone.'],
-            ['q' => 'Is my enquiry confidential?', 'a' => 'Yes. We treat every enquiry in confidence.'],
-            ['q' => 'What happens after I submit the form?', 'a' => 'A member of our team reviews your enquiry and contacts you to arrange an initial, no-obligation conversation about your objectives.'],
-        ];
     @endphp
 
     {{-- Slim header --}}
-    <header data-header class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-500">
+    <header data-header class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-white/85 transition-all duration-500">
         <div data-header-inner class="container-x flex items-center justify-between gap-4 py-4 transition-all duration-500">
             <a href="{{ route('home') }}" aria-label="{{ $company['name'] }}"><x-logo compact /></a>
             <div class="flex items-center gap-3">
-                <a href="tel:{{ $company['phone_href'] }}" class="hidden items-center gap-2 text-sm font-semibold text-white/80 transition hover:text-gold-300 md:inline-flex">
-                    <x-icon name="phone" class="size-4 text-gold-400" /> {{ $company['phone'] }}
+                <a href="tel:{{ $company['phone_href'] }}" class="hidden items-center gap-2 text-sm font-semibold text-navy-900 transition hover:text-gold-700 md:inline-flex">
+                    <x-icon name="phone" class="size-4 text-gold-600" /> {{ $company['phone'] }}
                 </a>
-                <a href="{{ route('contact') }}#enquire" class="btn-gold hidden !px-5 !py-2.5 sm:inline-flex">Get a consultation</a>
+                <a href="#questionnaire" class="btn-gold hidden !px-5 !py-2.5 sm:inline-flex">Get a consultation</a>
             </div>
         </div>
     </header>
 
-    {{-- Hero + form --}}
-    <section class="on-dark grain relative isolate overflow-hidden bg-navy-950 pt-32 pb-20 text-white sm:pt-36 lg:pb-28">
-        <div class="grid-lines absolute inset-0 -z-10"></div>
-        <div class="absolute top-[-20%] right-[-10%] -z-10 size-[48rem] rounded-full bg-navy-600/45 blur-[140px]"></div>
-        <div class="absolute bottom-[-30%] left-[-10%] -z-10 size-[36rem] rounded-full bg-gold-500/10 blur-[140px]"></div>
-        <canvas data-ribbons="8" class="absolute inset-0 -z-10 h-full w-full"></canvas>
+    {{-- Hero + consultation card --}}
+    <section class="relative isolate overflow-hidden bg-white pt-32 pb-24 sm:pt-36 lg:pb-32">
+        <div class="brand-lines absolute inset-0 -z-10"></div>
+        <div class="absolute top-[-20%] right-[-10%] -z-10 size-[44rem] rounded-full bg-gold-200/45 blur-[140px]"></div>
+        <canvas data-ribbons="10" data-tone="light" class="absolute inset-0 -z-10 h-full w-full"></canvas>
 
         <div class="container-x grid grid-cols-1 items-start gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div class="lg:pt-8">
                 <span class="eyebrow" data-reveal>{{ $company['tagline'] }}</span>
-                <h1 class="mt-7 font-display text-[2.6rem] leading-[1.05] text-balance sm:text-6xl" data-reveal style="--reveal-delay: 80ms">
-                    Raise capital. Structure the deal. <span class="text-gold-gradient">Grow with confidence.</span>
-                </h1>
-                <p class="mt-7 max-w-xl text-lg leading-relaxed text-white/70" data-reveal style="--reveal-delay: 160ms">
-                    Angelus Capital Partners helps businesses, investors and institutions unlock growth through innovative financing, strategic advisory and disciplined investment execution.
-                </p>
+                <h1 class="mt-7 font-display text-[2.4rem] leading-[1.08] text-balance text-navy-900 sm:text-5xl xl:text-[3.4rem]" data-reveal style="--reveal-delay: 80ms">{!! $landing['title'] !!}</h1>
+                <p class="mt-7 max-w-xl text-lg leading-relaxed text-mist" data-reveal style="--reveal-delay: 160ms">{{ $landing['lead'] }}</p>
 
                 <ul class="mt-9 space-y-4" data-reveal style="--reveal-delay: 240ms">
-                    @foreach ([
-                        'Equity, debt, mezzanine and structured finance',
-                        'Bankable project structuring and financial modeling',
-                        'M&A support, due diligence and investor readiness',
-                        'Independent advice aligned with your interests',
-                    ] as $point)
-                        <li class="flex items-start gap-3 text-white/85">
+                    @foreach ($landing['points'] as $point)
+                        <li class="flex items-start gap-3 text-navy-900">
                             <span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-300 to-ember text-navy-950"><x-icon name="check" class="size-3.5" stroke="2.5" /></span>
-                            {{ $point }}
+                            <span><strong class="font-semibold">{{ \Illuminate\Support\Str::before($point, ':') }}:</strong>{{ \Illuminate\Support\Str::after($point, ':') }}</span>
                         </li>
                     @endforeach
                 </ul>
 
-                <div class="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-white/10 pt-8" data-reveal style="--reveal-delay: 320ms">
-                    <div>
-                        <p class="font-display text-2xl text-gold-300 sm:text-4xl">$500M+</p>
-                        <p class="mt-1 text-xs leading-snug text-white/55">Fundraising our MD &amp; CEO has participated in</p>
-                    </div>
-                    <div>
-                        <p class="font-display text-2xl text-gold-300 sm:text-4xl">30+</p>
-                        <p class="mt-1 text-xs leading-snug text-white/55">Years of leadership experience</p>
-                    </div>
-                    <div>
-                        <p class="font-display text-2xl text-gold-300 sm:text-4xl">3</p>
-                        <p class="mt-1 text-xs leading-snug text-white/55">Integrated platforms</p>
-                    </div>
+                <div class="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-navy-900/10 pt-8" data-reveal style="--reveal-delay: 320ms">
+                    @foreach ($landing['stats'] as $stat)
+                        <div>
+                            <p class="font-display text-2xl text-navy-900 sm:text-4xl">{{ $stat['value'] }}</p>
+                            <p class="mt-1 text-xs leading-snug text-mist">{{ $stat['label'] }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
             {{-- Next step card: everything routes to the contact page --}}
             <div data-reveal="zoom" style="--reveal-delay: 150ms">
-                <div class="relative rounded-[2rem] bg-gradient-to-br from-gold-300 via-gold-500 to-ember p-[2px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
+                <div class="relative rounded-[2rem] bg-gradient-to-br from-gold-300 via-gold-500 to-ember p-[2px] shadow-[0_40px_80px_-35px_rgba(0,20,64,0.55)]">
                     <div class="rounded-[calc(2rem-2px)] bg-white p-7 text-ink sm:p-9">
                         <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Confidential</p>
                         <h2 class="mt-2 font-display text-3xl leading-tight text-navy-900">Book a consultation</h2>
@@ -94,24 +72,26 @@
                             @endforeach
                         </ul>
 
-                        <a href="{{ route('contact') }}#enquire" class="btn-gold mt-6 w-full !py-4 text-base">Start a conversation <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                        <a href="#questionnaire" class="btn-gold mt-6 w-full !py-4 text-base">Answer 5 quick questions <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                         <p class="mt-4 flex items-center justify-center gap-2 text-xs text-mist"><x-icon name="shield" class="size-4 text-gold-600" /> Your details are kept confidential.</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <x-brand-wave class="absolute inset-x-0 bottom-0 h-12 sm:h-16" />
     </section>
 
     {{-- Credentials strip --}}
-    <section class="border-y border-gold-500/20 bg-navy-900 py-8" aria-label="Selected transaction credentials">
+    <section class="bg-navy-900 py-8" aria-label="Selected transaction credentials">
         <div class="container-x">
-            <p class="text-center text-xs tracking-[0.25em] text-white/45 uppercase">Our leadership has participated in transactions including</p>
+            <p class="text-center text-xs tracking-[0.25em] text-white/50 uppercase">Our leadership has participated in transactions including</p>
         </div>
         <div class="mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div class="flex w-max animate-marquee gap-12 whitespace-nowrap" style="animation-duration: 55s">
                 @foreach ([0, 1] as $copy)
                     @foreach ($credentials as $deal)
-                        <span class="flex items-center gap-3 font-display text-xl text-white/75" @if ($copy) aria-hidden="true" @endif>
+                        <span class="flex items-center gap-3 font-display text-xl text-white/80" @if ($copy) aria-hidden="true" @endif>
                             <x-icon :name="$deal['icon']" class="size-5 text-gold-400" /> {{ $deal['name'] }}
                         </span>
                     @endforeach
@@ -120,23 +100,24 @@
         </div>
     </section>
 
-    {{-- Who we help --}}
+    {{-- How we help: the three integrated platforms --}}
     <section class="bg-ivory py-20 sm:py-28">
         <div class="container-x">
-            <x-section-heading eyebrow="How we help" title="One partner for both sides of the capital equation." align="center" />
+            <x-section-heading :eyebrow="$landing['help']['eyebrow']" :title="$landing['help']['title']" :lead="$landing['help']['lead']" align="center" />
 
-            <div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                @foreach ([
-                    ['icon' => 'chart', 'title' => 'Businesses & project sponsors', 'lead' => 'You need the right capital, in the right structure, from the right partners.', 'items' => ['Capital raising: equity, debt, mezzanine and structured finance', 'Project structuring, financial modeling and risk allocation', 'M&A support, valuation and transaction execution', 'Restructuring, turnaround and business transformation']],
-                    ['icon' => 'coins', 'title' => 'Investors & institutions', 'lead' => 'You need quality opportunities, properly diligenced and well structured.', 'items' => ['Access to vetted opportunities across key growth sectors', 'Due diligence, feasibility studies and investor readiness', 'Private equity, growth capital, infrastructure and impact investments', 'Governance and operational value creation after investment']],
-                ] as $audience)
-                    <article class="card-light p-8 sm:p-10" data-reveal style="--reveal-delay: {{ $loop->index * 120 }}ms">
-                        <span class="grid size-14 place-items-center rounded-2xl bg-navy-900 text-gold-300"><x-icon :name="$audience['icon']" class="size-7" /></span>
-                        <h3 class="mt-7 font-display text-3xl text-navy-900">{{ $audience['title'] }}</h3>
-                        <p class="mt-3 text-lg text-mist">{{ $audience['lead'] }}</p>
-                        <ul class="mt-7 space-y-3">
-                            @foreach ($audience['items'] as $item)
-                                <li class="flex items-start gap-3 text-navy-800"><x-icon name="check" class="mt-1 size-4 text-gold-600" stroke="2" /> {{ $item }}</li>
+            <div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                @foreach (config('acpl.platforms') as $platform)
+                    <article id="{{ $platform['key'] }}" class="card-light relative flex flex-col overflow-hidden p-8 sm:p-10" data-reveal style="--reveal-delay: {{ $loop->index * 120 }}ms">
+                        <span class="absolute top-0 left-8 h-1 w-16 rounded-b-full bg-gradient-to-r from-gold-400 to-ember"></span>
+                        <div class="flex items-center justify-between">
+                            <span class="grid size-14 place-items-center rounded-2xl bg-navy-900 text-gold-300"><x-icon :name="$platformIcons[$platform['key']]" class="size-7" /></span>
+                            <span class="text-xs font-semibold tracking-[0.2em] text-gold-600 uppercase">Platform 0{{ $loop->iteration }}</span>
+                        </div>
+                        <h3 class="mt-7 font-display text-3xl text-navy-900">{{ $platform['title'] }}</h3>
+                        <p class="mt-3 text-mist">{{ $platform['summary'] }}</p>
+                        <ul class="mt-7 flex-1 space-y-3">
+                            @foreach ($platform['items'] as $item)
+                                <li class="flex items-start gap-3 text-navy-800"><x-icon name="check" class="mt-1 size-4 shrink-0 text-gold-600" stroke="2" /> {{ $item }}</li>
                             @endforeach
                         </ul>
                     </article>
@@ -145,7 +126,7 @@
         </div>
     </section>
 
-    {{-- E-invoice campaign --}}
+    {{-- E-invoicing: a compliance service of the Advisory platform --}}
     <section id="einvoice" class="scroll-mt-20 bg-white py-20 sm:py-28">
         <div class="container-x">
             <div class="on-dark grain relative isolate overflow-hidden rounded-[2.5rem] bg-navy-900 p-8 text-white sm:p-14" data-reveal="zoom">
@@ -153,7 +134,7 @@
                 <div class="grid-lines absolute inset-0 -z-10"></div>
                 <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
                     <div>
-                        <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="document" class="size-4" /> Compliance advisory</span>
+                        <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="document" class="size-4" /> Advisory platform · Compliance</span>
                         <h2 class="mt-6 font-display text-4xl leading-tight text-balance sm:text-5xl">{{ config('acpl.einvoice.title') }}</h2>
                         <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/70">{{ config('acpl.einvoice.summary') }}</p>
                         <ul class="mt-8 space-y-3">
@@ -166,25 +147,20 @@
                         <x-icon name="document" class="mx-auto size-12 text-gold-300" stroke="1.2" />
                         <p class="mt-5 font-display text-2xl">Is your business ready?</p>
                         <p class="mt-2 text-sm text-white/60">Talk to our compliance advisory team.</p>
-                        <a href="{{ route('contact', ['enquiry' => 'einvoice']) }}#enquire" class="btn-gold mt-7 w-full">Get e-invoice advice <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                        <a href="{{ route('contact', ['enquiry' => 'einvoice']) }}#enquire" class="btn-gold mt-7 w-full">Get e-invoicing advice <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- How it works --}}
-    <section class="on-dark relative overflow-hidden bg-navy-950 py-20 text-white sm:py-28">
+    {{-- Engagement process --}}
+    <section class="on-dark relative overflow-hidden bg-navy-900 py-20 text-white sm:py-28">
         <div class="grid-lines absolute inset-0"></div>
         <div class="container-x relative">
-            <x-section-heading eyebrow="How it works" title="From first conversation to completed transaction." align="center" dark />
+            <x-section-heading :eyebrow="$landing['process']['eyebrow']" :title="$landing['process']['title']" align="center" dark />
             <ol class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                @foreach ([
-                    ['title' => 'Confidential consultation', 'text' => 'We listen to your objectives, timelines and constraints.'],
-                    ['title' => 'Assessment & structuring', 'text' => 'Due diligence, financial modeling and the right capital structure.'],
-                    ['title' => 'Capital mobilisation', 'text' => 'We engage institutional, strategic and impact capital providers.'],
-                    ['title' => 'Execution & beyond', 'text' => 'We move the transaction to completion and support long-term value creation.'],
-                ] as $step)
+                @foreach ($landing['process']['steps'] as $step)
                     <li class="card-dark relative p-7" data-reveal style="--reveal-delay: {{ $loop->index * 90 }}ms">
                         <span class="font-display text-5xl text-gold-400/70">0{{ $loop->iteration }}</span>
                         <h3 class="mt-5 font-display text-xl">{{ $step['title'] }}</h3>
@@ -227,41 +203,71 @@
         </figure>
     </section>
 
-    {{-- FAQ --}}
-    <section class="bg-ivory py-20 sm:py-28">
-        <div class="container-x grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <x-section-heading eyebrow="Questions" title="Good to know before we talk." />
-            <div class="divide-y divide-navy-900/10 border-y border-navy-900/10">
-                @foreach ($faqs as $faq)
-                    <details class="group py-6" @if ($loop->first) open @endif>
-                        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-xl text-navy-900 [&::-webkit-details-marker]:hidden">
-                            {{ $faq['q'] }}
-                            <span class="grid size-9 shrink-0 place-items-center rounded-full border border-navy-900/15 text-gold-600 transition duration-300 group-open:rotate-45 group-open:bg-navy-900 group-open:text-gold-300"><x-icon name="plus" class="size-4" stroke="2" /></span>
-                        </summary>
-                        <p class="mt-4 max-w-2xl leading-relaxed text-mist">{{ $faq['a'] }}</p>
-                    </details>
-                @endforeach
+    {{-- Pre-consultation questionnaire: answers continue to the contact form --}}
+    <section id="questionnaire" class="scroll-mt-20 bg-ivory py-20 sm:py-28">
+        <div class="container-x grid grid-cols-1 gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+                <x-section-heading eyebrow="Before we talk" title="Help us understand your needs." lead="Five quick questions so the right adviser comes to your consultation prepared. It takes under a minute — your answers go straight to our team with your enquiry." />
+                <p class="mt-8 flex items-center gap-2 text-sm text-mist" data-reveal><x-icon name="shield" class="size-4 text-gold-600" /> Confidential. No obligation.</p>
             </div>
+
+            <form method="GET" action="{{ route('contact') }}#enquire" class="card-light p-7 sm:p-10" data-reveal="right">
+                <fieldset>
+                    <legend class="font-display text-xl text-navy-900"><span class="mr-2 text-gold-600">01</span> What do you need help with?</legend>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        @foreach (config('acpl.enquiry_types') as $type => $label)
+                            <label class="cursor-pointer">
+                                <input type="radio" name="enquiry" value="{{ $type }}" class="peer sr-only" @checked($loop->first)>
+                                <span class="block rounded-full border border-navy-900/15 bg-white px-4 py-2.5 text-sm text-navy-800 transition peer-checked:border-navy-900 peer-checked:bg-navy-900 peer-checked:text-white peer-focus-visible:ring-4 peer-focus-visible:ring-gold-400/40 hover:border-navy-900/40">{{ $label }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                </fieldset>
+
+                @foreach (config('acpl.questionnaire') as $key => $question)
+                    <fieldset class="mt-8">
+                        <legend class="font-display text-xl text-navy-900"><span class="mr-2 text-gold-600">0{{ $loop->iteration + 1 }}</span> {{ $question['label'] }}</legend>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            @foreach ($question['options'] as $option)
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="q[{{ $key }}]" value="{{ $option }}" class="peer sr-only">
+                                    <span class="block rounded-full border border-navy-900/15 bg-white px-4 py-2.5 text-sm text-navy-800 transition peer-checked:border-navy-900 peer-checked:bg-navy-900 peer-checked:text-white peer-focus-visible:ring-4 peer-focus-visible:ring-gold-400/40 hover:border-navy-900/40">{{ $option }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                    </fieldset>
+                @endforeach
+
+                <div class="mt-10 flex flex-col gap-4 border-t border-navy-900/8 pt-8 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="text-xs text-mist">Next: add your contact details.</p>
+                    <button type="submit" class="btn-gold">Continue to book <x-icon name="arrow-right" class="size-4" stroke="2" /></button>
+                </div>
+            </form>
         </div>
     </section>
 
-    {{-- Final CTA --}}
+    {{-- Final CTA: start from the problem --}}
     <section class="on-dark grain relative isolate overflow-hidden bg-navy-900 py-20 text-center text-white sm:py-28">
         <div class="absolute top-1/2 left-1/2 -z-10 size-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-500/15 blur-[120px]"></div>
         <canvas data-ribbons="5" class="absolute inset-0 -z-10 h-full w-full opacity-60"></canvas>
         <div class="container-x">
-            <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="mx-auto w-24 drop-shadow-[0_20px_40px_rgba(239,125,16,0.4)]" data-reveal="zoom">
-            <h2 class="mx-auto mt-8 max-w-3xl font-display text-4xl leading-tight text-balance sm:text-5xl" data-reveal>Ready to unlock your next stage of growth?</h2>
-            <p class="mx-auto mt-5 max-w-xl text-lg text-white/65" data-reveal>Book a confidential consultation with our team.</p>
+            <img src="{{ asset('images/acpl-logo-dark.webp') }}" alt="" width="600" height="566" class="mx-auto w-24 drop-shadow-[0_20px_40px_rgba(239,125,16,0.35)]" data-reveal="zoom">
+            <h2 class="mx-auto mt-8 max-w-3xl font-display text-4xl leading-tight text-balance sm:text-5xl" data-reveal>{{ $landing['final']['title'] }}</h2>
+            <p class="mx-auto mt-5 max-w-2xl text-lg text-white/70" data-reveal>{{ $landing['final']['lead'] }}</p>
+            <ul class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5" data-reveal>
+                @foreach ($landing['final']['points'] as $point)
+                    <li class="flex items-center gap-2 rounded-full border border-gold-400/30 bg-white/[0.04] px-4 py-2 text-sm text-white/85"><span class="size-1.5 rounded-full bg-gold-400"></span>{{ $point }}</li>
+                @endforeach
+            </ul>
             <div class="mt-10 flex flex-wrap justify-center gap-4" data-reveal>
-                <a href="{{ route('contact') }}#enquire" class="btn-gold">Request a consultation <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                <a href="#questionnaire" class="btn-gold">Tell us your challenge <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                 <a href="tel:{{ $company['phone_href'] }}" class="btn-outline"><x-icon name="phone" class="size-4" /> {{ $company['phone'] }}</a>
             </div>
         </div>
     </section>
 
     {{-- Slim footer --}}
-    <footer class="bg-navy-950 pt-10 pb-28 text-sm text-white/50 sm:pb-10">
+    <footer class="border-t border-white/10 bg-navy-900 pt-10 pb-28 text-sm text-white/55 sm:pb-10">
         <div class="container-x flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
             <p>&copy; {{ now()->year }} {{ $company['name'] }} · {{ implode(', ', $company['address']) }}</p>
             <a href="{{ route('home') }}" class="text-gold-400 transition hover:text-gold-300">Visit our website →</a>
@@ -269,8 +275,8 @@
     </footer>
 
     {{-- Sticky mobile action bar --}}
-    <div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-white/10 bg-navy-950/95 p-3 backdrop-blur sm:hidden">
-        <a href="tel:{{ $company['phone_href'] }}" class="btn-outline !px-4 !py-3"><x-icon name="phone" class="size-4" /> Call us</a>
-        <a href="{{ route('contact') }}#enquire" class="btn-gold !px-4 !py-3">Get started</a>
+    <div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-navy-900/10 bg-white/95 p-3 backdrop-blur sm:hidden">
+        <a href="tel:{{ $company['phone_href'] }}" class="btn-ghost !px-4 !py-3"><x-icon name="phone" class="size-4" /> Call us</a>
+        <a href="#questionnaire" class="btn-gold !px-4 !py-3">Get started</a>
     </div>
 </x-layouts.app>

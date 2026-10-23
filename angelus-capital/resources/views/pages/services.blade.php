@@ -10,12 +10,11 @@
     <x-page-hero index="02" eyebrow="What we do" title="Three integrated platforms for <span class='text-gold-gradient'>growth.</span>" lead="We identify opportunities, structure solutions, mobilize capital and support execution — creating sustainable value for capital providers and capital users alike.">
         <div class="mt-12 flex flex-wrap gap-3" data-reveal style="--reveal-delay: 300ms">
             @foreach (config('acpl.platforms') as $platform)
-                <a href="#{{ $platform['key'] }}" class="card-dark flex items-center gap-3 !rounded-full py-2.5 pr-5 pl-2.5 text-sm text-white/85 transition hover:border-gold-400/50 hover:text-white">
-                    <span class="grid size-8 place-items-center rounded-full bg-gradient-to-br from-gold-300 to-ember text-navy-950"><x-icon :name="$platformIcons[$platform['key']]" class="size-4" stroke="1.8" /></span>
+                <a href="#{{ $platform['key'] }}" class="flex items-center gap-3 rounded-full border border-navy-900/12 bg-white py-2.5 pr-5 pl-2.5 text-sm font-medium text-navy-900 shadow-sm transition hover:border-gold-500">
+                    <span class="grid size-8 place-items-center rounded-full bg-navy-900 text-gold-300"><x-icon :name="$platformIcons[$platform['key']]" class="size-4" stroke="1.8" /></span>
                     {{ $platform['title'] }}
                 </a>
             @endforeach
-            <a href="#project-finance" class="card-dark flex items-center gap-3 !rounded-full px-5 py-2.5 text-sm text-white/85 transition hover:border-gold-400/50 hover:text-white">Project Finance</a>
         </div>
     </x-page-hero>
 
@@ -57,7 +56,7 @@
             <div class="grid grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold-500/30 bg-white p-8 sm:p-12 lg:grid-cols-[auto_1fr_auto]" data-reveal>
                 <span class="grid size-16 place-items-center rounded-2xl bg-navy-900 text-gold-300"><x-icon name="document" class="size-8" /></span>
                 <div>
-                    <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Advisory · Compliance</p>
+                    <p class="text-xs font-semibold tracking-[0.22em] text-gold-600 uppercase">Platform 01 — Advisory · Compliance service</p>
                     <h3 class="mt-2 font-display text-3xl text-navy-900">{{ config('acpl.einvoice.title') }}</h3>
                     <p class="mt-3 max-w-2xl leading-relaxed text-mist">{{ config('acpl.einvoice.summary') }}</p>
                     <ul class="mt-5 flex flex-wrap gap-2">
@@ -78,22 +77,18 @@
 
         <div class="container-x grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             <div>
-                <x-section-heading eyebrow="Platform 02 — Capital Solutions" title="The right capital, in the right structure." :lead="config('acpl.platforms.1.summary').' Hover across the capital stack to explore each layer.'" dark />
+                <x-section-heading eyebrow="Platform 02 — Capital Solutions" title="The right capital, in the right structure." :lead="config('acpl.platforms.1.summary').' Select a layer of the capital stack to see how it works and when it fits.'" dark />
 
-                <div class="mt-10 min-h-36">
+                <div class="mt-10 min-h-56">
                     @foreach ($stack as $layer)
                         <div data-pick-panel="stack:{{ $loop->index }}" @if (! $loop->first) hidden @endif>
                             <p class="text-sm tracking-[0.2em] text-gold-400 uppercase">{{ $layer['risk'] }}</p>
                             <h3 class="mt-3 font-display text-3xl">{{ $layer['title'] }}</h3>
-                            <p class="mt-3 max-w-md text-white/65">{{ $layer['text'] }}</p>
+                            <p class="mt-3 max-w-md leading-relaxed text-white/70">{{ $layer['text'] }}</p>
+                            <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-4 py-2 text-sm text-white/85"><x-icon name="target" class="size-4 text-gold-400" /> Best for: {{ $layer['suits'] }}</p>
                         </div>
                     @endforeach
                 </div>
-
-                <p class="mt-8 flex items-start gap-3 border-t border-white/10 pt-8 text-white/60" data-reveal>
-                    <x-icon name="sparkle" class="mt-1 size-4 text-gold-400" />
-                    {{ config('acpl.alternative_capital') }}
-                </p>
             </div>
 
             {{-- Capital pyramid --}}
@@ -114,13 +109,32 @@
                 </div>
             </div>
         </div>
+
+        {{-- Alternative capital: completes the stack when conventional layers do not fit --}}
+        @php
+            $alternative = config('acpl.alternative_capital');
+        @endphp
+        <div class="container-x mt-20">
+            <div class="grid grid-cols-1 gap-8 rounded-[2rem] border border-gold-400/30 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-8 sm:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center" data-reveal>
+                <div>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="sparkle" class="size-3.5" /> Beyond the conventional stack</span>
+                    <h3 class="mt-5 font-display text-3xl sm:text-4xl">{{ $alternative['title'] }}</h3>
+                    <p class="mt-4 max-w-lg leading-relaxed text-white/70">{{ $alternative['text'] }}</p>
+                </div>
+                <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    @foreach ($alternative['items'] as $item)
+                        <li class="flex items-center gap-3 rounded-2xl border border-white/10 bg-navy-900/60 px-5 py-4 text-white/85"><x-icon name="check" class="size-4 shrink-0 text-gold-400" stroke="2" /> {{ $item }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
     </section>
 
     {{-- Project finance --}}
     <section id="project-finance" class="scroll-mt-20 bg-white py-24 sm:py-32">
         <div class="container-x grid grid-cols-1 gap-16 lg:grid-cols-2">
             <div>
-                <x-section-heading eyebrow="Project finance & capital raising" :title="$projectFinance['headline']" :lead="$projectFinance['intro']" />
+                <x-section-heading eyebrow="Platform 02 — Project finance & capital raising" :title="$projectFinance['headline']" :lead="$projectFinance['intro']" />
                 <ol class="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     @foreach ($projectFinance['services'] as $service)
                         <li class="flex items-center gap-4 rounded-2xl border border-navy-900/8 bg-ivory px-5 py-4 transition hover:border-gold-500/40" data-reveal style="--reveal-delay: {{ $loop->index * 60 }}ms">
@@ -161,25 +175,22 @@
                 <p class="max-w-lg text-lg leading-relaxed text-mist lg:justify-self-end" data-reveal>{{ $investment['philosophy'] }}</p>
             </div>
 
-            <div class="mt-16 grid grid-cols-1 items-start gap-16 lg:grid-cols-[1.2fr_0.8fr]">
-                {{-- Investment funnel --}}
+            <div class="mt-16 grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.25fr_0.75fr]">
+                {{-- Investment criteria --}}
                 <div>
-                    <p class="mb-6 text-sm font-semibold tracking-[0.2em] text-navy-800 uppercase" data-reveal>We focus on businesses and projects that demonstrate</p>
-                    <div class="flex flex-col items-center gap-2">
+                    <p class="mb-6 text-sm font-semibold tracking-[0.2em] text-navy-800 uppercase" data-reveal>What we look for</p>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         @foreach ($investment['criteria'] as $criterion)
-                            <div @class([
-                                    'flex items-center justify-center rounded-xl px-4 py-4 text-center text-sm font-semibold text-white transition duration-500 hover:scale-[1.02] hover:bg-gold-500 hover:text-navy-950 sm:text-base',
-                                    ['bg-navy-950', 'bg-navy-900', 'bg-navy-800', 'bg-navy-700', 'bg-navy-600', 'bg-navy-500'][$loop->index] ?? 'bg-navy-500',
-                                ])
-                                style="width: {{ 100 - $loop->index * 9 }}%; --reveal-delay: {{ $loop->index * 90 }}ms"
-                                data-reveal>
-                                {{ $criterion }}
+                            <div class="card-light group flex gap-5 p-6 transition duration-500 hover:-translate-y-1" data-reveal style="--reveal-delay: {{ $loop->index * 90 }}ms">
+                                <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-navy-900 text-gold-300 transition duration-500 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-ember group-hover:text-navy-950"><x-icon :name="$criterion['icon']" class="size-6" /></span>
+                                <div>
+                                    <h3 class="font-display text-xl text-navy-900">{{ $criterion['title'] }}</h3>
+                                    <p class="mt-1 text-sm leading-relaxed text-mist">{{ $criterion['text'] }}</p>
+                                </div>
                             </div>
                         @endforeach
-                        <div class="mt-2 flex items-center gap-3 rounded-full bg-gradient-to-r from-gold-400 to-ember px-6 py-3 font-display text-navy-950" data-reveal>
-                            <x-icon name="sparkle" class="size-4" /> Long-term value
-                        </div>
                     </div>
+                    <p class="mt-6 flex items-center gap-3 font-display text-lg text-navy-900" data-reveal><x-icon name="sparkle" class="size-4 text-gold-600" /> The result: long-term value for investors and investees alike.</p>
                 </div>
 
                 <div class="card-light p-9" data-reveal="right">
@@ -197,5 +208,5 @@
         </div>
     </section>
 
-    <x-cta-band title="Have a mandate in mind?" lead="Tell us about your business, project or investment objective and we will show you how our platforms can work together for you." />
+    <x-cta-band page="services" />
 </x-layouts.app>

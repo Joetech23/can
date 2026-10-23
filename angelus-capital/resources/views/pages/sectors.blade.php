@@ -6,23 +6,23 @@
     @endphp
 
     <x-page-hero index="03" eyebrow="Sectors & transactions" title="Sector expertise, proven in <span class='text-gold-gradient'>transactions.</span>" lead="We focus on the sectors that will shape the continent’s next growth cycle — and our leadership has participated in transactions and investments across them.">
-        <dl class="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/10 pt-8" data-reveal style="--reveal-delay: 300ms">
+        <dl class="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-navy-900/10 pt-8" data-reveal style="--reveal-delay: 300ms">
             <div>
-                <dt class="text-xs tracking-[0.2em] text-white/45 uppercase">Sectors</dt>
-                <dd class="mt-2 font-display text-4xl text-gold-300" data-count="{{ count($sectors) }}">{{ count($sectors) }}</dd>
+                <dt class="text-xs tracking-[0.2em] text-mist uppercase">Sectors</dt>
+                <dd class="mt-2 font-display text-4xl text-navy-900" data-count="{{ count($sectors) }}">{{ count($sectors) }}</dd>
             </div>
             <div>
-                <dt class="text-xs tracking-[0.2em] text-white/45 uppercase">Credentials</dt>
-                <dd class="mt-2 font-display text-4xl text-gold-300" data-count="{{ $dealCount }}">{{ $dealCount }}</dd>
+                <dt class="text-xs tracking-[0.2em] text-mist uppercase">Credentials</dt>
+                <dd class="mt-2 font-display text-4xl text-navy-900" data-count="{{ $dealCount }}">{{ $dealCount }}</dd>
             </div>
             <div>
-                <dt class="text-xs tracking-[0.2em] text-white/45 uppercase">Fundraising</dt>
-                <dd class="mt-2 font-display text-4xl text-gold-300">$500M+</dd>
+                <dt class="text-xs tracking-[0.2em] text-mist uppercase">Fundraising</dt>
+                <dd class="mt-2 font-display text-4xl text-navy-900">$500M+</dd>
             </div>
         </dl>
         <div class="mt-10 flex flex-wrap gap-3" data-reveal style="--reveal-delay: 400ms">
-            <a href="#sectors" class="btn-outline !py-2.5">Sectors of focus</a>
-            <a href="#transactions" class="btn-outline !py-2.5">Transaction credentials</a>
+            <a href="#sectors" class="btn-ghost !py-2.5">Sectors of focus</a>
+            <a href="#transactions" class="btn-ghost !py-2.5">Transaction credentials</a>
         </div>
     </x-page-hero>
 
@@ -81,7 +81,7 @@
                                     <article class="group relative flex aspect-[4/5] flex-col items-center justify-between overflow-hidden rounded-[1.75rem] bg-navy-900 p-7 text-center text-white transition duration-500 hover:-translate-y-2 hover:shadow-[0_40px_60px_-30px_rgba(7,24,52,0.7)]" data-reveal style="--reveal-delay: {{ $loop->index * 80 }}ms">
                                         <span class="absolute inset-2.5 rounded-[1.3rem] border border-gold-400/25 transition duration-500 group-hover:border-gold-400/60"></span>
                                         <span class="absolute -top-16 left-1/2 size-40 -translate-x-1/2 rounded-full bg-gold-500/0 blur-3xl transition duration-700 group-hover:bg-gold-500/30"></span>
-                                        <img src="{{ asset('images/acpl-mark.webp') }}" alt="" width="317" height="288" class="relative mt-3 w-10 opacity-80">
+                                        <img src="{{ asset('images/acpl-logo-dark.webp') }}" alt="" width="600" height="566" class="relative mt-3 w-11 opacity-90">
                                         <div class="relative">
                                             <p class="font-display text-2xl leading-tight">{{ $deal['name'] }}</p>
                                             <span class="mx-auto my-4 block h-px w-10 bg-gold-400"></span>
@@ -112,5 +112,5 @@
         </div>
     </section>
 
-    <x-cta-band title="Operating in one of these sectors?" lead="Speak with our team about advisory support, capital raising or investment partnership." />
+    <x-cta-band page="sectors" />
 </x-layouts.app>

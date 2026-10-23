@@ -21,7 +21,28 @@ class ContactController extends Controller
             'selectedEnquiryType' => array_key_exists((string) $request->query('enquiry'), config('acpl.enquiry_types'))
                 ? $request->query('enquiry')
                 : 'advisory',
+            'answers' => $this->questionnaireAnswers($request),
         ]);
+    }
+
+    /**
+     * Answers carried over from the landing page questionnaire (?q[profile]=...),
+     * keeping only recognised questions and options.
+     *
+     * @return array<string, string>
+     */
+    private function questionnaireAnswers(Request $request): array
+    {
+        $submitted = old('answers', $request->query('q', []));
+
+        if (! is_array($submitted)) {
+            return [];
+        }
+
+        return collect(config('acpl.questionnaire'))
+            ->map(fn (array $question, string $key) => $submitted[$key] ?? null)
+            ->filter(fn ($answer, string $key) => is_string($answer) && in_array($answer, config("acpl.questionnaire.{$key}.options"), true))
+            ->all();
     }
 
     /**

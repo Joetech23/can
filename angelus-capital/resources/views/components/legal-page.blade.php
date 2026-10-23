@@ -1,13 +1,14 @@
 @props(['title', 'updated'])
 
 <x-layouts.app :title="$title" :description="$title.' — '.config('acpl.company.name')">
-    <section class="on-dark relative isolate overflow-hidden bg-navy-950 pt-36 pb-16 text-white sm:pt-44">
-        <div class="grid-lines absolute inset-0 -z-10"></div>
+    <section class="relative isolate overflow-hidden bg-white pt-36 pb-20 sm:pt-44">
+        <div class="brand-lines absolute inset-0 -z-10"></div>
         <div class="container-x mx-auto max-w-3xl">
             <span class="eyebrow">Legal</span>
-            <h1 class="mt-6 font-display text-5xl sm:text-6xl">{{ $title }}</h1>
-            <p class="mt-6 text-sm text-white/55">Last updated {{ $updated }}</p>
+            <h1 class="mt-6 font-display text-5xl text-navy-900 sm:text-6xl">{{ $title }}</h1>
+            <p class="mt-6 text-sm text-mist">Last updated {{ $updated }}</p>
         </div>
+        <x-brand-wave class="absolute inset-x-0 bottom-0 h-8 opacity-90 sm:h-12" />
     </section>
 
     <section class="bg-white py-16 sm:py-20">

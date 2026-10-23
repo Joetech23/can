@@ -18,9 +18,24 @@ class LandingPageTest extends TestCase
     public function test_landing_page_routes_visitors_to_the_contact_page_form(): void
     {
         $this->get(route('landing'))
-            ->assertSee(route('contact').'#enquire', false)
             ->assertSee(route('contact', ['enquiry' => 'einvoice']).'#enquire', false)
-            ->assertDontSee('<form', false);
+            ->assertDontSee('method="POST"', false);
+    }
+
+    public function test_landing_page_questionnaire_continues_to_the_contact_form(): void
+    {
+        $this->get(route('landing'))
+            ->assertSee('<form method="GET" action="'.route('contact').'#enquire"', false)
+            ->assertSee('name="q[challenge]"', false)
+            ->assertSee('High cost of capital');
+    }
+
+    public function test_landing_page_lists_platforms_in_order_and_avoids_intermediation_wording(): void
+    {
+        $this->get(route('landing'))
+            ->assertSeeInOrder(['Advisory:', 'Capital Solutions:', 'Investments:'])
+            ->assertSee('From conversation to completion.')
+            ->assertDontSee('both sides of the capital equation');
     }
 
     public function test_thank_you_page_reports_a_conversion_only_after_a_real_submission(): void

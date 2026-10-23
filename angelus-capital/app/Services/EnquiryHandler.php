@@ -12,11 +12,12 @@ use Throwable;
 
 /**
  * Processes a validated website enquiry: records it, routes it to the
- * responsible business unit by email and pushes it into the HubSpot CRM.
+ * responsible business unit by email and pushes it into the CRM (HubSpot
+ * and/or any CRM webhook).
  */
 class EnquiryHandler
 {
-    public function __construct(public HubSpotForms $hubSpot) {}
+    public function __construct(public HubSpotForms $hubSpot, public CrmWebhook $crm) {}
 
     /**
      * @param  array<string, mixed>  $enquiry  Validated form data
@@ -34,7 +35,7 @@ class EnquiryHandler
         ]));
 
         try {
-            Mail::to($route['email'])->send(new EnquiryReceived($enquiry, $route['unit'], $campaign));
+            Mail::to($route['email'])->send(new EnquiryReceived($enquiry, $route['unit'], $campaign, $this->answersWithLabels($enquiry)));
         } catch (Throwable $exception) {
             Log::error('Enquiry email could not be sent', ['message' => $exception->getMessage()]);
         }
@@ -45,6 +46,8 @@ class EnquiryHandler
             'pageName' => 'Contact — '.config('acpl.company.short_name'),
             'ipAddress' => $request->ip(),
         ]);
+
+        $this->crm->send($this->crmPayload($enquiry, $route['unit'], $campaign));
 
         return $route;
     }
@@ -98,6 +101,7 @@ class EnquiryHandler
         $message = collect([
             'Enquiry: '.$enquiryLabel.' (routed to '.$unit.')',
             filled($enquiry['message'] ?? null) ? "\n".$enquiry['message'] : null,
+            filled($enquiry['answers'] ?? null) ? "\nQuestionnaire:\n".collect($this->answersWithLabels($enquiry))->map(fn ($answer, $question) => $question.' '.$answer)->implode("\n") : null,
             $campaign !== [] ? "\nSource: ".collect($campaign)->map(fn ($value, $key) => $key.'='.$value)->implode(', ') : null,
         ])->filter()->implode("\n");
 
@@ -109,5 +113,50 @@ class EnquiryHandler
             'company' => $enquiry['organization'] ?? null,
             'message' => $message,
         ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $enquiry
+     * @param  array<string, string>  $campaign
+     * @return array<string, mixed>
+     */
+    private function crmPayload(array $enquiry, string $unit, array $campaign): array
+    {
+        $name = trim((string) $enquiry['name']);
+
+        return [
+            'source' => 'website',
+            'submitted_at' => now()->toIso8601String(),
+            'contact' => [
+                'name' => $name,
+                'first_name' => Str::before($name, ' '),
+                'last_name' => Str::contains($name, ' ') ? Str::after($name, ' ') : null,
+                'email' => $enquiry['email'] ?? null,
+                'phone' => $enquiry['phone'] ?? null,
+                'organization' => $enquiry['organization'] ?? null,
+            ],
+            'enquiry' => [
+                'type' => $enquiry['enquiry_type'],
+                'label' => config('acpl.enquiry_types.'.$enquiry['enquiry_type']),
+                'routed_to' => $unit,
+                'message' => $enquiry['message'] ?? null,
+            ],
+            'questionnaire' => $this->answersWithLabels($enquiry),
+            'campaign' => $campaign,
+        ];
+    }
+
+    /**
+     * Questionnaire answers keyed by their question text.
+     *
+     * @param  array<string, mixed>  $enquiry
+     * @return array<string, string>
+     */
+    private function answersWithLabels(array $enquiry): array
+    {
+        return collect((array) ($enquiry['answers'] ?? []))
+            ->filter(fn ($answer) => filled($answer))
+            ->mapWithKeys(fn ($answer, $key) => [config("acpl.questionnaire.{$key}.label") ?? $key => (string) $answer])
+            ->all();
     }
 }

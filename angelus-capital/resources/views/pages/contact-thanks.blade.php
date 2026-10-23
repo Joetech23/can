@@ -7,7 +7,7 @@
         <canvas data-ribbons="7" class="absolute inset-0 -z-10 h-full w-full"></canvas>
 
         <div class="container-x mx-auto max-w-2xl text-center">
-            <a href="{{ route('home') }}" class="inline-block" aria-label="{{ $company['name'] }}"><x-logo /></a>
+            <a href="{{ route('home') }}" class="inline-block" aria-label="{{ $company['name'] }}"><x-logo on-dark /></a>
 
             <div class="mx-auto mt-14 grid size-20 place-items-center rounded-full bg-gradient-to-br from-gold-300 to-ember text-navy-950 shadow-[0_20px_50px_-10px_rgba(239,125,16,0.6)]" data-reveal="zoom">
                 <x-icon name="check" class="size-10" stroke="2.5" />

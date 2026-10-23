@@ -7,72 +7,86 @@
     @endphp
 
     {{-- Hero --}}
-    <section class="on-dark grain relative isolate flex min-h-[100svh] items-center overflow-hidden bg-navy-950 pt-32 pb-24 text-white" data-tilt-area>
-        <div class="grid-lines absolute inset-0 -z-10"></div>
-        <div class="absolute top-[-20%] right-[-10%] -z-10 size-[48rem] rounded-full bg-navy-600/45 blur-[140px]"></div>
-        <div class="absolute bottom-[-30%] left-[-10%] -z-10 size-[40rem] rounded-full bg-gold-500/15 blur-[140px]"></div>
-        <canvas data-ribbons="9" class="absolute inset-0 -z-10 h-full w-full"></canvas>
+    <section class="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-32 pb-28" data-tilt-area>
+        <div class="brand-lines absolute inset-0 -z-10"></div>
+        <div class="absolute top-[-20%] right-[-10%] -z-10 size-[44rem] rounded-full bg-gold-200/45 blur-[140px]"></div>
+        <canvas data-ribbons="12" data-tone="light" class="absolute inset-0 -z-10 h-full w-full"></canvas>
 
-        <div class="container-x grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="container-x grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_1fr]">
             <div>
-                <span class="eyebrow" data-reveal>{{ $company['tagline'] }}</span>
+                <span class="eyebrow !text-sm !tracking-[0.2em]" data-reveal>{{ $company['tagline'] }}</span>
 
-                <h1 class="mt-8 font-display text-[2.9rem] leading-[1.02] sm:text-7xl xl:text-[5.4rem]">
+                <h1 class="mt-7 max-w-xl font-display text-[2.1rem] leading-[1.15] text-navy-900 sm:text-[2.6rem] xl:text-[2.85rem]">
                     @foreach ($headline as $word)
                         <span class="split-word"><span style="--i: {{ $loop->index }}" @class(['text-gold-gradient' => in_array($word, $highlighted)])>{{ $word }}</span></span>
                     @endforeach
                 </h1>
 
-                <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/65" data-reveal style="--reveal-delay: 600ms">{{ $company['summary'] }}</p>
+                <span class="mt-8 flex w-56 items-center gap-2" aria-hidden="true" data-reveal style="--reveal-delay: 500ms">
+                    <span class="h-px flex-1 bg-gold-500/70"></span><span class="size-1.5 rotate-45 bg-gold-500"></span><span class="h-px flex-1 bg-gold-500/70"></span>
+                </span>
+
+                <p class="mt-8 max-w-xl text-lg leading-relaxed text-mist" data-reveal style="--reveal-delay: 600ms">{{ $company['summary'] }}</p>
 
                 <div class="mt-10 flex flex-wrap gap-4" data-reveal style="--reveal-delay: 750ms">
                     <a href="{{ route('services') }}" class="btn-gold">Explore what we do <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
-                    <a href="{{ route('contact') }}" class="btn-outline">Talk to our team</a>
+                    <a href="{{ route('contact') }}" class="btn-ghost">Talk to our team</a>
                 </div>
             </div>
 
-            <div class="relative mx-auto aspect-square w-full max-w-[30rem]" data-reveal="zoom" style="--reveal-delay: 300ms">
-                <div class="absolute inset-0 rounded-full border border-gold-400/15"></div>
-                <div class="absolute inset-[12%] rounded-full border border-dashed border-gold-400/20 motion-safe:animate-[spin_80s_linear_infinite]"></div>
-                <div class="absolute inset-[26%] rounded-full bg-gold-500/20 blur-3xl"></div>
+            {{-- The three integrated platforms orbiting the mark --}}
+            <div class="relative mx-auto aspect-square w-full max-w-[36rem] lg:max-w-[40rem]" data-reveal="zoom" style="--reveal-delay: 300ms">
+                <div class="absolute inset-0 rounded-full border border-navy-900/10"></div>
+                <div class="absolute inset-[9%] rounded-full border border-dashed border-gold-500/40 motion-safe:animate-[spin_80s_linear_infinite]"></div>
+                <div class="absolute inset-[22%] rounded-full bg-gold-300/25 blur-3xl"></div>
 
-                <div class="absolute inset-[14%] grid place-items-center" data-tilt="16">
-                    <img src="{{ asset('images/acpl-mark.webp') }}" alt="The Angelus Capital Partners mark" width="317" height="288" class="w-full animate-float drop-shadow-[0_40px_70px_rgba(239,125,16,0.45)]" fetchpriority="high">
+                <div class="absolute inset-[20%] grid place-items-center" data-tilt="16">
+                    <img src="{{ asset('images/acpl-logo.webp') }}" alt="The Angelus Capital Partners mark" width="600" height="566" class="w-full animate-float drop-shadow-[0_30px_50px_rgba(239,125,16,0.3)]" fetchpriority="high">
                 </div>
 
                 @foreach (config('acpl.platforms') as $platform)
-                    @php
-                        $positions = ['top-[6%] left-0 sm:left-[-4%]', 'top-[46%] right-0 sm:right-[-8%]', 'bottom-[4%] left-[8%]'];
-                    @endphp
-                    <a href="{{ route('services') }}#{{ $platform['key'] }}" class="card-dark absolute {{ $positions[$loop->index] }} flex items-center gap-3 !rounded-full py-2.5 pr-5 pl-2.5 text-sm font-medium text-white/90 shadow-2xl transition hover:border-gold-400/40 hover:text-white">
-                        <span class="grid size-8 place-items-center rounded-full bg-gradient-to-br from-gold-300 to-ember text-navy-950">
-                            <x-icon :name="$platformIcons[$platform['key']]" class="size-4" stroke="1.8" />
+                    @php($positions = ['top-[2%] left-1/2 -translate-x-1/2', 'right-0 bottom-[24%] sm:right-[-4%] sm:bottom-[16%]', 'bottom-[2%] left-0 sm:left-[-4%] sm:bottom-[16%]'])
+                    <a href="{{ route('services') }}#{{ $platform['key'] }}" class="absolute {{ $positions[$loop->index] }} flex items-center gap-3 rounded-full border border-navy-900/10 bg-white py-2 pr-5 pl-2 font-display text-base whitespace-nowrap sm:py-3 sm:pr-6 sm:pl-3 text-navy-900 shadow-[0_20px_40px_-20px_rgba(0,20,64,0.45)] transition hover:border-gold-500 sm:text-lg">
+                        <span class="grid size-9 place-items-center rounded-full bg-navy-900 text-gold-300 sm:size-10">
+                            <x-icon :name="$platformIcons[$platform['key']]" class="size-5" stroke="1.8" />
                         </span>
-                        {{ $platform['title'] }}
+                        <span><span class="block text-[0.6rem] font-sans font-semibold tracking-[0.2em] text-gold-600 uppercase">Platform 0{{ $loop->iteration }}</span>{{ $platform['title'] }}</span>
                     </a>
                 @endforeach
             </div>
         </div>
 
-        <a href="#glance" class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-[0.65rem] tracking-[0.3em] text-white/40 uppercase transition hover:text-gold-300 sm:flex">
-            Scroll
-            <span class="relative h-12 w-px overflow-hidden bg-white/15">
-                <span class="absolute inset-x-0 top-0 h-1/2 bg-gold-400 motion-safe:animate-[float_2.4s_ease-in-out_infinite]"></span>
-            </span>
-        </a>
+        <x-brand-wave class="absolute inset-x-0 bottom-0 h-12 sm:h-16" />
     </section>
 
-    {{-- Who we serve marquee --}}
-    <div class="overflow-hidden border-y border-gold-500/20 bg-navy-900 py-5" aria-label="Who we serve">
-        <div class="flex w-max animate-marquee gap-12 whitespace-nowrap">
-            @foreach ([0, 1] as $copy)
-                @foreach (config('acpl.about.clients') as $client)
-                    <span class="flex items-center gap-12 font-display text-lg text-white/70" @if ($copy) aria-hidden="true" @endif>
-                        {{ $client }}
-                        <x-icon name="sparkle" class="size-3.5 text-gold-400" />
-                    </span>
+    {{-- Ticker: announcements or partner logos (config: acpl.ticker) --}}
+    <div class="flex items-stretch overflow-hidden bg-navy-900" aria-label="{{ config('acpl.ticker.label') }}">
+        <p class="relative z-10 hidden shrink-0 items-center bg-gradient-to-r from-gold-400 to-ember px-6 text-xs font-bold tracking-[0.2em] text-navy-950 uppercase sm:flex">{{ config('acpl.ticker.label') }}</p>
+        <div class="flex-1 overflow-hidden py-5">
+            <div class="flex w-max animate-marquee gap-12 whitespace-nowrap hover:[animation-play-state:paused]" style="animation-duration: 60s">
+                @foreach ([0, 1] as $copy)
+                    @foreach (config('acpl.ticker.items') as $item)
+                        <span class="flex items-center gap-12" @if ($copy) aria-hidden="true" @endif>
+                            @if (filled($item['url'] ?? null))
+                                <a href="{{ url($item['url']) }}" class="flex items-center text-white/80 transition hover:text-gold-300" @if ($copy) tabindex="-1" @endif>
+                            @else
+                                <span class="flex items-center text-white/80">
+                            @endif
+                                @if (filled($item['logo'] ?? null))
+                                    <img src="{{ asset($item['logo']) }}" alt="{{ $item['text'] ?? '' }}" loading="lazy" class="h-8 w-auto opacity-80 brightness-0 invert">
+                                @else
+                                    <span class="text-[0.95rem]">{{ $item['text'] }}</span>
+                                @endif
+                            @if (filled($item['url'] ?? null))
+                                </a>
+                            @else
+                                </span>
+                            @endif
+                            <x-icon name="sparkle" class="size-3.5 text-gold-400" />
+                        </span>
+                    @endforeach
                 @endforeach
-            @endforeach
+            </div>
         </div>
     </div>
 
@@ -104,7 +118,7 @@
         <div class="container-x grid grid-cols-1 gap-16 lg:grid-cols-12">
             <div class="lg:col-span-5">
                 <div class="lg:sticky lg:top-32">
-                    <x-section-heading eyebrow="Who we are" title="An independent partner across the entire capital lifecycle." lead="We provide advisory and investment solutions from business strategy and project development to capital raising, transaction execution and investment management." />
+                    <x-section-heading eyebrow="Who we are" title="An alternative asset partner across the entire capital lifecycle." lead="We provide advisory, capital and investment solutions — from business strategy and project development to capital raising, transaction execution and investment management." />
                     <a href="{{ route('about') }}" class="link-arrow mt-10" data-reveal>Discover our story <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
                     <img src="{{ asset('images/skyline.webp') }}" alt="Glass office towers reflecting the morning light" width="653" height="980" loading="lazy" class="mt-10 hidden w-full max-w-sm lg:block" data-reveal="fade">
                 </div>
@@ -150,7 +164,7 @@
                         <text x="95" y="285" text-anchor="middle" fill="#fff" font-size="17" font-family="var(--font-marcellus)">Capital</text>
                         <text x="95" y="305" text-anchor="middle" fill="#fff" font-size="17" font-family="var(--font-marcellus)">Solutions</text>
                         <text x="305" y="295" text-anchor="middle" fill="#fff" font-size="17" font-family="var(--font-marcellus)">Investments</text>
-                        <circle cx="200" cy="208" r="38" fill="#071834" stroke="#e8b654" stroke-width="1.5" />
+                        <circle cx="200" cy="208" r="38" fill="#001440" stroke="#e8b654" stroke-width="1.5" />
                         <text x="200" y="214" text-anchor="middle" fill="#f2d18a" font-size="17" letter-spacing="2" font-family="var(--font-marcellus)">ACPL</text>
                     </svg>
                 </div>
@@ -184,43 +198,22 @@
 
     {{-- Value proposition --}}
     <section class="relative overflow-hidden bg-sand py-24 sm:py-32">
-        <div class="container-x grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            <div>
-                <x-section-heading eyebrow="Our value proposition" title="We bridge capital and opportunity." />
-                <div class="mt-10 space-y-5">
-                    @foreach (config('acpl.value_proposition.needs') as $need)
-                        <p class="flex items-baseline gap-4 font-display text-2xl text-navy-900 sm:text-3xl" data-reveal="left" style="--reveal-delay: {{ $loop->index * 120 }}ms">
-                            <span class="text-base text-gold-600">0{{ $loop->iteration }}</span>
-                            <span>{{ $need['who'] }} <span class="text-mist">{{ $need['need'] }}</span></span>
-                        </p>
-                    @endforeach
-                </div>
-                <p class="mt-10 border-l-2 border-gold-500 pl-6 text-lg leading-relaxed text-navy-800" data-reveal>
-                    <strong class="font-semibold">ACPL sits at the intersection of these needs.</strong> {{ config('acpl.value_proposition.role') }}
-                </p>
-            </div>
+        <div class="container-x">
+            <span class="eyebrow" data-reveal>Our value proposition</span>
+            <p class="mt-8 max-w-5xl font-display text-3xl leading-snug text-navy-900 sm:text-4xl lg:text-[2.6rem]" data-reveal style="--reveal-delay: 80ms">{{ config('acpl.value_proposition.statement') }}</p>
 
-            {{-- Bridge diagram --}}
-            <div class="relative" data-reveal="zoom">
-                <svg viewBox="0 0 480 400" class="w-full" role="img" aria-label="Businesses, investors and projects connected through ACPL">
-                    <defs>
-                        <linearGradient id="bridge-line" x1="0" x2="1"><stop offset="0" stop-color="#d4972c" stop-opacity="0.15" /><stop offset="1" stop-color="#ef7d10" /></linearGradient>
-                    </defs>
-                    @foreach ([70, 200, 330] as $y)
-                        <path d="M130 {{ $y }} C 220 {{ $y }}, 230 200, 300 200" fill="none" stroke="url(#bridge-line)" stroke-width="2" stroke-dasharray="6 6">
-                            <animate attributeName="stroke-dashoffset" from="48" to="0" dur="2.4s" repeatCount="indefinite" />
-                        </path>
-                    @endforeach
-                    @foreach (config('acpl.value_proposition.needs') as $need)
-                        @php($y = [70, 200, 330][$loop->index])
-                        <rect x="10" y="{{ $y - 28 }}" width="124" height="56" rx="28" fill="#fff" stroke="#0b2148" stroke-opacity="0.1" />
-                        <text x="72" y="{{ $y + 6 }}" text-anchor="middle" fill="#0b2148" font-size="16" font-family="var(--font-marcellus)">{{ $need['who'] }}</text>
-                    @endforeach
-                    <circle cx="350" cy="200" r="92" fill="#071834" />
-                    <circle cx="350" cy="200" r="104" fill="none" stroke="#d4972c" stroke-opacity="0.35" stroke-dasharray="3 7" />
-                    <image href="{{ asset('images/acpl-mark.webp') }}" x="300" y="146" width="100" height="91" />
-                    <text x="350" y="260" text-anchor="middle" fill="#f2d18a" font-size="10" letter-spacing="2.5" font-family="var(--font-manrope)">SUSTAINABLE VALUE</text>
-                </svg>
+            <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+                @foreach (config('acpl.value_proposition.promises') as $promise)
+                    <article class="card-light group relative overflow-hidden p-8 sm:p-10" data-reveal style="--reveal-delay: {{ $loop->index * 110 }}ms">
+                        <span class="absolute top-0 left-8 h-1 w-16 rounded-b-full bg-gradient-to-r from-gold-400 to-ember"></span>
+                        <div class="flex items-center justify-between">
+                            <span class="grid size-12 place-items-center rounded-2xl bg-navy-900 text-gold-300 transition duration-500 group-hover:bg-gradient-to-br group-hover:from-gold-300 group-hover:to-ember group-hover:text-navy-950"><x-icon :name="$promise['icon']" class="size-6" /></span>
+                            <span class="text-xs font-semibold tracking-[0.2em] text-gold-600 uppercase">{{ $promise['platform'] }}</span>
+                        </div>
+                        <h3 class="mt-8 font-display text-2xl text-navy-900">{{ $promise['title'] }}</h3>
+                        <p class="mt-3 leading-relaxed text-mist">{{ $promise['text'] }}</p>
+                    </article>
+                @endforeach
             </div>
         </div>
     </section>
@@ -396,5 +389,5 @@
         </div>
     </section>
 
-    <x-cta-band />
+    <x-cta-band page="home" />
 </x-layouts.app>

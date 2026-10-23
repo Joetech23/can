@@ -1,12 +1,12 @@
 @php($company = config('acpl.company'))
 
-<footer class="relative overflow-hidden bg-navy-950 text-white">
+<footer class="relative overflow-hidden border-t border-white/10 bg-navy-900 text-white">
     <div class="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-gold-500/10 blur-3xl"></div>
 
     <div class="container-x relative">
         <div class="grid grid-cols-1 gap-14 border-b border-white/10 py-20 lg:grid-cols-12">
             <div class="lg:col-span-4">
-                <x-logo />
+                <x-logo on-dark />
                 <p class="mt-8 max-w-sm leading-relaxed text-white/60">{{ $company['summary'] }}</p>
                 <p class="mt-8 font-serif text-2xl text-gold-300 italic">{{ $company['tagline'] }}</p>
 
@@ -34,9 +34,13 @@
                     <h3 class="text-xs font-semibold tracking-[0.25em] text-gold-400 uppercase">Platforms</h3>
                     <ul class="mt-6 space-y-3 text-sm">
                         @foreach (config('acpl.platforms') as $platform)
-                            <li><a href="{{ route('services') }}#{{ $platform['key'] }}" class="text-white/65 transition hover:text-white">{{ $platform['title'] }}</a></li>
+                            <li>
+                                <a href="{{ route('services') }}#{{ $platform['key'] }}" class="text-white/65 transition hover:text-white">{{ $platform['title'] }}</a>
+                                @if ($platform['key'] === 'advisory')
+                                    <a href="{{ route('services') }}#einvoice" class="mt-2 ml-3 block border-l border-gold-400/40 pl-3 text-xs text-white/50 transition hover:text-white">Compliance Advisory – E-Invoicing</a>
+                                @endif
+                            </li>
                         @endforeach
-                        <li><a href="{{ route('services') }}#einvoice" class="text-white/65 transition hover:text-white">E-Invoice Compliance</a></li>
                     </ul>
                 </div>
                 <div>
@@ -46,10 +50,10 @@
                             <x-icon name="pin" class="mt-0.5 size-4 text-gold-400" />
                             <span><span class="block text-xs tracking-wider text-white/40 uppercase">Head office</span>{!! implode('<br>', array_map('e', $company['address'])) !!}</span>
                         </li>
-                        @if ($company['branch_address'])
+                        @if ($company['annex_address'])
                             <li class="flex gap-3">
                                 <x-icon name="pin" class="mt-0.5 size-4 text-gold-400" />
-                                <span><span class="block text-xs tracking-wider text-white/40 uppercase">Branch office</span>{!! implode('<br>', array_map('e', (array) $company['branch_address'])) !!}</span>
+                                <span><span class="block text-xs tracking-wider text-white/40 uppercase">{{ $company['annex_label'] }}</span>{!! implode('<br>', array_map('e', (array) $company['annex_address'])) !!}</span>
                             </li>
                         @endif
                         <li><a href="tel:{{ $company['phone_href'] }}" class="flex gap-3 transition hover:text-white"><x-icon name="phone" class="mt-0.5 size-4 text-gold-400" />{{ $company['phone'] }}</a></li>

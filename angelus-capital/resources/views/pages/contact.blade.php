@@ -9,7 +9,7 @@
             <aside class="flex flex-col gap-5 lg:col-span-5">
                 @foreach (array_filter([
                     ['icon' => 'pin', 'label' => 'Head office', 'value' => implode(', ', $company['address']), 'href' => 'https://www.google.com/maps/search/?api=1&query='.urlencode($company['map_query']), 'external' => true],
-                    $company['branch_address'] ? ['icon' => 'pin', 'label' => 'Branch office', 'value' => implode(', ', (array) $company['branch_address']), 'href' => 'https://www.google.com/maps/search/?api=1&query='.urlencode(implode(', ', (array) $company['branch_address'])), 'external' => true] : null,
+                    $company['annex_address'] ? ['icon' => 'pin', 'label' => $company['annex_label'], 'value' => implode(', ', (array) $company['annex_address']), 'href' => 'https://www.google.com/maps/search/?api=1&query='.urlencode(implode(', ', (array) $company['annex_address'])), 'external' => true] : null,
                     ['icon' => 'phone', 'label' => 'Call', 'value' => $company['phone'], 'href' => 'tel:'.$company['phone_href'], 'external' => false],
                     ['icon' => 'whatsapp', 'label' => 'WhatsApp', 'value' => 'Chat with us on WhatsApp', 'href' => 'https://wa.me/'.$company['whatsapp'].'?text='.rawurlencode($company['whatsapp_message']), 'external' => true],
                     ['icon' => 'mail', 'label' => 'Email', 'value' => $company['email'], 'href' => 'mailto:'.$company['email'], 'external' => false],
@@ -29,7 +29,7 @@
 
                 <a href="{{ route('contact', ['enquiry' => 'einvoice']) }}#enquire" class="on-dark relative isolate block overflow-hidden rounded-3xl bg-navy-900 p-7 text-white transition duration-500 hover:-translate-y-1" data-reveal>
                     <div class="absolute -top-16 -right-16 -z-10 size-48 rounded-full bg-gold-500/25 blur-3xl"></div>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="document" class="size-4" /> New service</span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-semibold tracking-wider text-gold-300 uppercase"><x-icon name="document" class="size-4" /> Advisory · Compliance</span>
                     <p class="mt-4 font-display text-2xl">{{ config('acpl.einvoice.title') }}</p>
                     <p class="mt-2 text-sm leading-relaxed text-white/65">{{ config('acpl.einvoice.summary') }}</p>
                     <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-300">Ask about e-invoice compliance <x-icon name="arrow-right" class="size-4" stroke="2" /></span>
@@ -51,6 +51,22 @@
                         @foreach ($campaign as $key => $value)
                             <input type="hidden" name="{{ $key }}" value="{{ old($key, $value) }}">
                         @endforeach
+
+                        @if ($answers !== [])
+                            {{-- Pre-consultation questionnaire answers from the landing page --}}
+                            <div class="rounded-2xl border border-gold-500/30 bg-sand/60 p-5 sm:col-span-2">
+                                <p class="text-xs font-semibold tracking-[0.2em] text-gold-700 uppercase">Your answers</p>
+                                <dl class="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+                                    @foreach ($answers as $key => $answer)
+                                        <div>
+                                            <dt class="text-mist">{{ config("acpl.questionnaire.{$key}.label") }}</dt>
+                                            <dd class="font-medium text-navy-900">{{ $answer }}</dd>
+                                        </div>
+                                        <input type="hidden" name="answers[{{ $key }}]" value="{{ $answer }}">
+                                    @endforeach
+                                </dl>
+                            </div>
+                        @endif
 
                         <div class="hidden" aria-hidden="true">
                             <label for="company_website">Leave this field empty</label>

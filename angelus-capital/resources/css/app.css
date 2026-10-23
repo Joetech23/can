@@ -10,12 +10,13 @@
 }
 
 @theme {
-    --color-navy-950: #040c1f;
-    --color-navy-900: #071834;
-    --color-navy-800: #0b2148;
-    --color-navy-700: #12305f;
-    --color-navy-600: #1d4278;
-    --color-navy-500: #2f5893;
+    /* Brand navy (#001440) from the 2026 brand collateral */
+    --color-navy-950: #000b28;
+    --color-navy-900: #001440;
+    --color-navy-800: #0a2157;
+    --color-navy-700: #152f6b;
+    --color-navy-600: #254582;
+    --color-navy-500: #3c5e9b;
 
     --color-gold-200: #f8e6bb;
     --color-gold-300: #f2d18a;
@@ -25,10 +26,10 @@
     --color-gold-700: #8c5b10;
     --color-ember: #ef7d10;
 
-    --color-ivory: #fbf8f2;
-    --color-sand: #f3ecdf;
-    --color-ink: #0a1730;
-    --color-mist: #5d6a82;
+    --color-ivory: #f7f8fb;
+    --color-sand: #f5f1e8;
+    --color-ink: #001233;
+    --color-mist: #56627a;
 
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -88,7 +89,7 @@
     }
 
     body {
-        @apply bg-ivory font-sans text-ink;
+        @apply bg-white font-sans text-ink;
         overflow-x: clip;
     }
 
@@ -120,12 +121,16 @@
     }
 
     .text-gold-gradient {
-        background-image: linear-gradient(100deg, #f8e6bb 0%, #e8b654 30%, #ef7d10 55%, #f2d18a 80%, #e8b654 100%);
+        background-image: linear-gradient(100deg, #b67a17 0%, #d4972c 30%, #ef7d10 55%, #c98a1e 80%, #b67a17 100%);
         background-size: 220% 100%;
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         @apply animate-shine;
+    }
+
+    .on-dark .text-gold-gradient {
+        background-image: linear-gradient(100deg, #f8e6bb 0%, #e8b654 30%, #ef7d10 55%, #f2d18a 80%, #e8b654 100%);
     }
 
     .btn-gold {
@@ -134,6 +139,10 @@
 
     .btn-outline {
         @apply btn border border-white/25 text-white hover:border-gold-400 hover:text-gold-300;
+    }
+
+    .btn-ghost {
+        @apply btn border border-navy-900/20 text-navy-900 hover:border-gold-500 hover:text-gold-700;
     }
 
     .btn-navy {
@@ -168,6 +177,13 @@
         linear-gradient(to bottom, rgba(232, 182, 84, 0.07) 1px, transparent 1px);
         background-size: 72px 72px;
         mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    /* Fine navy contour lines from the brand collateral */
+    .brand-lines {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600' fill='none' stroke='%23001440' stroke-opacity='0.07'%3E%3Cpath d='M-50 420C250 300 500 520 800 360S1150 160 1250 220'/%3E%3Cpath d='M-50 440C250 320 500 540 800 380S1150 180 1250 240'/%3E%3Cpath d='M-50 460C250 340 500 560 800 400S1150 200 1250 260'/%3E%3Cpath d='M-50 480C250 360 500 580 800 420S1150 220 1250 280'/%3E%3Cpath d='M-50 500C250 380 500 600 800 440S1150 240 1250 300'/%3E%3Cpath d='M-50 520C250 400 500 620 800 460S1150 260 1250 320'/%3E%3Cpath d='M-50 120C300 40 650 220 900 100S1200 20 1250 60'/%3E%3Cpath d='M-50 140C300 60 650 240 900 120S1200 40 1250 80'/%3E%3Cpath d='M-50 160C300 80 650 260 900 140S1200 60 1250 100'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
     }
 
     .field {
@@ -215,7 +231,7 @@
 
 /* Header state */
 [data-header].is-scrolled {
-    @apply border-white/10 bg-navy-950/95 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl;
+    @apply border-navy-900/10 bg-white/95 shadow-[0_10px_40px_-24px_rgba(0,20,64,0.45)] backdrop-blur-xl;
 }
 
 [data-header].is-scrolled [data-header-inner] {

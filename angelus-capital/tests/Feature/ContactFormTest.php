@@ -26,11 +26,12 @@ class ContactFormTest extends TestCase
         ];
     }
 
-    public function test_contact_page_offers_six_enquiry_types_including_e_invoice(): void
+    public function test_contact_page_offers_six_enquiry_types_including_e_invoicing_under_advisory(): void
     {
         $this->get(route('contact'))
             ->assertOk()
-            ->assertSee('NRS e-invoice compliance advisory')
+            ->assertSee('Advisory – e-invoicing compliance')
+            ->assertSee('19 Bemil Street')
             ->assertSee('name="enquiry_type"', false);
 
         $this->assertCount(6, config('acpl.enquiry_types'));
@@ -55,7 +56,7 @@ class ContactFormTest extends TestCase
 
         Mail::assertSent(EnquiryReceived::class, fn (EnquiryReceived $mail) => $mail->hasTo('einvoice@example.com')
             && $mail->hasReplyTo('ada@example.com')
-            && $mail->unit === 'E-Invoice Compliance Advisory');
+            && $mail->unit === 'Advisory – E-Invoicing Compliance');
 
         Log::shouldHaveReceived('info')->once()->withArgs(
             fn (string $message, array $context): bool => str_contains($context['routed_to'], 'einvoice@example.com')
@@ -97,6 +98,47 @@ class ContactFormTest extends TestCase
         Http::assertSent(fn ($request) => $request->url() === 'https://api.hsforms.com/submissions/v3/integration/submit/123456/abc-guid'
             && collect($request['fields'])->contains(fn ($field) => $field['name'] === 'email' && $field['value'] === 'ada@example.com')
             && collect($request['fields'])->contains(fn ($field) => $field['name'] === 'firstname' && $field['value'] === 'Ada'));
+    }
+
+    public function test_questionnaire_answers_from_the_landing_page_are_prefilled_and_delivered(): void
+    {
+        Mail::fake();
+        Http::fake(['crm.example.com/*' => Http::response(['ok' => true])]);
+        config(['acpl.crm.webhook_url' => 'https://crm.example.com/hooks/leads', 'acpl.crm.token' => 'secret-token']);
+
+        $this->get(route('contact', ['enquiry' => 'capital', 'q' => ['challenge' => 'High cost of capital', 'size' => 'made-up option']]))
+            ->assertOk()
+            ->assertSee('name="answers[challenge]" value="High cost of capital"', false)
+            ->assertDontSee('made-up option');
+
+        $this->post(route('contact.store'), $this->validEnquiry(['answers' => ['challenge' => 'High cost of capital']]))
+            ->assertRedirect(route('contact.thanks'));
+
+        Mail::assertSent(EnquiryReceived::class, fn (EnquiryReceived $mail) => $mail->answers === ['What is your biggest challenge right now?' => 'High cost of capital']);
+
+        Http::assertSent(fn ($request) => $request->url() === 'https://crm.example.com/hooks/leads'
+            && $request->hasHeader('Authorization', 'Bearer secret-token')
+            && $request['contact']['email'] === 'ada@example.com'
+            && $request['enquiry']['type'] === 'capital'
+            && $request['questionnaire'] === ['What is your biggest challenge right now?' => 'High cost of capital']);
+    }
+
+    public function test_unknown_questionnaire_answers_are_rejected(): void
+    {
+        $this->post(route('contact.store'), $this->validEnquiry(['answers' => ['challenge' => 'Not an option']]))
+            ->assertSessionHasErrors('answers.challenge');
+    }
+
+    public function test_crm_webhook_failure_does_not_lose_the_enquiry(): void
+    {
+        Mail::fake();
+        Http::fake(['crm.example.com/*' => Http::response('Server error', 500)]);
+        config(['acpl.crm.webhook_url' => 'https://crm.example.com/hooks/leads']);
+
+        $this->post(route('contact.store'), $this->validEnquiry())
+            ->assertRedirect(route('contact.thanks'));
+
+        Mail::assertSent(EnquiryReceived::class);
     }
 
     public function test_hubspot_failure_does_not_lose_the_enquiry(): void

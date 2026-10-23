@@ -19,8 +19,9 @@ class EnquiryReceived extends Mailable
     /**
      * @param  array<string, mixed>  $enquiry
      * @param  array<string, string>  $campaign
+     * @param  array<string, string>  $answers  Questionnaire answers keyed by question
      */
-    public function __construct(public array $enquiry, public string $unit, public array $campaign = []) {}
+    public function __construct(public array $enquiry, public string $unit, public array $campaign = [], public array $answers = []) {}
 
     public function envelope(): Envelope
     {
