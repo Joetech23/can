@@ -1,0 +1,5 @@
+id,slug,pillar,title,platforms,status,planned_date,published_date,url_linkedin,url_facebook,url_x,impressions,engagements,saves_shares,comments,follows,notes
+001,lift-off,HN,We don't just talk about AI. We run on it.,LI;FB;X,idea,2026-10-27,,,,,,,,,,Pinned intro post
+002,brief-your-ai,GS,Brief your AI like a new staff member,LI;X,idea,2026-10-28,,,,,,,,,,Carousel + thread
+003,lead-engine,FR,13000 raw records to 12000+ scored leads,LI;FB;X,idea,2026-10-29,,,,,,,,,,Anonymise client
+004,ai-video-agent,HN,What we're building: an AI agent that makes product videos,LI;FB;X,idea,2026-10-30,,,,,,,,,,
