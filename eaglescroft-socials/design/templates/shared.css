@@ -1,6 +1,6 @@
 /* Eaglescroft social graphics: shared tokens + building blocks.
    Values mirror the Eaglescroft brand system. Do not hand-type new colours. */
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700&family=Raleway:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@500;600;700&family=Raleway:wght@400;500;600&display=swap");
 
 :root {
   --navy: #001E60; --navy-600: #001A54; --navy-900: #000A22; --navy-400: #2F5AA3;
@@ -20,7 +20,7 @@
   --grad-text: linear-gradient(100deg, #1D4ED8, #2563EB 60%, #3B82F6);
   --grad-text-dark: linear-gradient(100deg, #93C5FD, #60A5FA 50%, #3B82F6);
 
-  --font-display: "Poppins", system-ui, sans-serif;
+  --font-display: "Sora", system-ui, sans-serif;
   --font-body: "Raleway", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -62,7 +62,8 @@ body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing:
 .eyebrow::before { content: ""; width: 2.2em; height: 2px; background: currentColor; opacity: 0.8; }
 .dark .eyebrow, .deep .eyebrow { color: var(--accent-300); }
 
-.headline { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.03em; line-height: 1.04; margin: 0; }
+/* Headlines sit at the H2 tier by default: confident, not shouting. */
+.headline { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; margin: 0; }
 .dark .headline, .deep .headline { color: #fff; }
 .light .headline, .white .headline { color: var(--navy); }
 .ink { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -97,4 +98,7 @@ body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing:
 .brandbar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; }
 .brandbar img { display: block; }
 .brandbar .mono { color: var(--faint); }
+/* The name standing alone is always capitals: EAGLESCROFT */
+.brandbar .name { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
+.dark .brandbar .name, .deep .brandbar .name { color: #fff; }
 .dark .brandbar .mono, .deep .brandbar .mono { color: var(--on-dark-muted); }

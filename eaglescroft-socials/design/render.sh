@@ -7,10 +7,10 @@
 # PNG renders at 2x for crisp uploads. PDF (for LinkedIn carousels) uses the
 # template's own @page size, one slide per page.
 #
-# Fonts: install Poppins, Raleway and JetBrains Mono locally for reliable output
+# Fonts: install Sora, Raleway and JetBrains Mono locally for reliable output
 # (templates also @import Google Fonts when network is available):
 #   mkdir -p ~/.fonts && cd ~/.fonts && GF=https://raw.githubusercontent.com/google/fonts/main
-#   for w in Regular Medium SemiBold Bold; do curl -sfLO "$GF/ofl/poppins/Poppins-$w.ttf"; done
+#   curl -sfL "$GF/ofl/sora/Sora%5Bwght%5D.ttf" -o Sora.ttf
 #   curl -sfL "$GF/ofl/raleway/Raleway%5Bwght%5D.ttf" -o Raleway.ttf
 #   curl -sfL "$GF/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf" -o JetBrainsMono.ttf
 #   fc-cache -f

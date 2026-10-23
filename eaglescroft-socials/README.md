@@ -62,7 +62,7 @@ businesses.
 
 ## Rendering graphics
 
-Needs Chromium plus the brand fonts (Poppins, Raleway, JetBrains Mono). See
+Needs Chromium plus the brand fonts (Sora for headings, Raleway for body, JetBrains Mono for labels). See
 `design/render.sh` for the font install line.
 
 ```bash
