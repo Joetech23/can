@@ -60,5 +60,5 @@ Clearly Joshua's, recognisably linked to Eaglescroft, but not the agency's look:
   annotations.
 
 **Template:** `design/templates/notebook.css`. First example: `design/personal/ai-policy/`
-(Friday's AI-policy carousel). The "JO" initials badge stands in for a photo until one is
-approved; swap in `<img>` inside `.av`.
+(Friday's AI-policy carousel). Photos: `design/personal/photos/`: the approved portrait, a
+background-free cut-out (`joshua-cutout.png`) and a round-avatar crop (`joshua-avatar.jpg`).

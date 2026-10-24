@@ -3,12 +3,12 @@
 Daily on LinkedIn (personal) and X; Facebook/Instagram on the starred days. First person,
 everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md`).
 
-**Status key:** 🛠 I design it · 📥 needs something from you (see `2026-W44-resources.md`) ·
+**Status key:** ✅ graphic ready · 🛠 I design it · 📥 needs something from you (see `2026-W44-resources.md`) ·
 ✍️ needs your own words or verdict.
 
 | Day | Series | Audience | Post | Format | Status |
 | --- | --- | --- | --- | --- | --- |
-| Mon 26 ★ | Today I built | Everyone | "I run my business on AI. From today, I'll show you how." | Photo card | 🛠📥 |
+| Mon 26 ★ | Today I built | Everyone | "I run my business on AI. From today, I'll show you how." | Photo card | ✅ |
 | Tue 27 ★ | AI for… | Traders | 3 free ways a trader can use AI on WhatsApp today | 5-slide carousel | 🛠 |
 | Wed 28 | AI for… | Academics | AI for a literature review, without cheating | 6-slide carousel | 🛠 |
 | Thu 29 | Today I built | Builders, founders | What I shipped today: the AI video agent | Screenshot card + X thread | 🛠📥 |
@@ -19,7 +19,7 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 ---
 
 ## Mon 26: "I run my business on AI. From today, I'll show you how."
-**Graphic:** notebook photo card: Joshua at his desk, handwritten-style underline on "show you how". 📥 A photo you're happy with.
+**Graphic:** `design/personal/w44-mon-intro/post.png` ✅ (portrait cut-out, notebook style).
 
 **LinkedIn**
 > For years I kept my profile quiet. That changes today.
