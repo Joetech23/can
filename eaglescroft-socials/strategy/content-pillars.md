@@ -78,6 +78,21 @@ Short, grounded commentary on AI news and research that matters to our audience.
 
 ---
 
+## Topic lanes
+
+The series are the *format*; the lanes are the *subject*. Rotate lanes through the week so the
+page reflects everything Eaglescroft does, not just AI:
+
+| Lane | Examples |
+| --- | --- |
+| AI automation | WhatsApp assistants, AI agents, workflow automation |
+| CRM | GoHighLevel builds and audits, data cleaning and migration, follow-up systems |
+| Websites | Speed, conversion, what a 2026 website must do |
+| Digital marketing | Funnels, SEO, ads, lead generation, outreach |
+| Video editing | AI-assisted editing, motion graphics, faceless and documentary content |
+| SaaS and product updates | New features in the tools we use, and what they mean for clients |
+| Branding | Identity systems, consistency, design that sells |
+
 ## Repurposing: one story, three platforms
 
 Every substantial piece (usually a Flight Report or Ground School) is written once and cut three ways:

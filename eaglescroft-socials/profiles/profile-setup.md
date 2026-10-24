@@ -24,8 +24,8 @@ circle crop. Use the same image on all three platforms so the brand is recognisa
 > We help businesses fly online with websites, AI chatbots, automation and growth systems. Practical AI, no hype.
 
 ### LinkedIn: About
-> Eaglescroft Limited is a digital agency based in Abuja, Nigeria, serving businesses across
-> Nigeria, the UK, the USA and Australia.
+> Eaglescroft Limited is a global digital agency, based in Abuja, Nigeria and working with
+> businesses around the world.
 >
 > We build websites, brands, AI chatbots, automations, CRM systems and video content that turn
 > online presence into growth. And we run our own business on the same AI tools we build with.

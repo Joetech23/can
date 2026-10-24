@@ -1,5 +1,9 @@
 # Posting calendar
 
+> **Weekly calendars now live in [`calendar/`](../calendar/)**: one for Eaglescroft and one for
+> Joshua's personal accounts, plus a resource checklist per week. The launch plan below is the
+> original outline; the weekly files supersede it where they differ.
+
 ## Weekly rhythm
 
 | Day | LinkedIn | Facebook | X |

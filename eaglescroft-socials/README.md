@@ -14,8 +14,8 @@ businesses.
 
 | Account | Role | Voice |
 | --- | --- | --- |
-| **Eaglescroft (company page / brand handle)** | Primary. Every post is published here first. | "We": the agency, partner-minded |
-| **Joshua Obaje (personal)** | Amplifier. Reshares and adds a founder's take on selected posts. | "I": hands-on founder, no hype |
+| **Eaglescroft (company page / brand handle)** | Global agency account: AI, automation, CRM, web, marketing, video, SaaS updates. Daily. | "We": the agency, partner-minded |
+| **Joshua Obaje (personal)** | Separate daily track: everyday AI education for traders, academics, businesses and companies, plus build-in-public. See `personal/strategy.md`. | "I": hands-on founder, no hype |
 
 ## How it works
 
@@ -45,12 +45,14 @@ businesses.
 
 | Path | What lives there |
 | --- | --- |
+| `calendar/` | Weekly calendars: `YYYY-Www-eaglescroft.md`, `YYYY-Www-joshua.md`, `YYYY-Www-resources.md` |
+| `personal/strategy.md` | Joshua's personal track: audiences, pillars, voice and the "notebook" visual identity |
 | `strategy/brand-voice.md` | Social voice, content rules, the privacy line, hashtag sets |
 | `strategy/content-pillars.md` | The five recurring series and what goes in each |
 | `strategy/platforms.md` | LinkedIn / Facebook / X playbooks: formats, length, sizes, timing |
 | `strategy/posting-calendar.md` | Weekly rhythm and the first four-week launch plan |
 | `profiles/profile-setup.md` | Page names, handles, bios, cover/avatar specs for all three platforms |
-| `research/` | Dated trend notes (`YYYY-MM-trends.md`) with sources |
+| `research/` | Dated trend notes (`YYYY-MM-trends.md`) and the competitor scan (`competitors.md`), with sources |
 | `pipeline/ideas.md` | Raw idea backlog, sorted by pillar |
 | `pipeline/tracker.csv` | Every post: status, platform, date, link, metrics |
 | `templates/` | Copy briefs: case story, build log, AI chat insight, explainer, X thread |

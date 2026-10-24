@@ -11,7 +11,7 @@ adapts it for social feeds.
 real problems, real workflows. Then we help you do the same.
 
 **Audience, in priority order**
-1. Business owners and founders (Nigeria first, then UK / US / Australia) who know AI matters but
+1. Business owners and founders **anywhere in the world** (strong home base in Nigeria and Africa) who know AI matters but
    don't know where to start.
 2. Professionals and team leads who want to work faster and stay relevant.
 3. Students, NYSC members and early-career people building AI skills for the future of work.
@@ -60,6 +60,8 @@ Joshua keeps a low-key, private profile. Every post passes this check before app
 Eaglescroft, its services and `eaglescroft.com.ng` **can and should** be named and promoted.
 
 ## Recurring lines (use freely)
+
+- Abuja to the world.
 
 - We Help Businesses Fly Online.
 - We don't just talk about AI. We run on it.
