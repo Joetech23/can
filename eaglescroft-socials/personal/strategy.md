@@ -62,3 +62,8 @@ Clearly Joshua's, recognisably linked to Eaglescroft, but not the agency's look:
 **Template:** `design/templates/notebook.css`. First example: `design/personal/ai-policy/`
 (Friday's AI-policy carousel). Photos: `design/personal/photos/`: the approved portrait, a
 background-free cut-out (`joshua-cutout.png`) and a round-avatar crop (`joshua-avatar.jpg`).
+
+**Profile kit:** `design/personal/profile/`: profile pictures (`avatar-blue.png`, recommended;
+`avatar-paper.png`), `linkedin-banner.png` (1584×396), `x-header.png` (1500×500) and
+`facebook-cover.png` (1640×624). Banner copy stays clear of where each platform overlaps the
+profile photo.
