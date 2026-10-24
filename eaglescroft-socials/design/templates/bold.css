@@ -62,3 +62,12 @@
 .on-light-bar .footbar .site .ic { color: var(--accent-300); }
 
 .swipe { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.18em; font-size: 15px; }
+
+/* Light "paper" field for variety between vivid slides */
+.canvas.paper { background: radial-gradient(70% 50% at 80% 0%, #FFFFFF 0%, #EEF2FB 55%, #E3EAF8 100%); color: var(--navy); }
+.canvas.paper .topbar .brand span, .canvas.paper .hl { color: var(--navy); }
+.canvas.paper .lead { color: var(--body); }
+
+/* 3D object from design/3d/out/ */
+.obj { position: absolute; z-index: 2; pointer-events: none; filter: drop-shadow(0 40px 50px rgba(0,5,20,0.45)); }
+.paper .obj { filter: drop-shadow(0 34px 40px rgba(0,30,96,0.25)); }
