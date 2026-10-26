@@ -35,7 +35,7 @@ businesses.
    [`strategy/brand-voice.md`](strategy/brand-voice.md#the-privacy-line).
 3. **Design**: copy a graphic template from [`design/templates/`](design/templates/) into the post's
    folder, edit the copy, render with `design/render.sh`.
-4. **Approve**: Joshua reviews. Nothing goes out unapproved.
+4. **Approve**: Joshua reviews in the [Content Hub](hub/README.md). Nothing goes out unapproved.
 5. **Publish**: post natively (or through the scheduler once one is connected, see
    [Publishing](#publishing)). Log it in [`pipeline/tracker.csv`](pipeline/tracker.csv).
 6. **Learn**: monthly review of what landed, which feeds the next month's
@@ -45,6 +45,7 @@ businesses.
 
 | Path | What lives there |
 | --- | --- |
+| `hub/` | The private Content Hub page (approvals, captions, downloads, file drop): source, seed builder, asset map |
 | `calendar/` | Weekly calendars: `YYYY-Www-eaglescroft.md`, `YYYY-Www-joshua.md`, `YYYY-Www-resources.md` |
 | `personal/strategy.md` | Joshua's personal track: audiences, pillars, voice and the "notebook" visual identity |
 | `strategy/brand-voice.md` | Social voice, content rules, the privacy line, hashtag sets |
