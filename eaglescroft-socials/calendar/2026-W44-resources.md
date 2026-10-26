@@ -38,3 +38,21 @@ Search pexels.com with these terms, and download the **Large** size (free for co
 ## Already done (no resources needed)
 
 Eaglescroft Mon 26, Fri 30, Sat 31 and Sun 1 graphics are ready in `design/concepts/`.
+
+## Real screenshots (new standing request)
+
+People engage faster with apps they recognise (see `research/engagement-psychology.md`).
+Whenever a post mentions a tool, we show **the real app**, on a phone or laptop, in our device
+frames. Capture on your phone (portrait, full screen) or laptop, then drop into the inbox
+with these names. Blur or crop anything private before sending, or tell me to blur it.
+
+| File name | What to capture |
+| --- | --- |
+| `shot-chatgpt-phone-*.png` | ChatGPT app: a fresh chat with a useful prompt and answer (2–3 shots) |
+| `shot-claude-phone-*.png` | Claude app: same idea |
+| `shot-gemini-phone-*.png` | Gemini app, or Gemini inside Gmail/Docs |
+| `shot-perplexity-phone-*.png` | Perplexity: an answer showing its source links |
+| `shot-whatsapp-business-*.png` | WhatsApp Business: quick replies or catalogue screen (no customer names) |
+| `shot-canva-*.png`, `shot-capcut-*.png` | Canva / CapCut editors with a project open |
+| `shot-ghl-*.png` | A HighLevel dashboard or AI Employee settings page (blur client data) |
+| `logo-chatgpt.svg/png`, `logo-canva`, `logo-capcut` | Official logo files from openai.com/brand, canva.com/brand and CapCut's press page (these aren't in the open icon library) |

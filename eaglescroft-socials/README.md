@@ -52,7 +52,10 @@ businesses.
 | `strategy/platforms.md` | LinkedIn / Facebook / X playbooks: formats, length, sizes, timing |
 | `strategy/posting-calendar.md` | Weekly rhythm and the first four-week launch plan |
 | `profiles/profile-setup.md` | Page names, handles, bios, cover/avatar specs for all three platforms |
-| `research/` | Dated trend notes (`YYYY-MM-trends.md`) and the competitor scan (`competitors.md`), with sources |
+| `research/` | Dated trend notes (`YYYY-MM-trends.md`), the competitor scan (`competitors.md`) and the engagement psychology research (`engagement-psychology.md`), with sources |
+| `design/logos/` | Real brand logos in official colours + guideline links (`build-logos.py` adds more) |
+| `design/templates/devices.css` | Phone/laptop frames for real screenshots; logo tiles |
+| `design/inbox/` | Real screenshots and photos waiting to be used |
 | `pipeline/ideas.md` | Raw idea backlog, sorted by pillar |
 | `pipeline/tracker.csv` | Every post: status, platform, date, link, metrics |
 | `templates/` | Copy briefs: case story, build log, AI chat insight, explainer, X thread |

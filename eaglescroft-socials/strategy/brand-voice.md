@@ -43,6 +43,13 @@ real problems, real workflows. Then we help you do the same.
 - **Numbers as proof:** compact, with `+` or `%`, e.g. "12,000+ leads scored". Use them only when they
   pass the privacy line below.
 
+## Engagement rules
+
+Seven research-backed rules (real logos and screenshots, faces and gaze, headline-first,
+emotion-first, curiosity with a hint, the 50 ms verdict, design for every culture) are in
+[`research/engagement-psychology.md`](../research/engagement-psychology.md). Apply them before
+designing.
+
 ## The privacy line
 
 Joshua keeps a low-key, private profile. Every post passes this check before approval:
