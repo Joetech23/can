@@ -9,7 +9,7 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 | Day | Series | Audience | Post | Format | Status |
 | --- | --- | --- | --- | --- | --- |
 | Mon 26 ★ | Today I built | Everyone | "I run my business on AI. From today, I'll show you how." | Photo card | ✅ |
-| Tue 27 ★ | AI for… | Traders | 3 free ways a trader can use AI on WhatsApp today | 5-slide carousel | 🛠 |
+| Tue 27 ★ | AI for… | Traders | 3 free ways a trader can use AI on WhatsApp today | 5-slide carousel | ✅ |
 | Wed 28 | AI for… | Academics | AI for a literature review, without cheating | 6-slide carousel | 🛠 |
 | Thu 29 | Today I built | Builders, founders | What I shipped today: the AI video agent | Screenshot card + X thread | 🛠📥 |
 | Fri 30 ★ | AI for… | Companies | The 1-page AI policy every small company needs | 5-slide carousel | 🛠 |
@@ -43,7 +43,7 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 ---
 
 ## Tue 27: AI for traders: "3 free ways to use AI on WhatsApp today"
-**Graphic:** 5-slide notebook carousel 🛠 (Pexels: a trader with a phone, a market stall)
+**Graphic:** `design/personal/w44-tue-traders/` ✅ 5 slides: your face + the WhatsApp logo on the cover, before/after examples and a copyable prompt per trick, "send this to a trader you know" close.
 1. Cover: "Your phone is already an assistant. Use it."
 2. Snap your price list → ask AI to turn it into a clean message you can send to customers
 3. Ask AI to write 5 polite replies for the questions you get every day (price, delivery, "last price")
