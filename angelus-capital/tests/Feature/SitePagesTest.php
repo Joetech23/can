@@ -117,6 +117,32 @@ class SitePagesTest extends TestCase
             ->assertSeeInOrder(['Professionalism', 'Integrity', 'Relationships', 'Insight', 'Team Spirit']);
     }
 
+    public function test_platforms_are_always_ordered_advisory_capital_investments(): void
+    {
+        $this->assertSame('Advisory. Capital. Investments.', config('acpl.company.tagline'));
+
+        foreach (['home', 'about', 'services'] as $page) {
+            $this->get(route($page))->assertSeeInOrder(['Advisory', 'Capital Solutions', 'Investments']);
+        }
+    }
+
+    public function test_about_page_shows_the_three_platform_infographic(): void
+    {
+        $this->get(route('about'))
+            ->assertSee('Advisory, Capital Solutions and Investments overlapping around ACPL')
+            ->assertSee('Our three integrated platforms');
+    }
+
+    public function test_sitemap_lists_public_pages_but_not_the_ad_landing_page(): void
+    {
+        $this->get('/sitemap.xml')
+            ->assertOk()
+            ->assertHeader('Content-Type', 'application/xml')
+            ->assertSee('<loc>'.route('about').'</loc>', false)
+            ->assertSee(route('leadership.show', 'dominic-isunuoya'), false)
+            ->assertDontSee(route('landing'), false);
+    }
+
     public function test_navigation_marks_the_current_page(): void
     {
         $this->get(route('leadership'))

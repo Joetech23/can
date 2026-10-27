@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LaunchCheckController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(PageController::class)->group(function () {
@@ -27,3 +29,11 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('contact.store');
 Route::get('/contact/thank-you', [ContactController::class, 'thanks'])->name('contact.thanks');
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+
+Route::controller(LaunchCheckController::class)->middleware('throttle:20,1')->group(function () {
+    Route::get('/launch-check', 'show')->name('launch-check');
+    Route::post('/launch-check/email', 'sendTestEmail')->name('launch-check.email');
+    Route::post('/launch-check/crm', 'sendTestCrm')->name('launch-check.crm');
+});

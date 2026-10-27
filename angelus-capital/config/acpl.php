@@ -17,7 +17,7 @@ return [
         'name' => 'Angelus Capital Partners Limited',
         'short_name' => 'Angelus Capital Partners',
         'abbr' => 'ACPL',
-        'tagline' => 'Capital. Advisory. Investments.',
+        'tagline' => 'Advisory. Capital. Investments.',
         'strapline' => 'Creating Sustainable Value Through Strategic Capital Solutions',
         'summary' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management firm dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
         'address' => ['173 Ogudu Road', 'Ogudu, Lagos', 'Nigeria'],
@@ -40,7 +40,7 @@ return [
         'whatsapp_message' => 'Hello Angelus Capital Partners, I would like to make an enquiry.',
 
         // Full LinkedIn company page URL, e.g. 'https://www.linkedin.com/company/angelus-capital-partners'.
-        'linkedin' => null,
+        'linkedin' => 'https://www.linkedin.com/company/angelus-capital-partners-ltd',
     ],
 
     'navigation' => [
@@ -372,7 +372,7 @@ return [
         'headline' => 'Positioning for Africa’s Next Growth Cycle',
         'paragraphs' => [
             'Africa’s growth story will increasingly be driven by entrepreneurship, infrastructure development, technological innovation, financial inclusion and sustainable investment.',
-            'ACPL is positioned to support this transformation by providing capital solutions, advisory expertise and investment capabilities that enable businesses and institutions to grow with confidence.',
+            'ACPL is positioned to support this transformation by providing advisory expertise, capital solutions and investment capabilities that enable businesses and institutions to grow with confidence.',
             'We believe the future belongs to organizations capable of combining capital, innovation and execution.',
         ],
         'closing' => 'That is where ACPL creates value.',
@@ -416,7 +416,7 @@ return [
         'services' => [
             'title' => 'Have a mandate for us?',
             'lead' => 'Advisory, capital raising or investment — tell us about the mandate and we will show you how our three integrated platforms work together to deliver it.',
-            'points' => ['Advisory & transaction mandates', 'Capital raising & project finance', 'Investment management', 'Compliance advisory – e-invoicing'],
+            'points' => ['Advisory & transaction mandates', 'Compliance advisory – e-invoicing', 'Capital raising & project finance', 'Investment management'],
             'action' => 'Discuss a mandate',
             'enquiry' => null,
         ],
@@ -559,6 +559,13 @@ return [
     ],
 
     /*
+    | Pre-launch integration check at /launch-check?key=... (email, CRM,
+    | tracking). Disabled unless LAUNCH_CHECK_KEY is set; remove the key from
+    | .env once the site is live and verified.
+    */
+    'launch_check_key' => env('LAUNCH_CHECK_KEY'),
+
+    /*
     | Any CRM that accepts a webhook (e.g. DoubleSpace). With a URL set, every
     | enquiry is also posted to it as JSON; the token, if given, is sent as a
     | Bearer authorization header.
@@ -591,7 +598,7 @@ return [
             'category' => 'Outlook',
             'date' => '2026-10-18',
             'author' => 'Angelus Capital Partners',
-            'excerpt' => 'Entrepreneurship, infrastructure, technological innovation, financial inclusion and sustainable investment will drive the continent’s next chapter. Here is how capital, advisory and execution come together.',
+            'excerpt' => 'Entrepreneurship, infrastructure, technological innovation, financial inclusion and sustainable investment will drive the continent’s next chapter. Here is how advisory, capital and execution come together.',
             'body' => [
                 'Africa’s growth story will increasingly be driven by entrepreneurship, infrastructure development, technological innovation, financial inclusion and sustainable investment.',
                 '## Capital alone is not enough',
@@ -599,7 +606,7 @@ return [
                 '## Where the opportunity lies',
                 'We see sustained opportunity across financial services, hospitality, agribusiness, fast moving consumer goods, healthcare and fintech — sectors where well-structured capital can unlock scale, improve governance and create lasting value for investors and communities alike.',
                 '## Our role',
-                'ACPL is positioned to support this transformation by providing capital solutions, advisory expertise and investment capabilities that enable businesses and institutions to grow with confidence. We believe the future belongs to organizations capable of combining capital, innovation and execution.',
+                'ACPL is positioned to support this transformation by providing advisory expertise, capital solutions and investment capabilities that enable businesses and institutions to grow with confidence. We believe the future belongs to organizations capable of combining capital, innovation and execution.',
                 'That is where ACPL creates value.',
             ],
         ],

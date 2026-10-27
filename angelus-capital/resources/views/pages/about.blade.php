@@ -29,15 +29,42 @@
         </div>
     </section>
 
+    {{-- Three integrated platforms --}}
+    <section class="on-dark grain relative isolate overflow-hidden bg-navy-900 py-24 text-white sm:py-32">
+        <div class="grid-lines absolute inset-0 -z-10"></div>
+        <div class="absolute top-1/3 left-1/2 -z-10 size-[44rem] -translate-x-1/2 rounded-full bg-navy-600/35 blur-[140px]"></div>
+
+        <div class="container-x">
+            <x-section-heading eyebrow="Our three integrated platforms" title="Advisory. Capital. <span class='text-gold-gradient'>Investments.</span>" lead="Three platforms, always working together around one firm, so every client benefits from the full strength of ACPL." align="center" dark />
+
+            <div class="mt-16 grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
+                <x-platform-venn class="mx-auto w-full max-w-lg" data-reveal="zoom" />
+
+                <ol class="flex flex-col gap-5">
+                    @foreach (config('acpl.platforms') as $platform)
+                        <li class="card-dark flex gap-5 p-7" data-reveal="right" style="--reveal-delay: {{ $loop->index * 110 }}ms">
+                            <span class="font-display text-4xl text-gold-400">0{{ $loop->iteration }}</span>
+                            <div>
+                                <h3 class="font-display text-2xl">{{ $platform['title'] }}</h3>
+                                <p class="mt-2 text-white/65">{{ $platform['summary'] }}</p>
+                                <a href="{{ route('services') }}#{{ $platform['key'] }}" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-300 transition hover:gap-3">Explore {{ $platform['title'] }} <x-icon name="arrow-right" class="size-4" stroke="2" /></a>
+                            </div>
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
+        </div>
+    </section>
+
     {{-- Who we serve --}}
-    <section class="on-dark relative overflow-hidden bg-navy-900 py-24 text-white sm:py-32">
-        <div class="grid-lines absolute inset-0"></div>
+    <section class="relative overflow-hidden bg-ivory py-24 sm:py-32">
+        <div class="brand-lines absolute inset-0"></div>
         <div class="container-x relative">
-            <x-section-heading eyebrow="We serve" title="Trusted by those who provide — and need — capital." align="center" dark />
+            <x-section-heading eyebrow="We serve" title="Trusted by those who provide — and need — capital." align="center" />
             <ul class="mt-16 flex flex-wrap justify-center gap-4">
                 @foreach (config('acpl.about.clients') as $client)
-                    <li class="card-dark !rounded-full px-6 py-3.5 text-white/85 transition duration-500 hover:-translate-y-1 hover:border-gold-400/50 hover:text-gold-200" data-reveal="zoom" style="--reveal-delay: {{ $loop->index * 50 }}ms">
-                        <span class="mr-2 text-gold-400">◆</span>{{ $client }}
+                    <li class="rounded-full border border-navy-900/10 bg-white px-6 py-3.5 text-navy-900 shadow-sm transition duration-500 hover:-translate-y-1 hover:border-gold-500" data-reveal="zoom" style="--reveal-delay: {{ $loop->index * 50 }}ms">
+                        <span class="mr-2 text-gold-500">◆</span>{{ $client }}
                     </li>
                 @endforeach
             </ul>
