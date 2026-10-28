@@ -11,7 +11,7 @@ you (see `2026-W44-resources.md`).
 | --- | --- | --- | --- | --- | --- |
 | Mon 26 | Hangar Notes | Brand / AI | We don't just talk about AI. We run on it. | Single image (3D coin) | ✅ |
 | Tue 27 | Flight Report | CRM + outreach | 13,000 raw records → 12,000+ scored leads | 6-slide carousel | 🛠 |
-| Wed 28 | Ground School | Video editing | Our AI-assisted video edit, step by step | 6-slide carousel | 🛠📥 |
+| Wed 28 | Ground School | Video editing | Edit faster without cutting corners: our AI-assisted video workflow | 6-slide carousel | ✅ |
 | Thu 29 | On the Radar | SaaS / CRM update | GoHighLevel's AI Employee: what it does, costs and who should skip it | 5-slide carousel | 🛠 |
 | Fri 30 | Cockpit Chat | AI in practice | Don't ask AI if your idea is good. Ask how it fails. | Single image (3D bubble) | ✅ |
 | Sat 31 | Ground School | AI automation | Your business never sleeps. Neither do your replies. | 3-slide carousel (WhatsApp AI) | ✅ |
@@ -83,13 +83,15 @@ or a short cut). Links go in the first comment or reply, never in the post body.
 ---
 
 ## Wed 28: Ground School: "Edit faster: our AI-assisted video workflow"
-**Graphic:** 6-slide carousel, with screenshots of the editing timeline 🛠📥
-1. Cover: "The 90-minute edit, now 30." *(use our real numbers; if we don't have them, headline: "Edit faster without cutting corners.")*
-2. Script: AI drafts the script from a brief; we rewrite the hook ourselves
-3. Voice: AI voice or a clean-up of the recorded voice
-4. Rough cut: auto-captions and silence removal
-5. Polish: B-roll, motion graphics and brand colours (still human craft)
-6. CTA: "Need video that sells? We make it."
+**Graphic:** `posts/2026-10/007-w44-wed-video-workflow/` ✅ 6 slides (source: `design/eaglescroft/w44-wed-video/`).
+Built without real timeline screenshots: the editor window is an illustration, and the headline uses
+the no-numbers version. Tools appear as "tools that do this step", not as claims about our stack.
+1. Cover: "Edit faster. Without cutting corners." with an editor window and timeline
+2. Script: AI drafts, we write the hook (the first 3 seconds are always written by a person)
+3. Voice: before/after waveforms; AI voice only with consent
+4. Rough cut: auto-captions and silence cuts on the timeline
+5. Polish: B-roll, motion, brand colour, final watch, human sign-off
+6. CTA: "Need video that sells? We make it." Comment 1–4
 
 **LinkedIn / Facebook**
 > Video is the most-watched format on every platform, and the most time-hungry to make.
@@ -101,8 +103,16 @@ or a short cut). Links go in the first comment or reply, never in the post body.
 > → Polish: B-roll, motion and branding, still done by a human editor
 >
 > AI does the heavy lifting. Taste is still human.
-> Which step eats most of your time? 👇
+> Which step eats most of your time? Comment 1, 2, 3 or 4 👇
 > #VideoEditing #AIVideo #ContentCreation #Eaglescroft
+
+**X**
+> Edit faster without cutting corners. Our AI-assisted video workflow:
+> 1. Script: AI drafts, we write the hook
+> 2. Voice: AI clean-up
+> 3. Rough cut: auto-captions and silence cuts
+> 4. Polish: still human.
+> Which step eats your time?
 
 ---
 

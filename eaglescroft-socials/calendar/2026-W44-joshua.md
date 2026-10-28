@@ -10,7 +10,7 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 | --- | --- | --- | --- | --- | --- |
 | Mon 26 ★ | Today I built | Everyone | "I run my business on AI. From today, I'll show you how." | Photo card | ✅ |
 | Tue 27 ★ | AI for… | Traders | 3 free ways a trader can use AI on WhatsApp today | 5-slide carousel | ✅ |
-| Wed 28 | AI for… | Academics | AI for a literature review, without cheating | 6-slide carousel | 🛠 |
+| Wed 28 | AI for… | Academics | AI for a literature review, without cheating | 6-slide carousel | ✅ |
 | Thu 29 | Today I built | Builders, founders | What I shipped today: the AI video agent | Screenshot card + X thread | 🛠📥 |
 | Fri 30 ★ | AI for… | Companies | The 1-page AI policy every small company needs | 5-slide carousel | 🛠 |
 | Sat 31 | Tested this week | Professionals | 3 AI updates from October and my honest verdict | 4-slide carousel | 🛠✍️ |
@@ -70,13 +70,14 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 ---
 
 ## Wed 28: AI for academics: "Literature review, without cheating"
-**Graphic:** 6-slide notebook carousel 🛠
+**Graphic:** `posts/2026-10/J03-w44-wed-academics/` ✅ 6 slides (source: `design/personal/w44-wed-academics/`),
+your face + Google Scholar and Semantic Scholar on the cover, a copyable prompt on each step.
 1. Cover: "AI won't write your thesis. It can make you a faster researcher."
-2. Find: use research search tools (for example Consensus or Semantic Scholar) to find real papers
-3. Skim: ask AI to summarise each paper, **then read the ones that matter**
-4. Check: verify every citation exists and says what AI claims. AI invents references
-5. Write: your words, your argument. Use AI to critique the draft, not write it
-6. Disclose: follow your institution's AI policy and say how you used it
+2. Find: Google Scholar, Semantic Scholar, Consensus + search prompt
+3. Skim: summarise first (NotebookLM, Claude, Gemini), then read the best 3 in full
+4. Check: "AI invents references" + 3 checks, save verified sources in Zotero or Mendeley
+5. Write: fine vs not yours any more + the "strict examiner" prompt
+6. Disclose: a sample AI-use statement + "what rules is your department setting?"
 
 **LinkedIn**
 > Lecturers and students keep asking me the same question: "Is using AI for research cheating?"
@@ -91,6 +92,12 @@ everyday, practical. Visual style: **"the notebook"** (see `personal/strategy.md
 > Use AI to research faster, not to think less. Check your institution's policy and be open
 > about how you used it.
 > Academics: what rules is your department setting? I'd love to hear.
+
+**X**
+> Is using AI for a literature review cheating? Depends how.
+> Fine: finding papers, summaries to plan your reading, critique of your draft.
+> Not fine: citations you didn't check (AI invents them), paragraphs it wrote for you.
+> Research faster, not think less.
 
 ---
 

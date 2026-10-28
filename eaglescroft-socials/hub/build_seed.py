@@ -29,7 +29,8 @@ POSTS = {
     "2026-W44": {
         ("eaglescroft", "Mon"): ("005", ["posts/2026-10/005-w44-mon-launch-coin/eaglescroft-mon-26-oct.png"]),
         ("eaglescroft", "Tue"): ("006", []),
-        ("eaglescroft", "Wed"): ("007", []),
+        ("eaglescroft", "Wed"): ("007", [f"posts/2026-10/007-w44-wed-video-workflow/eaglescroft-wed-28-oct-{i}.png" for i in range(1, 7)]
+                                 + ["posts/2026-10/007-w44-wed-video-workflow/eaglescroft-wed-28-oct-linkedin.pdf"]),
         ("eaglescroft", "Thu"): ("008", []),
         ("eaglescroft", "Fri"): ("009", ["posts/2026-10/009-w44-fri-argue-bubble/eaglescroft-fri-30-oct.png"]),
         ("eaglescroft", "Sat"): ("010", [f"posts/2026-10/010-w44-sat-whatsapp-ai/eaglescroft-sat-31-oct-{i}.png" for i in (1, 2, 3)]
@@ -38,7 +39,8 @@ POSTS = {
         ("joshua", "Mon"): ("J01", ["posts/2026-10/J01-w44-mon-intro/joshua-mon-26-oct.png"]),
         ("joshua", "Tue"): ("J02", [f"posts/2026-10/J02-w44-tue-traders/joshua-tue-27-oct-{i}.png" for i in range(1, 6)]
                             + ["posts/2026-10/J02-w44-tue-traders/joshua-tue-27-oct-linkedin.pdf"]),
-        ("joshua", "Wed"): ("J03", []),
+        ("joshua", "Wed"): ("J03", [f"posts/2026-10/J03-w44-wed-academics/joshua-wed-28-oct-{i}.png" for i in range(1, 7)]
+                            + ["posts/2026-10/J03-w44-wed-academics/joshua-wed-28-oct-linkedin.pdf"]),
         ("joshua", "Thu"): ("J04", []),
         ("joshua", "Fri"): ("J05", []),
         ("joshua", "Sat"): ("J06", []),
@@ -54,6 +56,8 @@ NEEDS = {
     "J07": "Your edits to the Sunday opinion draft below, or your own version.",
 }
 TIPS = {
+    "007": "Facebook and X: post the 6 slides as a carousel. LinkedIn: upload the PDF as a document post (title: \"Edit faster without cutting corners\").",
+    "J03": "LinkedIn: upload the PDF as a document post (title: \"AI for your literature review, without cheating\"). X: post slides 1, 4 and 5 with the X caption.",
     "008": "Re-check HighLevel's current AI Employee pricing and language support before this goes out.",
     "010": "Facebook and X: post the 3 slides as a carousel. LinkedIn: upload the PDF as a document post.",
     "J02": "Facebook and X: post the 5 slides as a carousel. LinkedIn: upload the PDF as a document post (title: \"3 free ways to use AI on WhatsApp today\").",

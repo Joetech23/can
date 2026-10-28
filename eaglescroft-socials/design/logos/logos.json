@@ -108,5 +108,50 @@
     "title": "WordPress",
     "hex": "21759B",
     "guidelines": "https://wordpressfoundation.org/trademark-policy"
+  },
+  "googlescholar": {
+    "title": "Google Scholar",
+    "hex": "4285F4",
+    "guidelines": ""
+  },
+  "semanticscholar": {
+    "title": "Semantic Scholar",
+    "hex": "1857B6",
+    "guidelines": ""
+  },
+  "zotero": {
+    "title": "Zotero",
+    "hex": "CC2936",
+    "guidelines": ""
+  },
+  "mendeley": {
+    "title": "Mendeley",
+    "hex": "9D1620",
+    "guidelines": ""
+  },
+  "notebooklm": {
+    "title": "NotebookLM",
+    "hex": "000000",
+    "guidelines": ""
+  },
+  "davinciresolve": {
+    "title": "DaVinci Resolve",
+    "hex": "233A51",
+    "guidelines": ""
+  },
+  "youtube": {
+    "title": "YouTube",
+    "hex": "FF0000",
+    "guidelines": "https://www.youtube.com/howyoutubeworks/resources/brand-resources/#logos-icons-and-colors"
+  },
+  "tiktok": {
+    "title": "TikTok",
+    "hex": "000000",
+    "guidelines": ""
+  },
+  "instagram": {
+    "title": "Instagram",
+    "hex": "FF0069",
+    "guidelines": "https://about.meta.com/brand/resources/instagram"
   }
 }
