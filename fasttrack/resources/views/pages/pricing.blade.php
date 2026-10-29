@@ -1,65 +1,89 @@
-@php($ft = config('fasttrack'))
-{{-- PLACEHOLDER prices: replace the guide figures below with FastTrack's confirmed rates. --}}
-<x-layouts.site title="Pricing" description="Transparent removal prices. Typical costs for flats, houses and offices, with fixed quotes after a free survey.">
-    <x-page-hero eyebrow="Pricing" title="Honest prices, fixed before you move." lead="Every move is different, so these are typical starting points. Your quote is fixed after a free video survey, with no meter running on the day." />
+@php
+    $ft = config('fasttrack');
+    $rates = $ft['rates'];
+    $estimator = app(\App\Services\QuoteEstimator::class);
+    // Typical local, weekday moves straight from the rate card, so this page always matches the instant quote.
+    $typical = collect(['studio', '1-bed', '2-bed', '3-bed', '4-bed'])->mapWithKeys(fn ($size) => [
+        $size => $estimator->estimate(['service' => 'home-removals', 'property_size' => $size, 'miles' => $rates['included_miles']]),
+    ]);
+@endphp
+<x-layouts.site title="Pricing" description="Transparent removal prices from FastTrack's own rate card: crew rates, typical move prices, extras and surcharges.">
+    <x-page-hero eyebrow="Pricing" title="Clear prices, fixed before you move." lead="These are our standard rates, the same ones the instant quote uses. Your quote is fixed after a quick survey, with no meter running on the day." :crumbs="['Pricing' => null]">
+        <a href="{{ route('quote') }}" class="btn-go mt-8">Get my instant quote <x-icon name="arrow-right" class="size-4" /></a>
+    </x-page-hero>
 
-    @php($plans = [
-        ['name' => 'Small move', 'size' => 'Studio or 1-bed flat', 'price' => '£295', 'crew' => '2 movers · 1 Luton van', 'features' => ['Up to 5 hours', 'Blankets & straps', 'Basic dismantling', 'Goods-in-transit cover'], 'featured' => false],
-        ['name' => 'Family move', 'size' => '2–3 bedroom home', 'price' => '£640', 'crew' => '3 movers · 1 large van', 'features' => ['Full day', 'Furniture wrapped & protected', 'Dismantle & rebuild', 'Wardrobe cartons on the day', 'Dedicated move coordinator'], 'featured' => true],
-        ['name' => 'Large home', 'size' => '4+ bedrooms', 'price' => '£1,150', 'crew' => '4–6 movers · 2 vans', 'features' => ['One or two-day move', 'Everything in Family', 'Packing options', 'Storage options'], 'featured' => false],
-    ])
-
+    {{-- 01 Typical prices --}}
     <section class="py-16 lg:py-24">
         <div class="container-page">
-            <div class="grid gap-5 lg:grid-cols-3">
-                @foreach ($plans as $plan)
-                    <div @class(['relative flex flex-col rounded-3xl p-8', 'bg-ink-950 text-white shadow-2xl shadow-ink-900/30 lg:-mt-4 lg:mb-4' => $plan['featured'], 'card' => ! $plan['featured']]) x-reveal="{{ $loop->index * 100 }}">
-                        @if ($plan['featured'])
-                            <span class="absolute -top-3 left-8 rounded-full bg-go-400 px-3 py-1 text-xs font-bold text-ink-950">Most booked</span>
-                        @endif
-                        <h2 class="text-xl font-bold {{ $plan['featured'] ? 'text-white' : 'text-ink-950' }}">{{ $plan['name'] }}</h2>
-                        <p class="mt-1 text-sm {{ $plan['featured'] ? 'text-white/60' : 'text-ink-500' }}">{{ $plan['size'] }}</p>
-                        <p class="mt-6 flex items-baseline gap-2">
-                            <span class="text-sm {{ $plan['featured'] ? 'text-white/60' : 'text-ink-500' }}">from</span>
-                            <span class="font-display text-5xl font-extrabold {{ $plan['featured'] ? 'text-go-400' : 'text-ink-950' }}">{{ $plan['price'] }}</span>
-                        </p>
-                        <p class="mt-2 text-sm font-medium {{ $plan['featured'] ? 'text-white/80' : 'text-ink-700' }}">{{ $plan['crew'] }}</p>
-                        <ul class="mt-6 flex-1 space-y-3 border-t pt-6 {{ $plan['featured'] ? 'border-white/10' : 'border-ink-100' }}">
-                            @foreach ($plan['features'] as $f)
-                                <li class="flex gap-2 text-sm {{ $plan['featured'] ? 'text-white/85' : 'text-ink-700' }}"><x-icon name="check" class="mt-0.5 size-4 shrink-0 {{ $plan['featured'] ? 'text-go-400' : 'text-go-600' }}" /> {{ $f }}</li>
-                            @endforeach
-                        </ul>
-                        <a href="{{ route('quote', ['size' => ['Small move' => '1-bed', 'Family move' => '2-bed', 'Large home' => '4-bed'][$plan['name']]]) }}" class="{{ $plan['featured'] ? 'btn-go' : 'btn-ink' }} mt-8 w-full">Get my exact price</a>
+            <x-section-head num="01" eyebrow="Typical moves" title="What a local move usually costs." lead="Weekday moves within {{ $rates['included_miles'] }} miles, including crew, van and fuel. Longer distances, weekends and extras are added in your quote." />
+            <div class="mt-10 grid gap-px overflow-hidden rounded-lg border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-5">
+                @foreach ($typical as $size => $estimate)
+                    @php($job = $rates['jobs'][$size])
+                    <div @class(['flex flex-col p-6', 'bg-ink-950 text-white' => $size === '2-bed', 'bg-white' => $size !== '2-bed'])>
+                        @if ($size === '2-bed') <span class="label-caps mb-3 self-start rounded-sm bg-go-600 px-2 py-1 text-white">Most booked</span> @endif
+                        <h3 class="text-xl">{{ $ft['property_sizes'][$size] }}</h3>
+                        <p class="mt-1 text-sm {{ $size === '2-bed' ? 'text-white/60' : 'text-ink-500' }}">{{ $job['crew'] }} movers · {{ $job['vans'] }} {{ Str::plural('van', $job['vans']) }} · ~{{ $job['hours'] }} hrs</p>
+                        <p class="mt-6 text-3xl font-bold {{ $size === '2-bed' ? 'text-go-400' : 'text-ink-950' }}">£{{ number_format($estimate['low']) }}<span class="text-lg font-semibold {{ $size === '2-bed' ? 'text-white/60' : 'text-ink-400' }}">–{{ number_format($estimate['high']) }}</span></p>
+                        <a href="{{ route('quote', ['size' => $size]) }}" class="mt-6 font-condensed text-sm font-bold tracking-wider uppercase {{ $size === '2-bed' ? 'text-white hover:text-go-400' : 'text-go-600 hover:text-go-700' }}">Get my exact price →</a>
                     </div>
                 @endforeach
             </div>
+        </div>
+    </section>
 
-            <div class="mt-16 grid gap-5 md:grid-cols-2">
-                <div class="card p-8">
-                    <h2 class="text-2xl font-bold text-ink-950">Add-ons</h2>
-                    <dl class="mt-6 divide-y divide-ink-100">
-                        @foreach ($ft['services'] as $slug => $service)
-                            @continue(in_array($slug, ['home-removals', 'office-removals']))
-                            <div class="flex items-center justify-between py-3 text-sm">
-                                <dt class="flex items-center gap-2 font-medium text-ink-800"><x-icon :name="$service['icon']" class="size-4 text-go-700" /> {{ $service['name'] }}</dt>
-                                <dd class="font-semibold text-ink-950">{{ $service['from'] }}</dd>
-                            </div>
-                        @endforeach
-                    </dl>
+    {{-- 02 Rate card --}}
+    <section class="border-t border-ink-200 bg-ink-50 py-16 lg:py-24">
+        <div class="container-page grid gap-10 lg:grid-cols-2">
+            <div>
+                <x-section-head num="02" eyebrow="Rate card" title="Crew and van rates." />
+                <div class="mt-8 overflow-hidden rounded-lg border border-ink-200 bg-white">
+                    <table class="w-full text-left text-[15px]">
+                        <thead class="bg-ink-950 font-condensed text-xs tracking-[0.2em] text-white uppercase">
+                            <tr><th class="px-5 py-3 font-bold">Crew</th><th class="px-5 py-3 text-right font-bold">Per hour</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-ink-200">
+                            @foreach ($rates['crew_hourly'] as $crew => $hourly)
+                                <tr><td class="px-5 py-3.5 text-ink-700">{{ $crew }} movers + 1 van</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">£{{ $hourly }}</td></tr>
+                            @endforeach
+                            <tr><td class="px-5 py-3.5 text-ink-700">Each extra van</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">+£{{ $rates['extra_van_hourly'] }}</td></tr>
+                            <tr><td class="px-5 py-3.5 text-ink-700">Man and van (1 helper)</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">£{{ $rates['man_and_van_hourly'] }}</td></tr>
+                            <tr><td class="px-5 py-3.5 text-ink-700">Mileage beyond {{ $rates['included_miles'] }} miles</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">£{{ number_format($rates['per_mile'], 2) }}/mile</td></tr>
+                            <tr><td class="px-5 py-3.5 text-ink-700">Pallet delivery</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">£{{ $rates['pallet']['base'] }} + £{{ $rates['pallet']['per_pallet'] }}/pallet</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="rounded-3xl bg-go-100 p-8 ring-1 ring-go-200">
-                    <h2 class="text-2xl font-bold text-ink-950">What affects your price</h2>
-                    <ul class="mt-6 space-y-4">
-                        @foreach (['Volume' => 'How much furniture and how many boxes.', 'Distance' => 'Miles between addresses and any tolls or ferries.', 'Access' => 'Stairs, lifts, parking and long carries.', 'Date' => 'Fridays and month-ends book up first.'] as $k => $v)
-                            <li class="flex gap-3">
-                                <span class="grid size-8 shrink-0 place-items-center rounded-full bg-ink-950 text-go-400"><x-icon name="check" class="size-4" /></span>
-                                <span><span class="font-semibold text-ink-950">{{ $k }}.</span> <span class="text-ink-700">{{ $v }}</span></span>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <p class="mt-6 text-sm font-medium text-ink-700">No hidden extras: VAT, fuel and insurance are included in your quote.</p>
+            </div>
+            <div>
+                <x-section-head eyebrow="Extras & surcharges" title="Add only what you need." class="lg:mt-0" />
+                <div class="mt-8 overflow-hidden rounded-lg border border-ink-200 bg-white">
+                    <table class="w-full text-left text-[15px]">
+                        <thead class="bg-ink-950 font-condensed text-xs tracking-[0.2em] text-white uppercase">
+                            <tr><th class="px-5 py-3 font-bold">Item</th><th class="px-5 py-3 text-right font-bold">Price</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-ink-200">
+                            @foreach ($rates['extras'] as $extra => $price)
+                                <tr><td class="px-5 py-3.5 text-ink-700">{{ $ft['extras'][$extra] }}</td><td class="px-5 py-3.5 text-right font-semibold text-ink-950">{{ $extra === 'packing' ? '+'.($price * 100).'% of move' : '£'.$price }}</td></tr>
+                            @endforeach
+                            <tr class="bg-go-50"><td class="px-5 py-3.5 text-ink-700">Saturday or Sunday move</td><td class="px-5 py-3.5 text-right font-semibold text-go-700">+{{ $rates['surcharges']['weekend'] * 100 }}%</td></tr>
+                            <tr class="bg-go-50"><td class="px-5 py-3.5 text-ink-700">Booked less than {{ $rates['surcharges']['short_notice_days'] }} days ahead</td><td class="px-5 py-3.5 text-right font-semibold text-go-700">+{{ $rates['surcharges']['short_notice'] * 100 }}%</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
+
+    {{-- 03 What's included --}}
+    <section class="py-16 lg:py-24">
+        <div class="container-page grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+            <x-section-head num="03" eyebrow="Always included" title="No hidden extras." lead="Your fixed quote covers everything below. A {{ $rates['deposit_percent'] }}% deposit secures your date; the balance is due when the job is done." />
+            <ul class="grid gap-3 sm:grid-cols-2">
+                @foreach (['VAT, fuel and tolls within your quote', 'Goods-in-transit and public liability insurance', 'Blankets, straps and floor protection', 'Basic dismantling of beds and tables', 'Live move tracking and text updates', 'Online quote acceptance and invoices'] as $item)
+                    <li class="flex items-start gap-3 rounded-lg border border-ink-200 p-4"><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-sm bg-ink-950 text-white"><x-icon name="check" class="size-3.5" /></span><span class="font-medium text-ink-800">{{ $item }}</span></li>
+                @endforeach
+            </ul>
+        </div>
+    </section>
+
+    <x-cta-band />
 </x-layouts.site>

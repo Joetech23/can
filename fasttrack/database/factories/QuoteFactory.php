@@ -16,7 +16,7 @@ class QuoteFactory extends Factory
     {
         $uk = fake('en_GB');
         $status = fake()->randomElement(['new', 'new', 'contacted', 'surveyed', 'quoted', 'quoted', 'booked', 'booked', 'completed', 'completed', 'lost']);
-        $size = fake()->randomElement(array_keys(config('fasttrack.property_sizes')));
+        $size = fake()->randomElement(array_keys(collect(config('fasttrack.property_sizes'))->except('pallet')->all()));
         $created = fake()->dateTimeBetween('-10 weeks', 'now');
         $base = ['items' => 120, 'studio' => 280, '1-bed' => 340, '2-bed' => 620, '3-bed' => 890, '4-bed' => 1250, 'office' => 1800][$size];
 
@@ -24,7 +24,7 @@ class QuoteFactory extends Factory
             'name' => $uk->name(),
             'email' => $uk->unique()->safeEmail(),
             'phone' => '07'.fake()->numerify('### ######'),
-            'service' => $size === 'office' ? 'office-removals' : fake()->randomElement(['home-removals', 'home-removals', 'home-removals', 'man-and-van', 'packing', 'storage', 'student-moves']),
+            'service' => $size === 'office' ? 'office-moves' : fake()->randomElement(['home-removals', 'home-removals', 'home-removals', 'man-and-van', 'packing', 'storage']),
             'from_postcode' => strtoupper($uk->postcode()),
             'to_postcode' => strtoupper($uk->postcode()),
             'property_size' => $size,

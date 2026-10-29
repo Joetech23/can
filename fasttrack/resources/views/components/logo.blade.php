@@ -1,12 +1,11 @@
-@props(['inverse' => false])
-{{-- Placeholder mark: forward chevrons on a lane. Replace with FastTrack's own logo files when supplied. --}}
-<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-2.5']) }}>
-    <svg class="size-9 shrink-0" viewBox="0 0 40 40" aria-hidden="true">
-        <rect width="40" height="40" rx="12" class="{{ $inverse ? 'fill-go-400' : 'fill-ink-900' }}"/>
-        <path d="M11 13l7 7-7 7" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="{{ $inverse ? 'stroke-ink-950' : 'stroke-go-400' }}"/>
-        <path d="M21 13l7 7-7 7" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="{{ $inverse ? 'stroke-ink-950/45' : 'stroke-go-400/45' }}"/>
-    </svg>
-    <span class="font-display text-[1.35rem] leading-none font-bold tracking-tight {{ $inverse ? 'text-white' : 'text-ink-950' }}">
-        Fast<span class="{{ $inverse ? 'text-go-400' : 'text-go-700' }}">Track</span>
-    </span>
+@props(['inverse' => false, 'compact' => false])
+{{-- FT mark redrawn as vector from the FastTrack Team Logistics proposal artwork. --}}
+<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-3']) }}>
+    <x-logo-mark class="h-8 w-auto shrink-0 {{ $inverse ? 'text-white' : 'text-ink-950' }}" />
+    @unless ($compact)
+        <span class="flex flex-col leading-none">
+            <span class="text-[1.3rem] font-bold tracking-[0.02em] {{ $inverse ? 'text-white' : 'text-ink-950' }}">FASTTRACK</span>
+            <span class="mt-1 font-condensed text-[0.62rem] font-normal tracking-[0.48em] {{ $inverse ? 'text-white/55' : 'text-ink-500' }}">TEAM LOGISTICS</span>
+        </span>
+    @endunless
 </span>

@@ -18,12 +18,16 @@ return new class extends Migration
             $table->string('from_postcode');
             $table->string('to_postcode');
             $table->string('property_size');
+            $table->unsignedSmallInteger('pallets')->nullable();
+            $table->decimal('distance_miles', 7, 1)->nullable();
             $table->date('move_date')->nullable();
             $table->boolean('flexible_date')->default(false);
             $table->json('extras')->nullable();
             $table->text('notes')->nullable();
             $table->string('status')->default('new')->index();
-            $table->decimal('estimate', 10, 2)->nullable();
+            $table->unsignedInteger('estimate_low')->nullable(); // instant quote range shown to the customer
+            $table->unsignedInteger('estimate_high')->nullable();
+            $table->decimal('estimate', 10, 2)->nullable(); // fixed price set by the office
             $table->string('source')->default('website');
             $table->timestamps();
         });

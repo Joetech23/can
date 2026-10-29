@@ -12,7 +12,8 @@ use Illuminate\Validation\Rule;
 
 #[Fillable([
     'reference', 'name', 'email', 'phone', 'service', 'from_postcode', 'to_postcode',
-    'property_size', 'move_date', 'flexible_date', 'extras', 'notes', 'status', 'estimate', 'source',
+    'property_size', 'pallets', 'distance_miles', 'move_date', 'flexible_date', 'extras', 'notes', 'status',
+    'estimate_low', 'estimate_high', 'estimate', 'source',
 ])]
 class Quote extends Model
 {
@@ -50,6 +51,7 @@ class Quote extends Model
             'from_postcode' => ['required', 'string', 'max:12'],
             'to_postcode' => ['required', 'string', 'max:12'],
             'property_size' => ['required', Rule::in(array_keys(config('fasttrack.property_sizes')))],
+            'pallets' => ['nullable', 'required_if:service,pallet-delivery', 'integer', 'min:1', 'max:26'],
             'move_date' => ['nullable', 'date', 'after_or_equal:today'],
             'flexible_date' => ['boolean'],
             'extras' => ['array'],
@@ -68,6 +70,7 @@ class Quote extends Model
             'flexible_date' => 'boolean',
             'extras' => 'array',
             'estimate' => 'decimal:2',
+            'distance_miles' => 'float',
         ];
     }
 
@@ -129,7 +132,30 @@ class Quote extends Model
 
     public function sizeLabel(): string
     {
+        if ($this->service === 'pallet-delivery' && $this->pallets) {
+            return $this->pallets.' '.Str::plural('pallet', $this->pallets);
+        }
+
         return config('fasttrack.property_sizes.'.$this->property_size, $this->property_size);
+    }
+
+    /**
+     * Customer-facing progress for the Track my move page.
+     *
+     * @return array{steps: array<int, string>, current: int, closed: bool}
+     */
+    public function trackingStage(): array
+    {
+        $steps = ['Enquiry received', 'Quote sent', 'Booked', 'On the move', 'Completed'];
+        $current = match ($this->status) {
+            'new', 'contacted' => 0,
+            'surveyed', 'quoted' => 1,
+            'booked' => $this->move_date?->isToday() ? 3 : 2,
+            'completed' => 4,
+            default => 0,
+        };
+
+        return ['steps' => $steps, 'current' => $current, 'closed' => $this->status === 'lost'];
     }
 
     public function serviceLabel(): string

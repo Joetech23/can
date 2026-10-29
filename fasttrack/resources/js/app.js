@@ -33,11 +33,52 @@ Alpine.directive('reveal', (el, { expression }, { evaluate }) => {
     observer.observe(el);
 });
 
-// Multi-step quote wizard. Steps are plain fieldsets so the form still
-// submits everything if JavaScript fails; the server re-validates.
-Alpine.data('quoteWizard', (startStep = 0) => ({
+// Multi-step quote wizard with a live price estimate. Steps are plain
+// fieldsets so the form still submits everything if JavaScript fails; the
+// server re-validates and recalculates the estimate.
+Alpine.data('quoteWizard', (startStep = 0, estimateUrl = '') => ({
     step: startStep,
     total: 4,
+    service: '',
+    estimate: null,
+    loading: false,
+    timer: null,
+    init() {
+        this.syncService();
+        this.$refs.form.addEventListener('submit', () => clearTimeout(this.timer));
+        this.$refs.form.addEventListener('input', () => this.queue());
+        this.$refs.form.addEventListener('change', () => {
+            this.syncService();
+            this.queue();
+        });
+        this.refresh();
+    },
+    syncService() {
+        this.service = this.$refs.form.querySelector('[name=service]:checked')?.value ?? '';
+    },
+    queue() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.refresh(), 400);
+    },
+    async refresh() {
+        if (!estimateUrl) return;
+        this.loading = true;
+        try {
+            const res = await fetch(estimateUrl, {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: new FormData(this.$refs.form),
+            });
+            if (res.ok) this.estimate = await res.json();
+        } catch (e) {
+            // Keep the last estimate; the server recalculates on submit anyway.
+        } finally {
+            this.loading = false;
+        }
+    },
+    money(value) {
+        return '£' + Math.round(value).toLocaleString('en-GB');
+    },
     next() {
         const fields = this.$refs['step' + this.step].querySelectorAll('input, select, textarea');
         for (const field of fields) {
@@ -51,6 +92,29 @@ Alpine.data('quoteWizard', (startStep = 0) => ({
     },
     back() {
         if (this.step > 0) this.step--;
+    },
+}));
+
+// Cookie notice. Analytics and ad pixels should listen for the
+// "cookies-accepted" event (or check consent()) before loading.
+Alpine.data('cookieBanner', () => ({
+    show: false,
+    init() {
+        this.show = !this.consent();
+    },
+    consent() {
+        try {
+            return localStorage.getItem('ft-cookies');
+        } catch (e) {
+            return null;
+        }
+    },
+    choose(level) {
+        try {
+            localStorage.setItem('ft-cookies', level);
+        } catch (e) {}
+        this.show = false;
+        if (level === 'all') window.dispatchEvent(new CustomEvent('cookies-accepted'));
     },
 }));
 
