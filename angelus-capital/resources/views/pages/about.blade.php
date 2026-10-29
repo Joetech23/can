@@ -12,7 +12,7 @@
         <div class="container-x grid grid-cols-1 gap-16 lg:grid-cols-2">
             <x-section-heading eyebrow="Who we are" title="Capital, insight and execution — under one roof." />
             <div class="space-y-6 text-lg leading-relaxed text-mist" data-reveal>
-                <p>As an alternative asset firm, we work where conventional financing often falls short — providing advisory, capital and investment solutions across the entire capital lifecycle, from business strategy and project development to capital raising, transaction execution and investment management.</p>
+                <p>As an alternative asset company, we work where conventional financing often falls short — providing advisory, capital and investment solutions across the entire capital lifecycle, from business strategy and project development to capital raising, transaction execution and investment management.</p>
                 <p>Our professionals bring together decades of experience spanning banking, private equity, venture capital, corporate finance, project finance, investment management, restructuring and business transformation.</p>
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="absolute top-1/3 left-1/2 -z-10 size-[44rem] -translate-x-1/2 rounded-full bg-navy-600/35 blur-[140px]"></div>
 
         <div class="container-x">
-            <x-section-heading eyebrow="Our three integrated platforms" title="Advisory. Capital. <span class='text-gold-gradient'>Investments.</span>" lead="Three platforms, always working together around one firm, so every client benefits from the full strength of ACPL." align="center" dark />
+            <x-section-heading eyebrow="Our three integrated platforms" title="Advisory. Capital. <span class='text-gold-gradient'>Investments.</span>" lead="Three platforms, always working together around one company, so every client benefits from the full strength of ACPL." align="center" dark />
 
             <div class="mt-16 grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
                 <x-platform-venn class="mx-auto w-full max-w-lg" data-reveal="zoom" />

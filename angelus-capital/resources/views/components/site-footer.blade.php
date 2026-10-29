@@ -21,7 +21,7 @@
 
             <div class="grid grid-cols-1 gap-10 sm:grid-cols-[1fr_1fr_1.6fr] lg:col-span-8">
                 <div>
-                    <h3 class="text-xs font-semibold tracking-[0.25em] text-gold-400 uppercase">Firm</h3>
+                    <h3 class="text-xs font-semibold tracking-[0.25em] text-gold-400 uppercase">Company</h3>
                     <ul class="mt-6 space-y-3 text-sm">
                         <li><a href="{{ route('about') }}" class="text-white/65 transition hover:text-white">About ACPL</a></li>
                         <li><a href="{{ route('leadership') }}" class="text-white/65 transition hover:text-white">Leadership</a></li>

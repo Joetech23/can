@@ -144,7 +144,7 @@
         <div class="absolute top-1/3 left-1/2 -z-10 size-[44rem] -translate-x-1/2 rounded-full bg-navy-600/35 blur-[140px]"></div>
 
         <div class="container-x">
-            <x-section-heading eyebrow="What we do" title="Three integrated platforms. <span class='text-gold-gradient'>One partner.</span>" lead="Advisory, capital solutions and investments work together, so every engagement benefits from the full strength of the firm." align="center" dark />
+            <x-section-heading eyebrow="What we do" title="Three integrated platforms. <span class='text-gold-gradient'>One partner.</span>" lead="Advisory, capital solutions and investments work together, so every engagement benefits from the full strength of the company." align="center" dark />
 
             <div class="mt-20 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                 {{-- Ecosystem diagram --}}

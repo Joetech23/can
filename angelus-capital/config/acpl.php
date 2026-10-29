@@ -19,7 +19,7 @@ return [
         'abbr' => 'ACPL',
         'tagline' => 'Advisory. Capital. Investments.',
         'strapline' => 'Creating Sustainable Value Through Strategic Capital Solutions',
-        'summary' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management firm dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
+        'summary' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management company dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
         'address' => ['173 Ogudu Road', 'Ogudu, Lagos', 'Nigeria'],
         'phone' => '+234 802 326 1918',
         'phone_href' => '+2348023261918',
@@ -74,7 +74,7 @@ return [
     ],
 
     'about' => [
-        'intro' => 'Angelus Capital Partners Limited is an alternative asset firm. Through three integrated platforms — Advisory, Capital Solutions and Investments — we help businesses, projects and institutions access the strategic financing and growth support that conventional channels often cannot provide.',
+        'intro' => 'Angelus Capital Partners Limited is an alternative asset company. Through three integrated platforms — Advisory, Capital Solutions and Investments — we help businesses, projects and institutions access the strategic financing and growth support that conventional channels often cannot provide.',
         'pillars' => [
             ['title' => 'Alternative asset specialists', 'text' => 'Our space within financial services: private equity, venture capital, structured and alternative capital — going beyond conventional banking to fund growth.'],
             ['title' => 'Full capital lifecycle', 'text' => 'From business strategy and project development to capital raising, transaction execution and investment management.'],
@@ -127,7 +127,7 @@ return [
     ],
 
     'value_proposition' => [
-        'statement' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management firm dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
+        'statement' => 'ACPL is a financial Advisory, Capital Solutions and Investment Management company dedicated to helping businesses and institutions unlock growth opportunities through strategic advisory services, innovative financing arrangements and disciplined investment execution.',
         // One promise per platform, in platform order.
         'promises' => [
             ['platform' => 'Advisory', 'icon' => 'compass', 'title' => 'Strategic advisory services', 'text' => 'Sound strategic and financial decisions, from corporate finance to compliance.'],
@@ -164,7 +164,7 @@ return [
     ],
     'alternative_capital' => [
         'title' => 'Alternative Capital Solutions',
-        'text' => 'When conventional bank or equity structures do not fit, we arrange non-traditional funding built around the opportunity — the natural home of an alternative asset firm.',
+        'text' => 'When conventional bank or equity structures do not fit, we arrange non-traditional funding built around the opportunity — the natural home of an alternative asset company.',
         'items' => ['Private credit & direct lending', 'Asset-backed & receivables financing', 'Supply-chain & trade finance', 'Co-investment & joint ventures', 'Blended & impact finance'],
     ],
 
@@ -247,7 +247,7 @@ return [
                     'title' => 'Pioneer of West African Venture Capital',
                     'lead' => 'Dr. Oboh is highly regarded for laying the foundational regulatory and conceptual framework for small and medium enterprise (SME) equity financing across West Africa.',
                     'items' => [
-                        ['label' => 'Unique Venture Capital (UVC)', 'text' => 'He served for 14 years (2004–2018) as the Managing Director and Chief Executive Officer of UVC, a premier foundational venture firm established by a consortium of major Nigerian banks to engineer early-stage risk-capital funding.'],
+                        ['label' => 'Unique Venture Capital (UVC)', 'text' => 'He served for 14 years (2004–2018) as the Managing Director and Chief Executive Officer of UVC, a premier foundational venture capital company established by a consortium of major Nigerian banks to engineer early-stage risk-capital funding.'],
                         ['label' => 'West Africa Venture Fund (WAVF)', 'text' => 'Concurrently, he served as the Fund Manager for the WAVF. Backed directly by institutional heavyweights including the International Finance Corporation (IFC), this landmark fund deployed vital growth capital to SMEs across sub-Saharan Africa, specifically targeting the post-conflict economies of Liberia and Sierra Leone.'],
                         ['label' => 'Market Infrastructure Building', 'text' => 'Operating in a business terrain historically resistant to shared ownership, Dr. Oboh successfully led strategic regional campaigns that educated family-owned businesses and local entrepreneurs on utilizing equity financing as an essential tool for institutional scaling.'],
                     ],
@@ -292,7 +292,7 @@ return [
                     'items' => [
                         ['label' => 'Angelus Capital Partners', 'text' => 'He currently serves as the Chief Executive Officer of Angelus Capital Partners Ltd, where he drives institutional fundraising, structures private investment placements, and manages prime real estate asset portfolios.'],
                         ['label' => 'Keynes Private Equity', 'text' => 'As the former Managing Director and CEO of Keynes Private Equity, he steered targeted growth capital into emerging sectors, transforming local SMEs into highly competitive corporate entities.'],
-                        ['label' => 'Assetswise Capital', 'text' => 'Serving as Vice President and later Chief Investment Officer/Executive Director, he led complex, high-value corporate actions, including a foundational venture capital stake in tech firm Eartholeum Networks and the strategic acquisition of Seric Impianti International Limited.'],
+                        ['label' => 'Assetswise Capital', 'text' => 'Serving as Vice President and later Chief Investment Officer/Executive Director, he led complex, high-value corporate actions, including a foundational venture capital stake in tech company Eartholeum Networks and the strategic acquisition of Seric Impianti International Limited.'],
                     ],
                 ],
                 [
@@ -317,7 +317,7 @@ return [
         [
             'slug' => 'johnny-ojeaga',
             'name' => 'Johnny Ojeaga',
-            'role' => 'Deputy Managing Director',
+            'role' => 'Director',
             'initials' => 'JO',
             'photo' => 'images/team/johnny-ojeaga.webp',
             'bio' => 'Experienced finance and governance professional with deep expertise in accounting, pensions administration, financial management and corporate governance.',
@@ -335,7 +335,7 @@ return [
                     'lead' => 'Johnny’s career is defined by his selection to lead critical financial operations during a period of intense regulatory intervention in Nigeria’s wealth management market.',
                     'items' => [
                         ['label' => 'First Guarantee Pension Limited (FGPL)', 'text' => 'Johnny joined FGPL as Head of Finance and rose to become the Executive Director of Finance, Investments, and Administration, directly overseeing billions in consumer pension assets.'],
-                        ['label' => 'The PenCom Intervention Team', 'text' => 'Following shareholder friction that forced the pioneer board to step down, the National Pension Commission (PenCom) handpicked Johnny to serve on its elite Interim Management Committee (IMC). For nearly eight years, he safely anchored and stabilized the firm’s financial operations under active regulatory supervision, ensuring zero loss of consumer capital. This structural recovery successfully paved the way for the company’s ultimate consolidation into what is today Access Pensions.'],
+                        ['label' => 'The PenCom Intervention Team', 'text' => 'Following shareholder friction that forced the pioneer board to step down, the National Pension Commission (PenCom) handpicked Johnny to serve on its elite Interim Management Committee (IMC). For nearly eight years, he safely anchored and stabilized the company’s financial operations under active regulatory supervision, ensuring zero loss of consumer capital. This structural recovery successfully paved the way for the company’s ultimate consolidation into what is today Access Pensions.'],
                     ],
                 ],
                 [

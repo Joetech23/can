@@ -113,7 +113,7 @@ class SitePagesTest extends TestCase
     {
         $this->get(route('about'))
             ->assertSee('PIRIT', false)
-            ->assertSee('alternative asset firm')
+            ->assertSee('alternative asset company')
             ->assertSeeInOrder(['Professionalism', 'Integrity', 'Relationships', 'Insight', 'Team Spirit']);
     }
 
