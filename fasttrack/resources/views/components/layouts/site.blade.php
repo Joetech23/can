@@ -8,6 +8,27 @@
     <title>{{ $title ? $title.' · ' : '' }}{{ $ft['legal_name'] }} — {{ $ft['tagline'] }}</title>
     <meta name="description" content="{{ $description ?? 'Fixed-price home and office removals, packing and storage across London, the South East and the UK. Get an instant quote online.' }}">
     <meta name="theme-color" content="#0d1733">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ $ft['legal_name'] }}">
+    <meta property="og:title" content="{{ $title ? $title.' · ' : '' }}{{ $ft['legal_name'] }}">
+    <meta property="og:description" content="{{ $description ?? 'Fixed-price home and office removals, packing and storage. Get an instant quote online.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary">
+    @if (request()->routeIs('home'))
+        <script type="application/ld+json">{!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'MovingCompany',
+            'name' => $ft['legal_name'],
+            'url' => url('/'),
+            'telephone' => $ft['phone'],
+            'email' => $ft['email'],
+            'areaServed' => $ft['areas'],
+            'priceRange' => '££',
+            'makesOffer' => collect($ft['services'])->map(fn ($s) => ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => $s['name'], 'description' => $s['summary']]])->values(),
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}</script>
+    @endif
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

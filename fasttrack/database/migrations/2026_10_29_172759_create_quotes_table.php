@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('reference')->unique();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable(); // phone leads may not have one
             $table->string('phone');
             $table->string('service')->default('home-removals');
             $table->string('from_postcode');

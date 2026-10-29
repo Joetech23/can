@@ -41,6 +41,7 @@ class QuoteFactory extends Factory
                 'Need to be out by 11am for the cleaners.', 'Some antique furniture that needs extra care.',
             ]),
             'status' => $status,
+            'source' => fake()->randomElement(['website', 'website', 'website', 'website', 'phone', 'phone', 'whatsapp', 'referral', 'repeat', 'social']),
             'estimate' => $status === 'new' || $status === 'contacted' ? null : round($base * fake()->randomFloat(2, 0.85, 1.35) / 5) * 5,
             'created_at' => $created,
             'updated_at' => $created,

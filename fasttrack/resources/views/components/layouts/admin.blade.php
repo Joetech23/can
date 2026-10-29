@@ -52,7 +52,7 @@
 
             <p class="px-4 pt-6 pb-2 text-[11px] font-bold tracking-[0.18em] text-ink-500 uppercase dark:text-ink-400">Website</p>
             <a href="{{ route('home') }}" target="_blank" class="flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-ink-600 hover:bg-ink-50 hover:text-ink-950 dark:text-ink-300 dark:hover:bg-white/[0.04] dark:hover:text-white"><x-icon name="globe" /> View live site</a>
-            <a href="{{ route('quote') }}" target="_blank" class="flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-ink-600 hover:bg-ink-50 hover:text-ink-950 dark:text-ink-300 dark:hover:bg-white/[0.04] dark:hover:text-white"><x-icon name="plus" /> New quote form</a>
+            <a href="{{ route('quote') }}" target="_blank" class="flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-ink-600 hover:bg-ink-50 hover:text-ink-950 dark:text-ink-300 dark:hover:bg-white/[0.04] dark:hover:text-white"><x-icon name="file-text" /> Public quote form</a>
         </nav>
         <div class="m-3 rounded-2xl bg-ink-950 p-4 text-white ring-1 ring-white/5 dark:bg-white/[0.04]">
             <div class="flex items-center gap-3">
@@ -76,7 +76,7 @@
             <form action="{{ route('admin.quotes.index') }}" class="hidden max-w-md flex-1 md:block">
                 <label class="flex items-center gap-3 rounded-full border border-ink-100 bg-ink-50 px-4 py-2.5 focus-within:border-go-500 focus-within:ring-4 focus-within:ring-go-200 dark:border-white/10 dark:bg-white/[0.03] dark:focus-within:ring-go-900">
                     <x-icon name="search" class="size-5 text-ink-400" />
-                    <input name="q" value="{{ request('q') }}" placeholder="Search quotes, customers, postcodes…" class="w-full bg-transparent text-sm placeholder:text-ink-400 focus:outline-none">
+                    <input name="q" value="{{ request('q') }}" placeholder="Search quotes, customers, postcodes…" aria-label="Search quotes" class="w-full bg-transparent text-sm placeholder:text-ink-400 focus:outline-none">
                 </label>
             </form>
             <div class="ml-auto flex items-center gap-2 sm:gap-3">

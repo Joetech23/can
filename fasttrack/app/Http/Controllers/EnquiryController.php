@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewEnquiryReceived;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EnquiryController extends Controller
 {
@@ -18,7 +20,9 @@ class EnquiryController extends Controller
             'message' => ['required', 'string', 'max:3000'],
         ]);
 
-        Enquiry::create($data);
+        $enquiry = Enquiry::create($data);
+
+        rescue(fn () => Mail::to(config('fasttrack.notify_email'))->send(new NewEnquiryReceived($enquiry)));
 
         return back()->with('sent', true);
     }

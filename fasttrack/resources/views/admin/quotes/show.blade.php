@@ -5,13 +5,15 @@
             <span class="grid size-14 place-items-center rounded-2xl bg-ink-950 font-display text-lg font-bold text-go-400 dark:bg-white/10">{{ $quote->initials() }}</span>
             <div>
                 <h1 class="flex flex-wrap items-center gap-3 text-3xl font-bold">{{ $quote->name }} <x-status :status="$quote->status" class="text-sm" /></h1>
-                <p class="mt-1 text-ink-500 dark:text-ink-400">{{ $quote->reference }} · requested {{ $quote->created_at->format('j M Y, H:i') }} via {{ $quote->source }}</p>
+                <p class="mt-1 text-ink-500 dark:text-ink-400">{{ $quote->reference }} · requested {{ $quote->created_at->format('j M Y, H:i') }} via {{ \App\Models\Quote::SOURCES[$quote->source] ?? $quote->source }}</p>
             </div>
         </div>
         <div class="flex flex-wrap gap-2">
             <a href="tel:{{ preg_replace('/\s+/', '', $quote->phone) }}" class="btn-ghost"><x-icon name="phone" class="size-4" /> Call</a>
             <a href="https://wa.me/{{ preg_replace('/\D+/', '', preg_replace('/^0/', '44', $quote->phone)) }}" target="_blank" class="btn-ghost"><x-icon name="message-circle" class="size-4" /> WhatsApp</a>
-            <a href="mailto:{{ $quote->email }}?subject={{ rawurlencode('Your FastTrack quote '.$quote->reference) }}" class="btn-ink"><x-icon name="mail" class="size-4" /> Email</a>
+            @if ($quote->email)
+                <a href="mailto:{{ $quote->email }}?subject={{ rawurlencode('Your FastTrack quote '.$quote->reference) }}" class="btn-ink"><x-icon name="mail" class="size-4" /> Email</a>
+            @endif
         </div>
     </div>
 
@@ -61,7 +63,7 @@
                         'Service' => $quote->serviceLabel(),
                         'Property' => $quote->sizeLabel(),
                         'Move date' => ($quote->move_date?->format('D j M Y') ?? 'Not set').($quote->flexible_date ? ' (flexible)' : ''),
-                        'Email' => $quote->email,
+                        'Email' => $quote->email ?? '—',
                         'Phone' => $quote->phone,
                         'Price' => $quote->estimate ? '£'.number_format($quote->estimate, 2) : 'Not priced yet',
                     ] as $label => $value)

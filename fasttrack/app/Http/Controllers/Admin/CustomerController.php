@@ -13,13 +13,13 @@ class CustomerController extends Controller
     {
         $search = trim((string) $request->query('q'));
 
-        // Customers are derived from quotes, grouped by email address.
+        // Customers are derived from quotes, grouped by email (or phone when there is no email).
         $customers = Quote::query()
-            ->selectRaw('email, max(name) as name, max(phone) as phone, count(*) as quotes, '
+            ->selectRaw('coalesce(email, phone) as contact, max(email) as email, max(name) as name, max(phone) as phone, count(*) as quotes, '
                 ."sum(case when status in ('booked','completed') then estimate else 0 end) as spend, "
                 .'max(created_at) as last_seen')
-            ->when($search !== '', fn ($q) => $q->where(fn ($q) => $q->where('name', 'like', "%$search%")->orWhere('email', 'like', "%$search%")))
-            ->groupBy('email')
+            ->when($search !== '', fn ($q) => $q->where(fn ($q) => $q->where('name', 'like', "%$search%")->orWhere('email', 'like', "%$search%")->orWhere('phone', 'like', "%$search%")))
+            ->groupByRaw('coalesce(email, phone)')
             ->orderByDesc('last_seen')
             ->paginate(15)
             ->withQueryString();

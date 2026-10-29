@@ -7,19 +7,19 @@
         <form>
             <label class="flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2.5 sm:w-72 dark:border-white/10 dark:bg-ink-900">
                 <x-icon name="search" class="size-4 text-ink-400" />
-                <input name="q" value="{{ $search }}" placeholder="Search name or email" class="w-full bg-transparent text-sm focus:outline-none">
+                <input name="q" value="{{ $search }}" placeholder="Search name, email or phone" aria-label="Search customers" class="w-full bg-transparent text-sm focus:outline-none">
             </label>
         </form>
     </div>
 
     <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         @forelse ($customers as $c)
-            <a href="{{ route('admin.quotes.index', ['q' => $c->email]) }}" class="card group p-6 transition hover:-translate-y-0.5 hover:shadow-lg">
+            <a href="{{ route('admin.quotes.index', ['q' => $c->contact]) }}" class="card group p-6 transition hover:-translate-y-0.5 hover:shadow-lg">
                 <div class="flex items-center gap-3">
                     <span class="grid size-12 place-items-center rounded-full bg-ink-950 font-bold text-go-400 dark:bg-white/10">{{ collect(explode(' ', $c->name))->take(2)->map(fn ($p) => mb_substr($p, 0, 1))->implode('') }}</span>
                     <div class="min-w-0">
                         <p class="truncate font-semibold">{{ $c->name }}</p>
-                        <p class="truncate text-sm text-ink-500 dark:text-ink-400">{{ $c->email }}</p>
+                        <p class="truncate text-sm text-ink-500 dark:text-ink-400">{{ $c->email ?? 'No email' }}</p>
                     </div>
                 </div>
                 <dl class="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-ink-50 p-3 text-center dark:bg-white/[0.03]">

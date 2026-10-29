@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 #[Fillable([
     'reference', 'name', 'email', 'phone', 'service', 'from_postcode', 'to_postcode',
@@ -29,6 +31,36 @@ class Quote extends Model
 
     public const OPEN = ['new', 'contacted', 'surveyed', 'quoted'];
 
+    /** Where a lead came from. Website quotes arrive automatically; the rest are logged by staff. */
+    public const SOURCES = [
+        'website' => 'Website',
+        'phone' => 'Phone call',
+        'whatsapp' => 'WhatsApp',
+        'email' => 'Email',
+        'referral' => 'Referral',
+        'repeat' => 'Repeat customer',
+        'social' => 'Social media',
+    ];
+
+    /** Validation rules shared by the public quote form and the CRM. */
+    public static function rules(): array
+    {
+        return [
+            'service' => ['required', Rule::in(array_keys(config('fasttrack.services')))],
+            'from_postcode' => ['required', 'string', 'max:12'],
+            'to_postcode' => ['required', 'string', 'max:12'],
+            'property_size' => ['required', Rule::in(array_keys(config('fasttrack.property_sizes')))],
+            'move_date' => ['nullable', 'date', 'after_or_equal:today'],
+            'flexible_date' => ['boolean'],
+            'extras' => ['array'],
+            'extras.*' => [Rule::in(array_keys(config('fasttrack.extras')))],
+            'name' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:160'],
+            'phone' => ['required', 'string', 'max:30'],
+            'notes' => ['nullable', 'string', 'max:2000'],
+        ];
+    }
+
     protected function casts(): array
     {
         return [
@@ -50,6 +82,28 @@ class Quote extends Model
                 $quote->updateQuietly(['reference' => 'FT-'.($quote->id + 2400)]);
             }
         });
+    }
+
+    /** Filters used by the CRM list and CSV export. */
+    public function scopeFilter(Builder $query, ?string $status, string $search = ''): void
+    {
+        $query->when($status && isset(self::STATUSES[$status]), fn ($q) => $q->where('status', $status))
+            ->when($search !== '', function ($q) use ($search) {
+                $q->where(fn ($q) => $q->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%")
+                    ->orWhere('phone', 'like', "%$search%")
+                    ->orWhere('reference', 'like', "%$search%")
+                    ->orWhere('from_postcode', 'like', "%$search%")
+                    ->orWhere('to_postcode', 'like', "%$search%"));
+            });
+    }
+
+    /** Other quotes from the same customer, matched on email or, failing that, phone. */
+    public function relatedQuotes(): Builder
+    {
+        return static::query()
+            ->whereKeyNot($this->id)
+            ->when($this->email, fn ($q) => $q->where('email', $this->email), fn ($q) => $q->where('phone', $this->phone));
     }
 
     public function activities(): HasMany

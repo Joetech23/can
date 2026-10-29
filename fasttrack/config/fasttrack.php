@@ -20,6 +20,8 @@ return [
     'phone' => env('FASTTRACK_PHONE', '020 0000 0000'),          // PLACEHOLDER
     'whatsapp' => env('FASTTRACK_WHATSAPP', '440000000000'),     // PLACEHOLDER, digits only
     'email' => env('FASTTRACK_EMAIL', 'info@fstremoval.co.uk'),
+    // Where new quote and enquiry alerts are sent.
+    'notify_email' => env('FASTTRACK_NOTIFY_EMAIL', env('FASTTRACK_EMAIL', 'info@fstremoval.co.uk')),
     'address' => 'London & the South East, United Kingdom',     // PLACEHOLDER
     'hours' => 'Mon–Sat 7am–8pm · Sun 9am–5pm',                  // PLACEHOLDER
     'response_time' => 'within 2 working hours',                 // PLACEHOLDER

@@ -3,7 +3,9 @@
 Laravel 13 marketing site and lightweight CRM for FastTrack Removals, built by Eaglescroft.
 
 - **Public site:** home, services (+ one page per service), pricing, about, contact, a 4-step quote wizard.
-- **CRM** (`/admin`): dashboard, quote pipeline (New → Contacted → Surveyed → Quote sent → Booked → Completed / Lost), quote detail with notes and activity log, jobs schedule, customers, enquiries inbox. Light and dark mode.
+- **CRM** (`/admin`): dashboard, quote pipeline (New → Contacted → Surveyed → Quote sent → Booked → Completed / Lost), quote detail with notes and activity log, manual entry for phone/WhatsApp/referral leads with lead source, CSV export, jobs schedule, customers, enquiries inbox. Light and dark mode.
+- **Email:** staff get an alert for every quote and enquiry (reply goes straight to the customer); customers get a branded confirmation with their reference. A mail failure is logged but never loses the lead.
+- **SEO:** per-page titles and descriptions, Open Graph tags, `MovingCompany` structured data, `/sitemap.xml`, `/robots.txt`, branded 404.
 
 Stack: Laravel 13, Blade, Tailwind CSS 4, Alpine.js, Vite, SQLite (any Laravel-supported database works).
 
@@ -21,6 +23,10 @@ php artisan serve               # http://localhost:8000
 Demo staff login: `admin@fasttrack.test` / `password`. Change it before going live.
 
 Run tests with `php artisan test`.
+
+## Email
+
+`.env.example` uses `MAIL_MAILER=log`, so emails are written to `storage/logs/laravel.log` during development. For production, set the SMTP (or Postmark, Resend, SES…) `MAIL_*` values and `FASTTRACK_NOTIFY_EMAIL`, the inbox that receives new-lead alerts.
 
 ## Before launch
 

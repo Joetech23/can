@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewQuoteReceived;
+use App\Mail\QuoteConfirmation;
 use App\Models\Quote;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class QuoteController extends Controller
@@ -19,20 +21,7 @@ class QuoteController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'service' => ['required', Rule::in(array_keys(config('fasttrack.services')))],
-            'from_postcode' => ['required', 'string', 'max:12'],
-            'to_postcode' => ['required', 'string', 'max:12'],
-            'property_size' => ['required', Rule::in(array_keys(config('fasttrack.property_sizes')))],
-            'move_date' => ['nullable', 'date', 'after_or_equal:today'],
-            'flexible_date' => ['boolean'],
-            'extras' => ['array'],
-            'extras.*' => [Rule::in(array_keys(config('fasttrack.extras')))],
-            'name' => ['required', 'string', 'max:120'],
-            'email' => ['required', 'email', 'max:160'],
-            'phone' => ['required', 'string', 'max:30'],
-            'notes' => ['nullable', 'string', 'max:2000'],
-        ]);
+        $data = $request->validate(Quote::rules());
 
         $data['from_postcode'] = strtoupper(trim($data['from_postcode']));
         $data['to_postcode'] = strtoupper(trim($data['to_postcode']));
@@ -40,6 +29,10 @@ class QuoteController extends Controller
 
         $quote = Quote::create($data);
         $quote->activities()->create(['type' => 'created', 'body' => 'Quote request received from the website.']);
+
+        // A mail outage must never lose the lead, so failures are only reported.
+        rescue(fn () => Mail::to(config('fasttrack.notify_email'))->send(new NewQuoteReceived($quote)));
+        rescue(fn () => Mail::to($quote->email)->send(new QuoteConfirmation($quote)));
 
         return redirect()->route('quote.thanks')->with('quote', $quote->reference);
     }

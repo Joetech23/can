@@ -69,6 +69,51 @@ class CrmTest extends TestCase
         $this->assertSame('Called, survey booked', $quote->activities()->first()->body);
     }
 
+    public function test_staff_can_log_a_phone_lead_without_email(): void
+    {
+        $user = User::factory()->create(['name' => 'Sam Staff']);
+
+        $this->actingAs($user)->get('/admin/quotes/new')->assertOk();
+
+        $response = $this->actingAs($user)->post('/admin/quotes', [
+            'name' => 'Phone Caller', 'phone' => '07700 900999', 'email' => '',
+            'service' => 'home-removals', 'property_size' => '3-bed', 'from_postcode' => 'br1 1aa', 'to_postcode' => 'tn9 1aa',
+            'move_date' => now()->subDay()->toDateString(), 'source' => 'phone', 'status' => 'contacted', 'estimate' => '850',
+        ]);
+
+        $quote = Quote::sole();
+        $response->assertRedirect(route('admin.quotes.show', $quote));
+        $this->assertNull($quote->email);
+        $this->assertSame('phone', $quote->source);
+        $this->assertSame('BR1 1AA', $quote->from_postcode);
+        $this->assertStringContainsString('Sam Staff', $quote->activities()->first()->body);
+
+        $this->actingAs($user)->get('/admin/quotes/'.$quote->reference)->assertOk()->assertSee('Phone call');
+        $this->actingAs($user)->get('/admin/customers')->assertOk()->assertSee('Phone Caller');
+    }
+
+    public function test_related_quotes_match_on_phone_when_there_is_no_email(): void
+    {
+        $a = Quote::factory()->create(['email' => null, 'phone' => '07700 111111']);
+        $b = Quote::factory()->create(['email' => null, 'phone' => '07700 111111']);
+        Quote::factory()->create(['email' => null, 'phone' => '07700 222222']);
+
+        $this->assertSame([$b->id], $a->relatedQuotes()->pluck('id')->all());
+    }
+
+    public function test_quotes_export_as_csv_with_formula_guard(): void
+    {
+        Quote::factory()->create(['name' => '=HYPERLINK("http://evil")', 'status' => 'booked']);
+        Quote::factory()->create(['name' => 'Lost Lead', 'status' => 'lost']);
+
+        $response = $this->actingAs(User::factory()->create())->get('/admin/quotes/export?status=booked');
+
+        $response->assertOk()->assertDownload();
+        $csv = $response->streamedContent();
+        $this->assertStringContainsString("'=HYPERLINK", $csv);
+        $this->assertStringNotContainsString('Lost Lead', $csv);
+    }
+
     public function test_enquiries_can_be_marked_read(): void
     {
         $enquiry = Enquiry::create(['name' => 'Ann', 'email' => 'ann@example.com', 'topic' => 'Storage', 'message' => 'Hi']);

@@ -17,6 +17,17 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
 });
 
+Route::get('/sitemap.xml', function () {
+    $urls = collect(['home', 'services', 'pricing', 'about', 'contact', 'quote'])->map(fn ($r) => route($r))
+        ->merge(collect(config('fasttrack.services'))->keys()->map(fn ($slug) => route('services.show', $slug)));
+
+    return response()->view('sitemap', ['urls' => $urls])->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
+Route::get('/robots.txt', fn () => response(
+    "User-agent: *\nDisallow: /admin\nDisallow: /login\nDisallow: /quote/thanks\n\nSitemap: ".route('sitemap')."\n"
+)->header('Content-Type', 'text/plain'));
+
 Route::get('/quote', [QuoteController::class, 'create'])->name('quote');
 Route::post('/quote', [QuoteController::class, 'store'])->middleware('throttle:10,1')->name('quote.store');
 Route::get('/quote/thanks', [QuoteController::class, 'thanks'])->name('quote.thanks');
@@ -33,6 +44,9 @@ Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', Admin\DashboardController::class)->name('dashboard');
     Route::get('/quotes', [Admin\QuoteController::class, 'index'])->name('quotes.index');
+    Route::get('/quotes/new', [Admin\QuoteController::class, 'create'])->name('quotes.create');
+    Route::post('/quotes', [Admin\QuoteController::class, 'store'])->name('quotes.store');
+    Route::get('/quotes/export', [Admin\QuoteController::class, 'export'])->name('quotes.export');
     Route::get('/quotes/{quote:reference}', [Admin\QuoteController::class, 'show'])->name('quotes.show');
     Route::patch('/quotes/{quote:reference}', [Admin\QuoteController::class, 'update'])->name('quotes.update');
     Route::post('/quotes/{quote:reference}/notes', [Admin\QuoteController::class, 'note'])->name('quotes.note');

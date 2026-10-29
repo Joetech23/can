@@ -1,16 +1,20 @@
 <x-layouts.admin title="Quotes">
-    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+    <div class="flex flex-col justify-between gap-4 xl:flex-row xl:items-end">
         <div>
             <h1 class="text-3xl font-bold">Quotes</h1>
             <p class="mt-1 text-ink-500 dark:text-ink-400">Every quote request from the website, from first contact to completed move.</p>
         </div>
-        <form class="flex w-full gap-2 sm:w-auto">
-            @if ($status) <input type="hidden" name="status" value="{{ $status }}"> @endif
-            <label class="flex flex-1 items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2.5 sm:w-72 dark:border-white/10 dark:bg-ink-900">
-                <x-icon name="search" class="size-4 text-ink-400" />
-                <input name="q" value="{{ $search }}" placeholder="Name, email, ref or postcode" class="w-full bg-transparent text-sm focus:outline-none">
-            </label>
-        </form>
+        <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+            <form class="flex flex-1">
+                @if ($status) <input type="hidden" name="status" value="{{ $status }}"> @endif
+                <label class="flex flex-1 items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2.5 sm:w-72 dark:border-white/10 dark:bg-ink-900">
+                    <x-icon name="search" class="size-4 text-ink-400" />
+                    <input name="q" value="{{ $search }}" placeholder="Name, phone, ref or postcode" class="w-full bg-transparent text-sm focus:outline-none" aria-label="Search quotes">
+                </label>
+            </form>
+            <a href="{{ route('admin.quotes.export', array_filter(['status' => $status, 'q' => $search])) }}" class="btn-ghost py-2.5 whitespace-nowrap"><x-icon name="file-text" class="size-4" /> Export CSV</a>
+            <a href="{{ route('admin.quotes.create') }}" class="btn-go py-2.5 whitespace-nowrap"><x-icon name="plus" class="size-4" /> New quote</a>
+        </div>
     </div>
 
     <div class="mt-6 flex gap-2 overflow-x-auto pb-1">
@@ -40,7 +44,7 @@
                                     <span class="grid size-10 shrink-0 place-items-center rounded-full bg-ink-950 text-xs font-bold text-go-400 dark:bg-white/10">{{ $q->initials() }}</span>
                                     <span>
                                         <span class="block font-semibold text-ink-950 dark:text-white">{{ $q->name }}</span>
-                                        <span class="block text-xs text-ink-500 dark:text-ink-400">{{ $q->reference }} · {{ $q->created_at->diffForHumans() }}</span>
+                                        <span class="block text-xs text-ink-500 dark:text-ink-400">{{ $q->reference }} · {{ $q->created_at->diffForHumans() }}@if ($q->source !== 'website') · {{ \App\Models\Quote::SOURCES[$q->source] ?? $q->source }}@endif</span>
                                     </span>
                                 </a>
                             </td>

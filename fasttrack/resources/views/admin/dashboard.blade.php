@@ -43,7 +43,7 @@
                     [route('admin.quotes.index', ['status' => 'new']), 'Work new leads', 'zap', 'bg-go-400 text-ink-950'],
                     [route('admin.jobs'), 'Upcoming moves', 'truck', 'bg-sky-500 text-white'],
                     [route('admin.enquiries.index'), 'Enquiries', 'inbox', 'bg-violet-500 text-white'],
-                    [route('admin.customers'), 'Customers', 'users', 'bg-emerald-500 text-white'],
+                    [route('admin.quotes.create'), 'Log a phone lead', 'phone', 'bg-emerald-500 text-white'],
                 ] as [$href, $label, $icon, $tone])
                     <a href="{{ $href }}" class="group rounded-2xl border border-ink-100 p-4 transition hover:-translate-y-0.5 hover:border-ink-200 hover:shadow-lg dark:border-white/10 dark:hover:border-white/20">
                         <span class="grid size-11 place-items-center rounded-xl {{ $tone }} shadow-sm"><x-icon :name="$icon" /></span>
