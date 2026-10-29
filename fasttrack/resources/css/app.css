@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/plus-jakarta-sans';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * FastTrack brand tokens.
+ * ink  = deep navy, the brand's base colour (text, dark surfaces).
+ * go   = signal lime, the accent for primary actions and "moving" states.
+ * Swap these two scales to re-skin the whole site and CRM.
+ */
+@theme {
+    --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Bricolage Grotesque Variable', 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+    --color-ink-50: #f2f5fb;
+    --color-ink-100: #e3e9f5;
+    --color-ink-200: #c6d1e8;
+    --color-ink-300: #9aabcf;
+    --color-ink-400: #6c80ad;
+    --color-ink-500: #4b5f8d;
+    --color-ink-600: #364770;
+    --color-ink-700: #263559;
+    --color-ink-800: #172443;
+    --color-ink-900: #0d1733;
+    --color-ink-950: #070e22;
+
+    --color-go-50: #f7fee7;
+    --color-go-100: #ecfccb;
+    --color-go-200: #dcf99c;
+    --color-go-300: #cbf564;
+    --color-go-400: #b9ec2f;
+    --color-go-500: #9fd415;
+    --color-go-600: #7aa80c;
+    --color-go-700: #5b7f0e;
+    --color-go-800: #496411;
+    --color-go-900: #3e5513;
+
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-pulse-dot: pulse-dot 2s ease-out infinite;
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse-dot {
+        0% { box-shadow: 0 0 0 0 rgb(185 236 47 / 0.6); }
+        100% { box-shadow: 0 0 0 10px rgb(185 236 47 / 0); }
+    }
+}
+
+@layer base {
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    body { @apply bg-white text-ink-900 antialiased; }
+    h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+    ::selection { @apply bg-go-300 text-ink-950; }
+    [x-cloak] { display: none !important; }
+    :focus-visible { @apply outline-2 outline-offset-2 outline-go-500; }
+}
+
+@utility container-page { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 disabled:opacity-60; }
+@utility btn-go { @apply btn bg-go-400 text-ink-950 shadow-[0_8px_24px_-8px_rgb(159_212_21/0.7)] hover:bg-go-300 hover:-translate-y-0.5; }
+@utility btn-ink { @apply btn bg-ink-900 text-white hover:bg-ink-800 dark:bg-white dark:text-ink-950 dark:hover:bg-ink-100; }
+@utility btn-ghost { @apply btn border border-ink-200 bg-white text-ink-900 hover:border-ink-300 hover:bg-ink-50 dark:border-ink-700 dark:bg-ink-900 dark:text-white dark:hover:bg-ink-800; }
+@utility eyebrow { @apply inline-flex items-center gap-2 text-xs font-bold tracking-[0.18em] uppercase text-go-700; }
+@utility chip { @apply inline-flex items-center gap-1.5 rounded-full border border-ink-100 bg-white px-3 py-1.5 text-sm font-medium text-ink-700; }
+@utility field-label { @apply mb-1.5 block text-sm font-semibold text-ink-800 dark:text-ink-100; }
+@utility field { @apply block w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-ink-400 transition focus:border-go-500 focus:ring-4 focus:ring-go-200 focus:outline-none dark:border-ink-700 dark:bg-ink-900 dark:text-white dark:focus:ring-go-900 dark:[color-scheme:dark]; }
+@utility field-error { @apply mt-1.5 text-sm font-medium text-red-600 dark:text-red-400; }
+@utility card { @apply rounded-3xl border border-ink-100 bg-white dark:border-ink-800 dark:bg-ink-900; }
+@utility pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset; }
