@@ -34,12 +34,14 @@ cPanel → *Terminal* (if it's missing, ask the host to enable shell access):
 
 ```bash
 cd ~/fasttrack
-php -v                                  # must show 8.3+; otherwise use /opt/cpanel/ea-php83/root/usr/bin/php
-php artisan key:generate --force
-php artisan migrate --force
-php artisan fasttrack:admin info@fstremoval.co.uk "FastTrack Office"   # asks for a password (12+ chars)
-php artisan config:cache && php artisan route:cache && php artisan view:cache
+/opt/alt/php83/usr/bin/php -v           # the website's PHP (cPanel "Select PHP Version"); plain `php` on this server is 7.4
+/opt/alt/php83/usr/bin/php artisan key:generate --force
+/opt/alt/php83/usr/bin/php artisan migrate --force
+/opt/alt/php83/usr/bin/php artisan fasttrack:admin info@fstremoval.co.uk "FastTrack Office"   # asks for a password (12+ chars)
+/opt/alt/php83/usr/bin/php artisan optimize
 ```
+
+In cPanel → *Select PHP Version → Extensions*, make sure `pdo_sqlite`/`pdo_mysql`, `mbstring`, `intl`, `fileinfo` and `curl` are ticked for the website's PHP.
 
 Do **not** run `db:seed` in production; it creates demo data and a demo login.
 
@@ -53,14 +55,63 @@ Do **not** run `db:seed` in production; it creates demo data and a demo login.
 
 Then delete the test quote, and submit the sitemap in Google Search Console (proposal phase 3).
 
-## Updating later
+## Automatic deploys from GitHub
 
-Build a new zip and upload and extract it over the old files (your `.env` is not in the zip, so it is kept). Then run:
+Every push to `main` runs `.github/workflows/deploy.yml`:
+
+1. **Test:** installs everything, builds the assets and runs the full test suite. A failing test stops the deploy.
+2. **Build:** produces the same package as `deploy/build-cpanel.sh`.
+3. **Deploy over SSH:** maintenance mode on → upload the app to `~/fasttrack` and the public files to `~/public_html` → `deploy/remote-deploy.sh` runs migrations and caches and brings the site back up.
+
+The server's `.env`, database, logs and sessions are never uploaded or deleted. In `public_html` only `build/` is mirrored, so `.well-known`, `cgi-bin`, `php.ini` and any verification files stay. cPanel's PHP 8.3 handler in `.htaccess` is kept. If a deploy fails partway, the last step takes the site out of maintenance mode.
+
+Pull requests run the tests only. Use *Actions → Test & deploy → Run workflow* to redeploy without a code change.
+
+### One-time setup
+
+**1. Create a deploy key on the server.** In cPanel → *Terminal*:
 
 ```bash
-cd ~/fasttrack
-php artisan migrate --force
-php artisan config:cache && php artisan route:cache && php artisan view:cache
+ssh-keygen -t ed25519 -f ~/.ssh/github_deploy -N "" -C "github-deploy"
+cat ~/.ssh/github_deploy.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
+cat ~/.ssh/github_deploy
+```
+
+Copy the whole private key that the last command prints, from `-----BEGIN` to `END-----`. Then delete it from the server:
+
+```bash
+rm ~/.ssh/github_deploy
+```
+
+**2. Find the SSH port.** It's shown in cPanel → *SSH Access*, or ask the host. It is often `22`; some hosts use a custom port.
+
+**3. Add secrets in GitHub.** Go to the repo → *Settings → Secrets and variables → Actions → New repository secret*:
+
+| Secret | Value |
+|---|---|
+| `SSH_HOST` | `cp165173.hpdns.net` |
+| `SSH_USER` | `fstremov` |
+| `SSH_PORT` | the SSH port (leave out if 22) |
+| `SSH_KEY` | the private key from step 1 |
+
+Optional *variable* (same page, Variables tab): `PHP_BIN`, if the server's PHP 8.3 path is not `/opt/alt/php83/usr/bin/php`.
+
+**4. Protect production (optional).** *Settings → Environments → production* → add yourself as a required reviewer if you want to approve each deploy.
+
+### Day-to-day
+
+```bash
+git checkout -b my-change      # work on a branch
+git push -u origin my-change   # open a pull request; tests run automatically
+# merge the pull request into main → it deploys
+```
+
+### Deploying by hand
+
+If GitHub Actions is unavailable, build the zip with `deploy/build-cpanel.sh`, upload it and extract it in the home folder. Then copy the new `public_html` contents into place and run:
+
+```bash
+bash ~/fasttrack/deploy/remote-deploy.sh
 ```
 
 ## Troubleshooting

@@ -1,0 +1,105 @@
+name: Test & deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Never run two deploys at once; queue them instead.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl, pdo_sqlite, sqlite3, bcmath, curl, fileinfo
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          composer install --no-interaction --prefer-dist --no-progress
+          npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Run tests
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan test
+
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+      PHP_BIN: ${{ vars.PHP_BIN || '/opt/alt/php83/usr/bin/php' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build release
+        run: |
+          deploy/build-cpanel.sh "$RUNNER_TEMP/release" --no-zip
+          echo "${GITHUB_SHA::7} $(date -u +%Y-%m-%dT%H:%MZ)" > "$RUNNER_TEMP/release/fasttrack/REVISION"
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          echo "RSYNC_SSH=ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT" >> "$GITHUB_ENV"
+
+      - name: Maintenance mode on
+        run: $RSYNC_SSH "$SSH_USER@$SSH_HOST" "cd ~/fasttrack && $PHP_BIN artisan down --retry=15 || true"
+
+      - name: Upload app
+        # Server-only files (.env, database, logs, sessions) are never touched.
+        run: |
+          rsync -az --delete -e "$RSYNC_SSH" \
+            --exclude '/.env' --exclude '/storage/' --exclude '/database/*.sqlite' \
+            "$RUNNER_TEMP/release/fasttrack/" "$SSH_USER@$SSH_HOST:fasttrack/"
+
+      - name: Upload public files
+        # Only build/ is mirrored with --delete; anything else in public_html
+        # (.well-known, cgi-bin, php.ini, verification files) is left alone.
+        run: |
+          rsync -az --delete -e "$RSYNC_SSH" "$RUNNER_TEMP/release/public_html/build/" "$SSH_USER@$SSH_HOST:public_html/build/"
+          rsync -az -e "$RSYNC_SSH" --exclude '/build/' --exclude '/.htaccess' \
+            "$RUNNER_TEMP/release/public_html/" "$SSH_USER@$SSH_HOST:public_html/"
+          rsync -az -e "$RSYNC_SSH" "$RUNNER_TEMP/release/public_html/.htaccess" "$SSH_USER@$SSH_HOST:public_html/.htaccess.laravel"
+
+      - name: Migrate, cache and go live
+        run: $RSYNC_SSH "$SSH_USER@$SSH_HOST" "PHP_BIN=$PHP_BIN bash ~/fasttrack/deploy/remote-deploy.sh"
+
+      - name: Bring site back up if the deploy failed
+        if: failure()
+        run: $RSYNC_SSH "$SSH_USER@$SSH_HOST" "cd ~/fasttrack && $PHP_BIN artisan up" || true

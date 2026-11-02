@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 # Builds an upload-ready package for cPanel shared hosting.
 #
-#   deploy/build-cpanel.sh [output-dir]
+#   deploy/build-cpanel.sh [output-dir] [--no-zip]
 #
-# Produces fasttrack-cpanel.zip containing:
+# Produces fasttrack-cpanel.zip (or, with --no-zip, the two folders) containing:
 #   fasttrack/     the Laravel app → upload to /home/<cpanel-user>/fasttrack (outside the web root)
 #   public_html/   the web root    → upload into /home/<cpanel-user>/public_html
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 OUT_DIR="${1:-$APP_DIR/deploy/dist}"
+NO_ZIP="${2:-}"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 
@@ -44,6 +45,14 @@ grep -q "fasttrack/vendor/autoload.php" "$STAGE/public_html/index.php" || { echo
 grep -q "usePublicPath" "$STAGE/public_html/index.php" || { echo "index.php patch failed" >&2; exit 1; }
 
 cp "$APP_DIR/deploy/.env.production.example" "$STAGE/fasttrack/.env.example"
+
+if [ "$NO_ZIP" = "--no-zip" ]; then
+    rm -rf "$OUT_DIR/fasttrack" "$OUT_DIR/public_html"
+    mkdir -p "$OUT_DIR"
+    mv "$STAGE/fasttrack" "$STAGE/public_html" "$OUT_DIR/"
+    echo "✓ Package folders → $OUT_DIR"
+    exit 0
+fi
 
 echo "→ Zipping"
 mkdir -p "$OUT_DIR"
