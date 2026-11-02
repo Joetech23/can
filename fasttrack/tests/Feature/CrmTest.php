@@ -114,6 +114,19 @@ class CrmTest extends TestCase
         $this->assertStringNotContainsString('Lost Lead', $csv);
     }
 
+    public function test_admin_command_creates_a_staff_login(): void
+    {
+        $this->artisan('fasttrack:admin', ['email' => 'office@example.com', 'name' => 'Office'])
+            ->expectsQuestion('Password (min 12 characters)', 'short')
+            ->assertFailed();
+
+        $this->artisan('fasttrack:admin', ['email' => 'office@example.com', 'name' => 'Office'])
+            ->expectsQuestion('Password (min 12 characters)', 'a-strong-password-123')
+            ->assertSuccessful();
+
+        $this->post('/login', ['email' => 'office@example.com', 'password' => 'a-strong-password-123'])->assertRedirect(route('admin.dashboard'));
+    }
+
     public function test_enquiries_can_be_marked_read(): void
     {
         $enquiry = Enquiry::create(['name' => 'Ann', 'email' => 'ann@example.com', 'topic' => 'Storage', 'message' => 'Hi']);
